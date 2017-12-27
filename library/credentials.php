@@ -1,7 +1,7 @@
 <?php
-
+	
 	class Credentials {
-
+	
 		// Nom de l'hôte de la base de donnée
 		private static $databaseHostname = 'localhost';
 		// Nom de la base de données
@@ -9,7 +9,7 @@
 		// Nom d'utilisateur de la base de donnée
 		private static $databaseLogin = 'root';
 		// Mot de passe de la base de donnée
-		private static $databasePassword = '';
+		private static $databasePassword = 'root';
 
 		static function getDataBaseHostname(){
 			return self::$databaseHostname;

@@ -3,10 +3,6 @@ require_once File::buildPath(array('library', 'usefull.php'));
 require_once File::buildPath(array('model', 'model.php'));
 
 class ModelEditeur {
-
-	public static $className = 'ModelEditeur';
-	protected static $tableName = 'Editeur';
-	
 	private $numEditeur;
 	private $nomEditeur;
 	private $mailEditeur;
@@ -95,7 +91,7 @@ class ModelEditeur {
 	
 	public function save() {
 
-		$sql = "INSERT INTO editeur (nomEditeur, mailEditeur, telEditeur, siteEditeur, commentaire, nombreJeux) VALUES (:nom_tag, :mail_tag, :tel_tag, :site_tag, :com_tag, :nbr_tag)";
+		$sql = "INSERT INTO editeur (nomEditeur, mailEditeur, telEditeur, siteEditeur, commentaire, getNombreJeux) VALUES (:nom_tag, :mail_tag, :tel_tag, :site_tag, :com_tag, :nbr_tag)";
 
 		try {
 			$req_prep = Model::$pdo->prepare($sql);
@@ -124,24 +120,32 @@ class ModelEditeur {
 		} catch (PDOException $e) {
 			echo('Error tout casse ( /!\ method delete /!\ )');
 		}
-	}
-    
-    public function changeEditeur() {
-		$sql = "SELECT * FROM editeur WHERE editeur.numEditeur = :numEditeur_tag";
+	} 
+
+	public function update($numEditeur){
+		$sql = "UPDATE editeur SET editeur.nomEditeur = :nom_tag, 
+								   editeur.mailEditeur = :mail_tag, 
+								   editeur.telEditeur = :tel_tag, 
+								   editeur.siteEditeur = :site_tag, 
+								   editeur.commentaire = :com_tag, 
+								   editeur.nombreJeux = :nbr_tag 
+							 WHERE editeur.numEditeur = :num_editeur";
 		try {
 			$req_prep = Model::$pdo->prepare($sql);
-            $values = array(
-				"numEditeur_tag" => $this->getNumEditeur(),
+			$values = array(
+				"num_editeur" => $numEditeur,
+				"nom_tag" => $this->getNomEditeur(),
+				"mail_tag" => $this->getMailEditeur(),
+				"tel_tag" => $this->getTelEditeur(),
+				"site_tag" => $this->getSiteEditeur(),
+				"com_tag" => $this->getComEditeur(),
+				"nbr_tag" => $this->getNombreJeux(),
 			);
 			$req_prep->execute($values);
-            echo $req_prep;
 		} catch (PDOException $e) {
-			echo('Error tout casse ( /!\ method delete /!\ )');
+			echo('Error tout casse ( /!\ method update /!\ )');
 		}
 	}
-    
-    
-    
 }
 
 ?>

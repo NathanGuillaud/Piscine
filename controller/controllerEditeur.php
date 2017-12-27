@@ -32,26 +32,49 @@
 			if (!empty(ModelEditeur::getEditeurByNum($_GET['numEditeur']))){
 				$editeur = ModelEditeur::getEditeurByNum($_GET['numEditeur']);
 				$editeur->deleteEditeur();
-			}			
+			}else{$error = "Cet editeur n'existe pas !";}		
 			$controller = "editeur";
 			$view = "listeEditeur";
 			$title = "Liste des éditeurs";
 			$tab_edit = ModelEditeur::getAllEditeurs();
 			require File::buildPath(array("view", "view.php"));
 		} 
-        
-        public static function change() {
+
+		public static function update(){
 			if (!empty(ModelEditeur::getEditeurByNum($_GET['numEditeur']))){
+				$controller = "editeur";
+				$view = "updateEditeur";
+				$title = "Modifier un éditeur";
 				$editeur = ModelEditeur::getEditeurByNum($_GET['numEditeur']);
-				$editeur->changeEditeur();
-			}			
+				require File::buildPath(array("view", "view.php"));
+				return 0; 		
+			}else{		
+				$error = "Cet editeur n'existe pas !";
+			}
 			$controller = "editeur";
-			$view = "addEditeur";
-			$title = "Modifiez les informations de cet editeur";
+			$view = "listeEditeur";
+			$title = "Liste des éditeurs";
 			$tab_edit = ModelEditeur::getAllEditeurs();
 			require File::buildPath(array("view", "view.php"));
-		} 
-        
+		}
 
+		public static function updateEditeur(){
+			if (!empty(ModelEditeur::getEditeurByNum($_GET['numEditeur']))){
+				$editeur = new ModelEditeur($_POST['nomEditeur'], $_POST['mailEditeur'], $_POST['telEditeur'], $_POST['siteEditeur'], $_POST['comEditeur'], $_POST['nbrJeux']);
+				$editeur->update($_GET['numEditeur']);
+				$tab_edit = ModelEditeur::getAllEditeurs();
+				$controller = "editeur";
+				$view = "listeEditeur";
+				$title = "Liste éditeurs";
+				require File::buildPath(array("view", "view.php"));
+			}else{
+				$error = "Cet editeur n'existe pas !";
+			}
+			$tab_edit = ModelEditeur::getAllEditeurs();
+			$controller = "editeur";
+			$view = "listeEditeur";
+			$title = "Liste éditeurs";
+			require File::buildPath(array("view", "view.php"));
+		}
 	}
 ?>
