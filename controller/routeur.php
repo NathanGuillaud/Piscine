@@ -16,7 +16,13 @@
 	}
 	$action = htmlspecialchars($action);
 
-	if(ModelUser::isConnected() && ($action == "viewRegister" || $action == "actionConnect")){
+
+	if(!class_exists($controller) || !in_array($action, get_class_methods($controller))) {
+        $action = "viewConnect";
+        $controller = "controllerUser";
+    }
+
+ 	if(ModelUser::isConnected() && ($action == "viewRegister" || $action == "actionConnect")){
 		ControllerUser::viewConnect();
 	}elseif(ModelUser::isConnected() || $action == "viewRegister" || $action == "actionConnect" || $action == "actionRegister"){
 		$controller::$action();
