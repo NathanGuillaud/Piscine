@@ -91,7 +91,7 @@ class ModelEditeur {
 	
 	public function save() {
 
-		$sql = "INSERT INTO editeur (nomEditeur, mailEditeur, telEditeur, siteEditeur, commentaire, getNombreJeux) VALUES (:nom_tag, :mail_tag, :tel_tag, :site_tag, :com_tag, :nbr_tag)";
+		$sql = "INSERT INTO editeur (nomEditeur, mailEditeur, telEditeur, siteEditeur, commentaire, nombreJeux) VALUES (:nom_tag, :mail_tag, :tel_tag, :site_tag, :com_tag, :nbr_tag)";
 
 		try {
 			$req_prep = Model::$pdo->prepare($sql);
