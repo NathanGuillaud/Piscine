@@ -56,6 +56,7 @@
 			$title = "Liste des éditeurs";
 			$tab_edit = ModelEditeur::getAllEditeurs();
 			require File::buildPath(array("view", "view.php"));
+			return 0;
 		}
 
 		public static function updateEditeur(){
@@ -67,6 +68,7 @@
 				$view = "listeEditeur";
 				$title = "Liste éditeurs";
 				require File::buildPath(array("view", "view.php"));
+				return 0;
 			}else{
 				$error = "Cet editeur n'existe pas !";
 			}
@@ -75,6 +77,7 @@
 			$view = "listeEditeur";
 			$title = "Liste éditeurs";
 			require File::buildPath(array("view", "view.php"));
+			return 0;
 		}
 	}
 ?>
