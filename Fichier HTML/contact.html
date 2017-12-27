@@ -1,0 +1,27 @@
+<form method="post" action="traitement.php">
+ 
+   <fieldset>
+       <legend>Contact :  </legend>
+
+       <label for="NomContact">Nom du contact : </label><br />
+       <input type="text" name="NomContact" id="NomContact" /><br /><br />
+
+       <label for="PrenomContact">Prénom du contact : </label><br />
+       <input type="text" name="PrenomContact" id="PrenomContact" /><br /><br />
+
+       <label for="MailContact">E-Mail du contact : </label><br />
+       <input type="email" name="MailContact" id="MailContact" /><br /><br />
+
+       <label for="Poste">Poste du contact : </label><br />
+       <input type="text" name="Poste" id="Poste" /><br /><br />
+
+       <label for="telContact">Numéro de téléphone du contact : </label><br />
+       <input type="tel" name="telContact" id="telContact" /><br /><br />
+
+       Le contact viendra-t-il au festival ?<br />
+       <input type="radio" name="deplacement" value="deplacementOui" id="deplacementOui" /> <label for="deplacementOui">Oui</label><br />
+       <input type="radio" name="deplacement" value="deplacementNon" id="deplacementNon" /> <label for="deplacementNon">Non</label><br /><br />
+
+       <input type="submit" value="Confirmer" />
+      </fieldset>
+</form>

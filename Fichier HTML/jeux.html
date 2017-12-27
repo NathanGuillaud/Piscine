@@ -1,0 +1,17 @@
+<form method="post" action="traitement.php">
+ 
+   <fieldset>
+       <legend>Jeu : </legend>
+
+       <label for="LibelleJeu">Nom du jeu : </label><br />
+       <input type="text" name="LibelleJeu" id="LibelleJeu" /><br /><br />
+
+       Le jeu est-il un prototype ?<br />
+       <input type="radio" name="EstPrototype" value="EstPrototypeOui" id="EstPrototypeOui" /> <label for="EstPrototypeNon">Oui</label><br />
+       <input type="radio" name="EstPrototype" value="EstPrototypeNon" id="EstPrototypeNon" /> <label for="EstPrototypeNon">Non</label><br /><br />
+
+       Le jeu est-il surdimensionné ?<br />
+       <input type="radio" name="EstSurdimensionne" value="EstSurdimensionneOui" id="EstSurdimensionneOui" /> <label for="EstSurdimensionneOui">Oui</label><br />
+       <input type="radio" name="EstSurdimensionne" value="EstSurdimensionneNon" id="EstSurdimensionneNon" /> <label for="EstSurdimensionneNon">Non</label><br /><br />      
+       <input type="submit" value="Confirmer" /></fieldset>
+</form>

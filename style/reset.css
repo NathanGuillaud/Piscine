@@ -1,0 +1,182 @@
+
+
+/* On enlève les marges de la page et défini une police par défault */
+titre {
+	text-align: center 
+}
+
+h1{
+    font-size: 1.7em;
+}
+
+.group{
+    display: inline-block;
+    
+}
+
+.right{
+    float:right;
+    display: inline-block;
+    width:45%;
+}
+
+.part{
+    width: 80%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    padding:5%;
+    background-color: white;
+    border-radius:5px;
+    display:block;
+    box-shadow:;
+}
+
+
+html {
+  width: 100%;
+  height: 100%;
+  font-family: "Roboto"
+}
+
+body {
+  background: linear-gradient(45deg,  rgba(66, 183, 245,0.8) 0%,rgba(66, 245, 189,0.4) 100%);
+  background-attachment: fixed;
+  color: gray;
+  width:75%;
+  margin: auto;
+  font-family: $base-font-family;
+  font-size: $base-font-size;
+  line-height: $base-line-height;
+
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+  background: rgba($black, 0.8);
+  width: 100%;
+  height: 100%;
+}
+
+.form {
+  z-index: 15;
+  position: relative;
+  background: $white;
+  width: 100%;
+  border-radius: 4px;
+  box-shadow: 0 0 30px rgba($black, .1);
+  box-sizing: border-box;
+  margin: 100px auto 10px;
+  overflow: hidden;
+}
+    
+
+   
+    label {
+      display: block;
+      margin: 0 0 3px;
+      color: $gray;
+      font-size: 12px;
+      font-weight: bold;
+      line-height: 1;
+      width: 100%;
+      text-transform: uppercase;
+      letter-spacing: .2em;
+
+}
+    input {
+      outline: none;
+      display: inline-block;
+      background-color:whitesmoke;
+      width: 100%;
+      border: 0;
+      border-radius: 4px;
+      box-sizing: border-box;
+      padding: 12px 20px;
+      color: $gray;
+      font-family: inherit;
+      font-size: inherit;
+      font-weight: 400;
+      line-height: inherit;
+      transition: 0.3s ease;
+}
+
+textarea{
+    outline: none;
+      display: block;
+      background-color:whitesmoke;
+      width: 100%;
+      height: 20%;
+      margin:auto;
+      border: 0;
+      border-radius: 4px;
+      box-sizing: border-box;
+      padding: 12px 20px;
+      color: $gray;
+      font-family: inherit;
+      font-size: inherit;
+      font-weight: 400;
+      line-height: inherit;
+      transition: 0.3s ease;
+    
+}
+    button {
+      outline: none;
+      background: $accent;
+      width: 100%;
+      border: 0;
+      border-radius: 4px;
+      padding: 12px 20px;
+      color: $white;
+      font-family: inherit;
+      font-size: inherit;
+      font-weight: $semibold;
+      line-height: inherit;
+      text-transform: uppercase;
+      display: inline-flex;
+}
+
+label.littlab{
+    width:50px;
+    display:inline-block;
+}
+
+.radio{
+    width:30px;
+    display: inline-block;
+}
+
+
+
+input::placeholder {
+    color:#AAAAAA;
+}
+
+
+hr{
+    width:80%;
+    color:#ddd;
+}
+        
+    .form-remember {
+      font-size: 12px;
+      font-weight: $regular;
+      letter-spacing: 0;
+      text-transform: none;
+}
+      input[type='checkbox'] {
+        display: block
+        width: auto;
+        margin: 0 10px 0 0;
+      }
+    }
+
+
+    .form-recovery {
+      color: $accent;
+      font-size: 12px;
+      text-decoration: none;
+    }
+  }

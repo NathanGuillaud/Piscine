@@ -1,0 +1,157 @@
+
+html, body, div, span, h1, h2, h3, h4, h5, h6, p, ol, ul, li, form, label, legend, caption, aside, details, figcaption, figure, footer,header, hgroup, menu, nav, section, summary {
+    margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-weight: inherit;
+	font-style: inherit;
+	font-size: 100%;
+	font-family: inherit;
+	vertical-align: baseline;
+}
+
+ol, ul {
+	list-style: none;
+}
+
+a img {
+   border: none
+}
+
+a{
+	text-decoration: none;
+	padding-bottom: 5px;
+}
+
+header a{
+    color: #E0E0E0;
+}
+
+header a:hover{
+	border-bottom: 4px solid #E0E0E0;
+}
+
+aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {display: block;}
+
+/***************************************************
+			      Global styles
+***************************************************/
+
+html {
+	width: 100%;
+	height: 100%;
+}
+
+body {
+   width: 100%;
+   height: 100%;
+   background-color: #E0E0E0;
+   
+}
+
+header{
+	width: 100%;
+	height: 80px;
+	display: flex;
+	background-color:#1F5F6E;
+	line-height: 80px;
+
+	color: #E0E0E0;
+}
+
+header h1{
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 30px;
+}
+
+header nav{
+	display: flex;
+	font-size: 20px;
+	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+#menu nav>div{
+	align-items: center;
+	margin-left: 40px;
+	margin-right: 40px;
+}
+
+#connexion nav>div{
+	align-items: center;
+	margin-right: 20px;
+	margin-left: 20px;
+}
+
+
+#logo{
+	margin-left: 20px;
+}
+
+#menu{
+	display: flex;
+	align-items: center; /* Aligne le texte */
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.error{
+    color: red;
+    font-size: 45px;
+    text-align: center;
+}
+
+
+
+/* Formulaire de connexion */
+
+
+form {
+	margin: auto;
+	margin-top: 80px;
+	border: 1px solid #c6c7cc;
+	font: 14px/1.4 "Helvetica Neue", Helvetica, Arial, sans-serif;
+	width: 240px;
+}
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+.form-infos {
+  text-align: center;
+  padding: 20px 20px 0 20px;
+}
+.form-infos label {
+  color: #395870;
+  display: block;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: left;
+}
+.form-infos input {
+  background: #fff;
+  border: 1px solid #c6c7cc;
+  color: #636466;
+  margin-top: 6px;
+  width: 100%;
+  height: 25px;
+}
+.form-action{
+	border-top: 1px solid #c6c7cc;
+}
+.form-bouton{
+	width: 100%;
+	border: none;
+	height: 30px;
+}
+.form-bouton:hover{
+	background-color: #395870;
+	color: #fff;
+}
+
+.present{
+	font: 20px "Helvetica Neue", Helvetica, Arial, sans-serif;
+	text-align:center;
+}

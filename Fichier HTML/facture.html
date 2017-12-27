@@ -1,0 +1,17 @@
+<form method="post" action="traitement.php">
+ 
+   <fieldset>
+       <legend>Facture : </legend>
+
+       La facture a-t-elle été payée ?<br />
+       <input type="radio" name="EtatFacture" value="EtatFactureOui" id="EtatFactureOui" /> <label for="interesseOui">Oui</label><br />
+       <input type="radio" name="EtatFacture" value="EtatFactureNon" id="EtatFactureNon" /> <label for="interesseNon">Non</label><br /><br />     
+
+       <label for="DateFacture">Date d'émission de la facture : </label><br />
+       <input type="date" name="DateFacture" id="DateFacture" /><br /><br />
+
+       <label for="DateRelance">Date d'émission de la relance : </label><br />
+       <input type="date" name="DateRelance" id="DateRelance" /><br /><br />
+       <input type="submit" value="Confirmer" />
+      </fieldset>
+</form>

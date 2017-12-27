@@ -1,0 +1,18 @@
+<form method="post" action="traitement.php">
+ 
+   <fieldset>
+       <legend>Suivi de l'Editeur :  </legend>
+
+       <label for="DatePremierContact">Date de premier contact : </label><br />
+       <input type="date" name="DatePremierContact" id="DatePremierContact" /><br /><br />
+
+       <label for="RelanceContact">Date de relance : </label><br />
+       <input type="date" name="RelanceContact" id="RelanceContact" /><br /><br />
+ 
+       Voulez-vous rédiger un compte rendu ?<br />
+       
+       <input type="radio" name="CompteRendu" value="CompteRenduOui" id="CompteRenduOui" /> <label for="interesseOui">Oui</label><br />
+       <input type="radio" name="CompteRendu" value="CompteRenduNon" id="CompteRenduNon" /> <label for="interesseNon">Non</label><br />
+       <input type="submit" value="Confirmer" />
+      </fieldset>
+</form>
