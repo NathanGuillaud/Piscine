@@ -15,7 +15,7 @@ if (isset($tab_cont) && isset($tab_cont[0])){
 		}else{
 			$estPrivilegie = "non";
 		}
-		echo '<p> N°Contact: ' . $numContact . ' Nom Contact: ' . $nomContact . '  Privilegie: ' . $estPrivilegie .'<a href="index.php?controller=contact&action=delete&numContact=' . rawurlencode($numContact) . '"> Supprimer</a>'.'</p>';
+		echo '<p> N°Contact: ' . $numContact . ' Nom Contact: ' . $nomContact . '  Privilegie: ' . $estPrivilegie.'<a href="index.php?controller=contact&action=update&numContact=' . rawurlencode($numContact) . '"> Modifier</a>' .'<a href="index.php?controller=contact&action=delete&numContact=' . rawurlencode($numContact) . '"> Supprimer</a>'.'</p>';
 	};
 }else{
 	echo"Vous n'avez pas de contact :( ";

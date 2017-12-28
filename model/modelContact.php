@@ -1,5 +1,4 @@
 <?php
-require_once File::buildPath(array('library', 'usefull.php'));
 require_once File::buildPath(array('model', 'model.php'));
 
 class ModelContact {
@@ -143,6 +142,31 @@ class ModelContact {
 			echo('Error tout casse ( /!\ method delete /!\ )');
 		}
 	} 
+
+	public function update($numContact){
+		$sql = "UPDATE contact SET contact.nomContact = :nom_tag, 
+								   contact.mailContact = :mail_tag, 
+								   contact.telContact = :tel_tag, 
+								   contact.estPrivilegie = :privilegie_tag, 
+								   contact.prenomContact = :prenom_tag, 
+								   contact.poste = :poste_tag 
+							 WHERE contact.numContact = :num_contact";
+		try {
+			$req_prep = Model::$pdo->prepare($sql);
+			$values = array(
+				"nom_tag" => $this->getNomContact(),
+				"mail_tag" => $this->getMailContact(),
+				"tel_tag" => $this->getTelContact(),
+				"privilegie_tag" => $this->getEstPrivilegie(),
+				"prenom_tag" => $this->getPrenomContact(),
+				"poste_tag" => $this->getPoste(),
+				"num_contact" => $numContact,
+			);
+			$req_prep->execute($values);
+		} catch (PDOException $e) {
+			echo('Error tout casse ( /!\ method update /!\ )');
+		}
+	}
 }
 
 ?>

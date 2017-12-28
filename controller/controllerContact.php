@@ -74,5 +74,52 @@
 			$tab_edit = ModelEditeur::getAllEditeurs($contact->getNumEditeur());
 			require File::buildPath(array("view", "view.php"));
 		}
+
+		public static function update(){
+			if (!empty(ModelContact::getContactByNum($_GET['numContact']))){
+				$controller = "contact";
+				$view = "updateContact";
+				$title = "Modifier un contact";
+				$contact = ModelContact::getContactByNum($_GET['numContact']);
+				require File::buildPath(array("view", "view.php"));
+				return 0; 		
+			}else{		
+				$error = "Ce contact n'existe pas !";
+			}
+			$controller = "editeur";
+			$view = "listeEditeur";
+			$title = "Liste des éditeurs";
+			$tab_edit = ModelEditeur::getAllEditeurs();
+			require File::buildPath(array("view", "view.php"));
+			return 0;
+		}
+
+		public static function updateContact(){
+			if (!empty(ModelContact::getContactByNum($_GET['numContact']))){
+				if(isset($_POST['estPrivilegie'])){
+				//privilegie
+				$contact = new ModelContact(1, $_POST['nomContact'], $_POST['prenomContact'], $_POST['mailContact'], $_POST['poste'], $_POST['telContact'], $_POST['numEditeur']);
+				}else{
+					//non privilegie
+					$contact = new ModelContact(0, $_POST['nomContact'], $_POST['prenomContact'], $_POST['mailContact'], $_POST['poste'], $_POST['telContact'], $_POST['numEditeur']);
+				}
+				$contact->update($_GET['numContact']);
+				$numEditeur = $contact->getNumEditeur();
+				$tab_cont = ModelContact::getAllContact($numEditeur);
+				$controller = "contact";
+				$view = "contactAdded";
+				$title = "Contact modifié";
+				require File::buildPath(array("view", "view.php"));
+				return 0;
+			}else{
+				$error = "Ce contact n'existe pas !";
+			}
+			$tab_edit = ModelEditeur::getAllEditeurs();
+			$controller = "editeur";
+			$view = "listeEditeur";
+			$title = "Liste éditeurs";
+			require File::buildPath(array("view", "view.php"));
+			return 0;
+		}
 	}
 ?>

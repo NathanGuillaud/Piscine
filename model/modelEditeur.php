@@ -1,5 +1,4 @@
 <?php
-require_once File::buildPath(array('library', 'usefull.php'));
 require_once File::buildPath(array('model', 'model.php'));
 
 class ModelEditeur {
