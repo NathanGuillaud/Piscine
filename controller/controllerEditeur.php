@@ -10,6 +10,24 @@
 			$title = "Liste des editeurs";
 			require File::buildPath(array("view", "view.php")); //"redirige" vers la vue
 		}
+
+		public static function readEditeur(){
+			$editeur = ModelEditeur::getEditeurByNum($_GET['numEditeur']);
+	        if ($editeur == false) {
+	            $controller = "editeur";
+	            $view = "listeEditeur";
+	            $error = "Cet editeur n'existe pas !";
+	            $title = "Liste des éditeurs";
+	            $tab_edit = ModelEditeur::getAllEditeurs();
+	            require File::buildPath(array("view", "view.php"));
+	        } else {
+	            $controller = "editeur";
+	            $view = "detailEditeur";
+	            $title = "Détails éditeur";
+	            $error = "Cet editeur n'existe pas !";
+	            require File::buildPath(array("view", "view.php"));
+	        }
+		}
 		
 		public static function addEditeur(){
 			$controller = "editeur";

@@ -1,6 +1,7 @@
 <?php
 	require_once File::buildPath(array('controller', 'controllerUser.php'));
 	require_once File::buildPath(array('controller', 'controllerEditeur.php'));
+	require_once File::buildPath(array('controller', 'controllerContact.php'));
 	
 	if (isset($_GET['controller'])) {
 		$controller = htmlspecialchars($_GET['controller']);

@@ -11,7 +11,7 @@ if (isset($tab_edit) && isset($tab_edit[0])){
 		$numEditeur = htmlspecialchars($editeur->getNumEditeur());
 		$nomEditeur = htmlspecialchars($editeur->getNomEditeur());
 		$nbrJeux = htmlspecialchars($editeur->getNombreJeux());
-		echo '<p> N°Editeur: ' . $numEditeur . ' Nom Editeur: ' . $nomEditeur . '  Nombre de jeux: ' . $nbrJeux . '<a href="index.php?controller=editeur&action=update&numEditeur=' . rawurlencode($numEditeur) . '"> Modifier</a>'.'<a href="index.php?controller=editeur&action=delete&numEditeur=' . rawurlencode($numEditeur) . '"> Supprimer</a>'.'</p>';
+		echo '<p> N°Editeur: ' . $numEditeur . ' Nom Editeur: ' . $nomEditeur . '  Nombre de jeux: ' . $nbrJeux .'<a href="index.php?controller=editeur&action=readEditeur&numEditeur=' . rawurlencode($numEditeur) . '"> Details</a> </p>';
 	};
 }else{
 	echo"Vous n'avez pas d'éditeur :( ";
