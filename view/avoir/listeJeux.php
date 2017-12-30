@@ -37,7 +37,9 @@ if (isset($tab_jeux) && isset($tab_jeux[0])){
 		}
 		$nbExemplaire = $tab_avoir[$cpt]->getNbExemplaire();
 		echo '<p> N°Jeu: ' . htmlspecialchars($jeux->getNumJeu()) . ' Nom Jeu: ' . htmlspecialchars($jeux->getLibelleJeu()) . ' Prototype: ' . $prototype . ' Surdimenssioné: ' . $surdi . ' Payer frais: ' . $payer . ' Type: ' . htmlspecialchars($type) . ' Nbr Exemplaire: ' . $nbExemplaire;
-		echo '<a href="index.php?controller=jeux&action=update&numEditeur='. rawurldecode($_GET['numEditeur']) .'&numJeu=' . rawurlencode($jeux->getNumJeu()) . '"> Modifier</a></p>';
+		echo '<a href="index.php?controller=jeux&action=update&numEditeur='. rawurldecode($_GET['numEditeur']) .'&numJeu=' . rawurlencode($jeux->getNumJeu()) . '"> Modifier</a>';
+
+		echo '<a href="index.php?controller=jeux&action=delete&numJeu=' . rawurlencode($jeux->getNumJeu()) . '"> supprimer</a></p>';
 	};
 }else{
 	echo"Vous n'avez pas de jeux :( ";
