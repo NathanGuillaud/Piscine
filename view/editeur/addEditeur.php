@@ -14,9 +14,6 @@
 
 		<label>Commentaire:
 			<input type="text" placeholder="commentaire" name="comEditeur"/></label>
-		
-		<label>Nombre de jeux:
-			<input type="number" placeholder="Nombre de jeux" name="nbrJeux" required /></label>
     </fieldset>
 	<fieldset class="form-action">
 			<input class="form-bouton" type="submit" name="submit" value="Enregistrer" />

@@ -24,7 +24,6 @@
 	            $controller = "editeur";
 	            $view = "detailEditeur";
 	            $title = "Détails éditeur";
-	            $error = "Cet editeur n'existe pas !";
 	            require File::buildPath(array("view", "view.php"));
 	        }
 		}

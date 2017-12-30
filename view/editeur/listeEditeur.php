@@ -10,8 +10,13 @@ if (isset($tab_edit) && isset($tab_edit[0])){
 	foreach ($tab_edit as $editeur) {
 		$numEditeur = htmlspecialchars($editeur->getNumEditeur());
 		$nomEditeur = htmlspecialchars($editeur->getNomEditeur());
-		$nbrJeux = htmlspecialchars($editeur->getNombreJeux());
-		echo '<p> N°Editeur: ' . $numEditeur . ' Nom Editeur: ' . $nomEditeur . '  Nombre de jeux: ' . $nbrJeux .'<a href="index.php?controller=editeur&action=readEditeur&numEditeur=' . rawurlencode($numEditeur) . '"> Details</a> </p>';
+		$nbrjeux = ModelAvoir::getAllJeuxByEditeur($numEditeur);
+		if(!$nbrjeux){
+			$nbrjeux = 0;
+		}else{
+			$nbrjeux = count($nbrjeux);
+		}
+		echo '<p> N°Editeur: ' . $numEditeur . ' Nom Editeur: ' . $nomEditeur . '  Nombre de jeux: ' . $nbrjeux .'<a href="index.php?controller=editeur&action=readEditeur&numEditeur=' . rawurlencode($numEditeur) . '"> Details</a> </p>';
 	};
 }else{
 	echo"Vous n'avez pas d'éditeur :( ";

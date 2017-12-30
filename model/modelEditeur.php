@@ -8,7 +8,6 @@ class ModelEditeur {
 	private $telEditeur;
 	private $siteEditeur;
 	private $commentaire;
-	private $nombreJeux;
 	
 	public function getNumEditeur(){
 		return $this->numEditeur;
@@ -34,19 +33,14 @@ class ModelEditeur {
 		return $this->commentaire;
 	}
 	
-	public function getNombreJeux(){
-		return $this->nombreJeux;
-	}
-	
 		// un constructeur
-	public function __construct($nomEditeur = NULL, $mailEditeur = NULL, $telEditeur = NULL, $siteEditeur = NULL, $commentaire = NULL, $nombreJeux = NULL) {
-		if (!is_null($nomEditeur) && !is_null($mailEditeur) && !is_null($telEditeur) && !is_null($siteEditeur) && !is_null($commentaire) && !is_null($nombreJeux)) {
+	public function __construct($nomEditeur = NULL, $mailEditeur = NULL, $telEditeur = NULL, $siteEditeur = NULL, $commentaire = NULL) {
+		if (!is_null($nomEditeur) && !is_null($mailEditeur) && !is_null($telEditeur) && !is_null($siteEditeur) && !is_null($commentaire)) {
 			$this->nomEditeur = $nomEditeur;
 			$this->mailEditeur = $mailEditeur;
 			$this->telEditeur = $telEditeur;
 			$this->siteEditeur = $siteEditeur;
 			$this->commentaire = $commentaire;
-			$this->nombreJeux = $nombreJeux;
 		}
 	}
 
@@ -90,7 +84,7 @@ class ModelEditeur {
 	
 	public function save() {
 
-		$sql = "INSERT INTO editeur (nomEditeur, mailEditeur, telEditeur, siteEditeur, commentaire, nombreJeux) VALUES (:nom_tag, :mail_tag, :tel_tag, :site_tag, :com_tag, :nbr_tag)";
+		$sql = "INSERT INTO editeur (nomEditeur, mailEditeur, telEditeur, siteEditeur, commentaire) VALUES (:nom_tag, :mail_tag, :tel_tag, :site_tag, :com_tag)";
 
 		try {
 			$req_prep = Model::$pdo->prepare($sql);
@@ -100,7 +94,6 @@ class ModelEditeur {
 				"tel_tag" => $this->getTelEditeur(),
 				"site_tag" => $this->getSiteEditeur(),
 				"com_tag" => $this->getComEditeur(),
-				"nbr_tag" => $this->getNombreJeux(),
 			);
 			$req_prep->execute($values);
 		} catch (PDOException $e) {
@@ -126,8 +119,7 @@ class ModelEditeur {
 								   editeur.mailEditeur = :mail_tag, 
 								   editeur.telEditeur = :tel_tag, 
 								   editeur.siteEditeur = :site_tag, 
-								   editeur.commentaire = :com_tag, 
-								   editeur.nombreJeux = :nbr_tag 
+								   editeur.commentaire = :com_tag
 							 WHERE editeur.numEditeur = :num_editeur";
 		try {
 			$req_prep = Model::$pdo->prepare($sql);
@@ -138,7 +130,6 @@ class ModelEditeur {
 				"tel_tag" => $this->getTelEditeur(),
 				"site_tag" => $this->getSiteEditeur(),
 				"com_tag" => $this->getComEditeur(),
-				"nbr_tag" => $this->getNombreJeux(),
 			);
 			$req_prep->execute($values);
 		} catch (PDOException $e) {

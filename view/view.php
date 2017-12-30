@@ -21,6 +21,7 @@
 				<div><a href="index.php?controller=user&action=viewConnect">Accueil</a></div>
 				<?php if (ModelUser::isConnected()):?>
 					<div><a href="index.php?controller=editeur&action=readAllEditeur">Liste des éditeurs</a></div>
+					<div><a href="index.php?controller=type&action=readAllType">Liste type de jeux</a></div>
 					<div><a href="index.php?controller=user&action=actionDisconnect">Deconnecter</a></div>
 				<?php else: ?>
 					<div><a href="index.php?controller=user&action=viewConnect">Se connecter</a></div>
