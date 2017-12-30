@@ -3,6 +3,14 @@
 
 	class ControllerSuivi {
 
+		public static function readAllSuivi() {
+			$tab_edit = ModelSuivi::getAllSuivi();     //appel au modèle pour gerer la BD
+			$controller = "suivi";
+			$view = "listeSuivi";
+			$title = "Liste des suivis";
+			require File::buildPath(array("view", "view.php")); //"redirige" vers la vue
+		}
+
 		public static function addSuivi(){
 			$numEditeur = htmlspecialchars($_GET['numEditeur']);
 			$editeur = ModelEditeur::getEditeurByNum($numEditeur);

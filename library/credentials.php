@@ -9,7 +9,7 @@
 		// Nom d'utilisateur de la base de donnée
 		private static $databaseLogin = 'root';
 		// Mot de passe de la base de donnée
-		private static $databasePassword = 'root';
+		private static $databasePassword = '';
 
 		static function getDataBaseHostname(){
 			return self::$databaseHostname;
