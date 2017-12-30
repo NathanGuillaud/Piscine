@@ -61,14 +61,14 @@
 		}
 		
 		public static function delete() {
-			if (!empty(ModelContact::getContactByNum($_GET['numContact']))){
-				$contact = ModelContact::getContactByNum($_GET['numContact']);
-				$contact->deleteContact();
-			}else{$error = "Ce contact n'existe pas !";}		
-			$controller = "contact";
-			$view = "listeContact";
-			$title = "Liste des contacts";
-			$tab_edit = ModelEditeur::getAllEditeurs($contact->getNumEditeur());
+			if (!empty(ModelJeux::getJeuxByNum($_GET['numJeu']))){
+				$jeux = ModelJeux::getJeuxByNum($_GET['numJeu']);
+				$jeux->deleteJeux();
+			}else{$error = "Ce jeu n'existe pas !";}		
+			$controller = "editeur";
+			$view = "listeEditeur";
+			$title = "Liste des éditeurs";
+			$tab_edit = ModelEditeur::getAllEditeurs();
 			require File::buildPath(array("view", "view.php"));
 		}
 

@@ -8,8 +8,8 @@ class ModelSuivi {
 	private $cr;
 	private $interesse;
 	private $present;
-  private $commentaire;
-  private $numEditeur;
+	private $commentaire;
+	private $numEditeur;
 
 	public function getNumSuivi(){
 		return $this->numSuivi;
@@ -35,11 +35,11 @@ class ModelSuivi {
 		return $this->estPresent;
 	}
 
-  public function getCommentaire(){
+	public function getCommentaire(){
 		return $this->commentaire;
 	}
 
-  public function getEditeur(){
+	public function getEditeur(){
 		return $this->numEditeur;
 	}
 
@@ -51,8 +51,8 @@ class ModelSuivi {
 			$this->compteRendu = $cr;
 			$this->interesse = $interesse;
 			$this->estPresent = $present;
-      $this->commentaire = $commentaire;
-      $this->numEditeur = $numEditeur;
+		    $this->commentaire = $commentaire;
+		    $this->numEditeur = $numEditeur;
 		}
 	}
 

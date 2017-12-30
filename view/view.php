@@ -25,8 +25,8 @@
 					<div><a href="index.php?controller=suivi&action=readAllSuivi">Liste des suivis</a></div>
 					<div><a href="index.php?controller=user&action=actionDisconnect">Deconnecter</a></div>
 				<?php else: ?>
-					<div><a href="index.php?controller=user&action=viewConnect">Se connecter</a></div>
 					<div><a href="index.php?controller=user&action=viewRegister">Creer un compte</a></div>
+					<div><a href="index.php?controller=user&action=viewConnect">Se connecter</a></div>
 				<?php endif ?>
 			</nav>
 		</div>
