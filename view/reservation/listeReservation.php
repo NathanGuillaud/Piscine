@@ -3,16 +3,17 @@
 		<?php echo $error; ?>
 	</p>
 <?php endif;
-
 echo '<div class="present">';
-if (isset($tab_edit) && isset($tab_edit[0])){
-	echo "<br> Liste des Reservations: <br>";
-	foreach ($tab_edit as $reservation) {
+echo "il reste " . ModelLouer::getNombrePlaceRestante(Conf::$idFestival) ." places disponilbes !<br>";
+if (isset($tab_reserv) && !empty($tab_reserv)){
+	echo "<br> Liste des Réservations: <br>";
+	foreach ($tab_reserv as $reservation) {
 		$numReservation = htmlspecialchars($reservation->getNumReservation());
 		$paye = htmlspecialchars($reservation->getPaye());
+		$prix = htmlspecialchars($reservation->getPrix());
 		$dateFacture = htmlspecialchars($reservation->getDatefacture());
 		$dateRelance = htmlspecialchars($reservation->getDateRelance());
-		deplacement = htmlspecialchars($reservation->getDeplacement());
+		$deplacement = htmlspecialchars($reservation->getDeplacement());
         
         // Affichage de "paye"
         if($paye){
@@ -28,12 +29,12 @@ if (isset($tab_edit) && isset($tab_edit[0])){
 			$deplacement = "non";
 		}
         
-		echo '<p> Numéro de reservation : ' . $numReservation . ' Payé : ' . $paye . '  Date de Facture : ' . $dateFacture . 'Date de Relance : ' . $dateRelance . ' Montant reservation : ' . $prix . ' Deplacement ? : ' . $deplacement . '<a href="index.php?controller=reservation&action=readReservation&numReservation=' . rawurlencode($numReservation) . '"> Details</a>  </p>';
+		echo '<p> Numéro de reservation : ' . $numReservation . ' Payé : ' . $paye . '  Date de Facture : ' . $dateFacture . 'Date de Relance : ' . $dateRelance . ' Montant reservation : ' . $prix . '€ Deplacement ? : ' . $deplacement;
         
-        echo '<a href="index.php?controller=reservation&action=delete&numReservation=' . rawurlencode($numReservation) . '"> Supprimer </a> '
-	};
+        echo '<a href="index.php?controller=reservation&action=delete&numReservation=' . rawurlencode($numReservation) . '"> Supprimer </a> ';
+	}
 }else{
-	echo"Vous n'avez aucune reservations";
+	echo"<br>Vous n'avez aucune reservation";
 }
 ?>
 <br>

@@ -4,7 +4,7 @@
 	</p>
 <?php endif;
 echo '<div class="present">';
-if (isset($tab_cont) && isset($tab_cont[0])){
+if (isset($tab_cont) && !empty($tab_cont)){
 	echo "<br> Liste des contacts: <br>";
 	foreach ($tab_cont as $contact) {
 		$numContact = htmlspecialchars($contact->getNumContact());

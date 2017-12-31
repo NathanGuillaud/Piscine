@@ -5,7 +5,7 @@
 <?php endif;
 
 echo '<div class="present">';
-if (isset($tab_edit) && isset($tab_edit[0])){
+if (isset($tab_edit) && !empty($tab_edit)){
 	echo "<br> Liste des éditeurs: <br>";
 	foreach ($tab_edit as $editeur) {
 		$numEditeur = htmlspecialchars($editeur->getNumEditeur());

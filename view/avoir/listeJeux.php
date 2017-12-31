@@ -5,7 +5,7 @@
 <?php endif;
 
 echo '<div class="present">';
-if (isset($tab_jeux) && isset($tab_jeux[0])){
+if (isset($tab_jeux) && !empty($tab_jeux)){
 	echo "<br> Liste des jeux: <br>";
 
 	$cpt = 0;

@@ -1,21 +1,30 @@
-<form method="post" action="index.php?controller=reservation&action=registerReservation">
+<?php if (isset($error)): echo $error; endif?>
+<form method="post" action="index.php?controller=reservation&action=registerInterReservation">
 	<fieldset class="form-infos">
-	    <label>La reservation est-elle payée ? (cochez si payé):
-	    	<input type="CheckBox" placeholder="Oui" name="paye" required /></label>
+		<label>Editeur:
+			<select name="numEditeur">
+				<?php
+					foreach ($tab_edit as $editeur) {
+		           		echo '<option value="'. htmlspecialchars($editeur->getNumEditeur()). '">' . htmlspecialchars($editeur->getNomEditeur()) .'</option>';
+		           	} 
+				?>
+			</select>
+		</label>
 
-		<label>Date de la facture:
-			<input type="date" placeholder="12/06/2018" name="dateFacture" required /></label>
-			
-		<label>Date de la relance :
-			<input type="date" placeholder="23/07/2018" name="dateRelance" /></label>
+		<label>Zone:
+			<!-- idZone[] = tableau car il peut y avoir plusieurs zones sélectionnés
+				 multiple="multiple" car on peut sélectionner plusieurs zones-->
+			<select name="idZone[]" multiple="multiple" required>
+				<?php
+					foreach ($tab_zone as $zone) {
+		           		echo '<option value="'. htmlspecialchars($zone->getIdZone()). '">' . htmlspecialchars($zone->getLibelleZone()) .'</option>';
+		           	} 
+				?>
+			</select>
+		</label>
 
-		<label>Prix en euros :
-			<input type="number" placeholder="153.37" name="prix"/></label>
-
-		<label>L'editeur se déplace-t-il à l'évènement ? :
-			<input type="checkbox" placeholder="Oui" name="deplacement"/></label>
     </fieldset>
 	<fieldset class="form-action">
-			<input class="form-bouton" type="submit" name="submit" value="Enregistrer" />
+			<input class="form-bouton" type="submit" name="submit" value="Suivant" />
 	</fieldset>
 </form>

@@ -5,7 +5,7 @@
 <?php endif;
 
 echo '<div class="present">';
-if (isset($tab_zone) && isset($tab_zone[0])){
+if (isset($tab_zone) && !empty($tab_zone)){
 	echo "<br> Liste des zones: <br>";
 	foreach ($tab_zone as $zone) {
 		foreach ($listeType as $type) {

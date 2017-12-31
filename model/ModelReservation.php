@@ -8,6 +8,7 @@ class ModelReservation {
 	private $dateRelance;
 	private $prix;
 	private $deplacement;
+	private $numEditeur;
 	
 	public function getNumReservation(){
 		return $this->numReservation;
@@ -33,14 +34,18 @@ class ModelReservation {
 		return $this->deplacement;
 	}
 	
-		// un constructeur
-	public function __construct($paye = NULL, $dateFacture = NULL, $dateRelance = NULL, $prix = NULL, $deplacement = NULL) {
-		if ( !is_null($paye) && !is_null($dateFacture) && !is_null($dateRelance) && !is_null($prix) && !is_null($deplacement)) {
+	public function getNumEditeur(){
+		return $this->numEditeur;
+	}
+
+	public function __construct($paye = NULL, $dateFacture = NULL, $dateRelance = NULL, $prix = NULL, $deplacement = NULL, $numEditeur = NULL) {
+		if ( !is_null($paye) && !is_null($dateFacture) && !is_null($dateRelance) && !is_null($prix) && !is_null($deplacement) && !is_null($numEditeur)) {
 			$this->paye = $paye;
 			$this->dateFacture = $dateFacture;
 			$this->dateRelance = $dateRelance;
 			$this->prix = $prix;
             $this->deplacement = $deplacement;
+            $this->numEditeur = $numEditeur;
 		}
 	}
 
@@ -84,7 +89,7 @@ class ModelReservation {
 	
 	public function save() {
 
-		$sql = "INSERT INTO editeur (paye, dateFacture, dateRelance, prix, deplacement) VALUES (:paye_tag, :dateFacture_tag, :dateRelance_tag, :prix_tag, :deplacement_tag)";
+		$sql = "INSERT INTO reservation (paye, dateFacture, dateRelance, prix, deplacement, numEditeur) VALUES (:paye_tag, :dateFacture_tag, :dateRelance_tag, :prix_tag, :deplacement_tag, :num_editeur)";
 
 		try {
 			$req_prep = Model::$pdo->prepare($sql);
@@ -94,6 +99,7 @@ class ModelReservation {
 				"dateRelance_tag" => $this->getDateRelance(),
 				"prix_tag" => $this->getPrix(),
 				"deplacement_tag" => $this->getDeplacement(),
+				"num_editeur" => $this->getNumEditeur(),
 			);
 			$req_prep->execute($values);
 		} catch (PDOException $e) {
@@ -134,6 +140,16 @@ class ModelReservation {
 			$req_prep->execute($values);
 		} catch (PDOException $e) {
 			echo('Error tout casse ( /!\ method update() de Reservation /!\ )');
+		}
+	}
+
+	public static function getLastNumReservation(){
+		try {
+			$rep = Model::$pdo->query('SELECT MAX(numReservation) FROM reservation');
+			$maxNum = $rep->fetch();
+			return $maxNum;
+		} catch (PDOException $e) {
+			echo('Error tout casse ( /!\ method getLastNumReserv() /!\ )');
 		}
 	}
 }

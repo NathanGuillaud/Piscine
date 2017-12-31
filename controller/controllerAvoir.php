@@ -17,6 +17,7 @@
 	            $view = "listeJeux";
 	            $title = "Liste des jeux";
 	            $tab_avoir = ModelAvoir::getAllJeuxByEditeur($editeur->getNumEditeur());
+	            //On dresse la liste des jeux par editeurs !
 	            $tab_jeux = array();
 	            if (isset($tab_avoir) && !empty($tab_avoir)){
 		            foreach($tab_avoir as $avoir){

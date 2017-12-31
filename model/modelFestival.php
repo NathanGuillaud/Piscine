@@ -93,6 +93,31 @@ class ModelFestival {
 			echo('Error tout casse ( /!\ method update /!\ )' . $e);
 		}
 	}
+
+	static public function getNombrePlace($idFestival) {
+		$sql = "SELECT nbTotalPlace from festival WHERE idFestival=:id_festival";
+		try {
+	            // Préparation de la requête
+			$req_prep = Model::$pdo->prepare($sql);
+
+			$values = array(
+				"id_festival" => $idFestival,
+			);
+	            // On donne les valeurs et on exécute la requête	 
+			$req_prep->execute($values);
+			$tab_prod = $req_prep->fetchAll();
+		} catch (PDOException $e) {
+			echo('Error tout casse ( /!\ method getNombrePlace() /!\ )');
+		}
+
+        // Attention, si il n'y a pas de résultats, on renvoie false
+		if (empty($tab_prod)) {
+			return false;
+		}
+
+		return $tab_prod[0][0];
+	}
+
 }
 
 ?>

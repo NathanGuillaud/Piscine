@@ -7,6 +7,7 @@
 	require_once File::buildPath(array('controller', 'controllerJeux.php'));
     require_once File::buildPath(array('controller', 'controllerFestival.php'));
 	require_once File::buildPath(array('controller', 'controllerZone.php'));
+	require_once File::buildPath(array('controller', 'controllerReservation.php'));
 	
 	if (isset($_GET['controller'])) {
 		$controller = htmlspecialchars($_GET['controller']);

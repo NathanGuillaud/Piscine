@@ -5,7 +5,7 @@
 <?php endif;
 
 echo '<div class="present">';
-if (isset($tab_type) && isset($tab_type[0])){
+if (isset($tab_type) && !empty($tab_type)){
 	echo "<br> Liste des types de jeux: <br>";
 	foreach ($tab_type as $type) {
 		$numType = htmlspecialchars($type->getNumType());

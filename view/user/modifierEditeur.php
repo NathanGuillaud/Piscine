@@ -4,7 +4,7 @@
 	</p>
 <?php endif;
 	echo '<div class="present">';
-	if (isset($tab_edit) && isset($tab_edit[0])){
+	if (isset($tab_edit) && !empty($tab_edit)){
 		echo "<br> Modification de l'editeur: <br>";
         $numEditeur = htmlspecialchars($editeur->getNumEditeur());
         $nomEditeur = htmlspecialchars($editeur->getNomEditeur());

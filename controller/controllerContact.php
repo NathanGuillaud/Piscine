@@ -71,7 +71,8 @@
 			$controller = "contact";
 			$view = "listeContact";
 			$title = "Liste des contacts";
-			$tab_edit = ModelEditeur::getAllEditeurs($contact->getNumEditeur());
+			$numEditeur = $contact->getNumEditeur();
+			$tab_cont = ModelContact::getAllContact($numEditeur);
 			require File::buildPath(array("view", "view.php"));
 		}
 

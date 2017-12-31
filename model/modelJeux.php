@@ -130,7 +130,7 @@ class ModelJeux {
 			$maxNum = $rep->fetch();
 			return $maxNum;
 		} catch (PDOException $e) {
-			echo('Error tout casse ( /!\ method getAllEditeurs() /!\ )');
+			echo('Error tout casse ( /!\ method getLastNumJeux() /!\ )');
 		}
 	}
 }
