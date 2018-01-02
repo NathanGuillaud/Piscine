@@ -3,23 +3,28 @@
 
 	class ControllerSuivi {
 
-		public static function addSuivi(){
-			$numEditeur = htmlspecialchars($_GET['numEditeur']);
-			$editeur = ModelEditeur::getEditeurByNum($numEditeur);
-			if(!isset($numEditeur) || $editeur == false){
-				$tab_edit = ModelEditeur::getAllEditeurs();     //appel au modèle pour gerer la BD
-				$controller = "editeur";
-				$view = "listeEditeur";
-				$title = "Liste des editeurs";
-				$error = "Cet editeur n'existe pas !";
-				require File::buildPath(array("view", "view.php"));
-				return 0;
-			}
+		public static function addSuivi($numEditeur){
 			$controller = "suivi";
 			$view = "addSuivi";
 			$title = "Ajouter un suivi";
-			$listeType = ModelType::getAllType();
 			require File::buildPath(array("view","view.php"));
+		}
+
+		public static function readSuivi(){
+			$suivi = ModelSuivi::getSuiviByNum($_GET['numSuivi']);
+	        if ($suivi == false) {
+	            $controller = "editeur";
+	            $view = "listeEditeur";
+	            $error = "Ce suivi n'existe pas !";
+	            $title = "Liste des éditeurs";
+	            $tab_edit = ModelEditeur::getAllEditeurs();
+	            require File::buildPath(array("view", "view.php"));
+	        } else {
+	            $controller = "suivi";
+	            $view = "detailSuivi";
+	            $title = "Détails Suivi";
+	            require File::buildPath(array("view", "view.php"));
+	        }
 		}
 
 		public static function registerSuivi(){
@@ -87,10 +92,10 @@
 				}else{
 					$interesse = 0;
 				}
-        $date = 'test date'
-        $relance = 'test relance'
-        $cr = 'test CR'
-        $commentaire = 'test commentaire'
+        $date = 'test date';
+        $relance = 'test relance';
+        $cr = 'test CR';
+        $commentaire = 'test commentaire';
 
 				//intval -> convertit un string en int
 				$suivi = new ModelSuivi($date, $relance, $cr, $interesse, $present, $commentaire, $numEditeur);

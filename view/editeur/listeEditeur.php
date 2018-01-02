@@ -16,7 +16,7 @@ if (isset($tab_edit) && !empty($tab_edit)){
 		}else{
 			$nbrjeux = count($nbrjeux);
 		}
-		echo '<p> N°Editeur: ' . $numEditeur . ' Nom Editeur: ' . $nomEditeur . '  Nombre de jeux: ' . $nbrjeux .'<a href="index.php?controller=editeur&action=readEditeur&numEditeur=' . rawurlencode($numEditeur) . '"> Details</a> </p>';
+		echo '<p> N°Editeur: ' . $numEditeur . ' Nom Editeur: ' . $nomEditeur . '  Nombre de jeux: ' . $nbrjeux .'<a href="index.php?controller=editeur&action=readEditeur&numEditeur=' . rawurlencode($numEditeur) . '"> Details</a> <a href="index.php?controller=suivi&action=readSuivi&numEditeur=' . rawurlencode($numEditeur) . '"> Suivi</a> </p>';
 	};
 }else{
 	echo"Vous n'avez pas d'éditeur :( ";
