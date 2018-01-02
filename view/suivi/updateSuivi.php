@@ -1,4 +1,5 @@
-<?php $numSuivi = $_GET['numSuivi']; ?>
+<?php $numSuivi = $_GET['numSuivi'];
+$nomEditeur = ModelSuivi::getNomEditeurByNumSuivi($numSuivi);?>
 <form method="post" action="index.php?controller=suivi&action=updateSuivi&numSuivi=<?php echo $numSuivi ?> ">
 	<fieldset class="form-infos">
 	    <label>Date de premier contact :
@@ -14,19 +15,19 @@
 			name="compteRendu" value="<?php echo $suivi["compteRendu"]; ?>" required /></label>
 
       <?php if ($suivi["interesse"] == 1){
-  				echo '<label>éditeur est-il intéressé ?
+  				echo '<label>'. $nomEditeur .' est-il intéressé ?
   				<input type="checkbox" name="interesse" checked /></label>';
   			}else{
-  				echo '<label>éditeur est-il intéressé ?
+  				echo '<label>'. $nomEditeur .' est-il intéressé ?
   				<input type="checkbox" name="interesse" /></label>';
   			}
   		?>
 
       <?php if ($suivi["estPresent"] == 1){
-  				echo '<label>éditeur est-il présent le jour du festival ?
+  				echo '<label>'. $nomEditeur .' est-il présent le jour du festival ?
   				<input type="checkbox" name="estPresent" checked /></label>';
   			}else{
-  				echo '<label>éditeur est-il présent le jour du festival ?
+  				echo '<label>'. $nomEditeur .' est-il présent le jour du festival ?
   				<input type="checkbox" name="estPresent" /></label>';
   			}
   		?>

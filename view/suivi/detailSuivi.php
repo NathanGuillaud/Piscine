@@ -1,7 +1,7 @@
 <?php
 $numSuivi = $_GET['numSuivi'];
 $suivi = ModelSuivi::getSuiviByNum($numSuivi);
-$numEditeur = $suivi['numEditeur'];
+$nomEditeur = ModelSuivi::getNomEditeurByNumSuivi($numSuivi);
 $date = $suivi['datePremierContact'];
 $relance = $suivi['relanceContact'];
 $cr = $suivi['compteRendu'];
@@ -13,7 +13,7 @@ if(!$suivi){
 }
 
 echo "Numero suivi : " . htmlspecialchars($numSuivi) . "<br>";
-echo "Numero editeur : " . htmlspecialchars($numEditeur) . "<br>";
+echo "Nom editeur : " . htmlspecialchars($nomEditeur) . "<br>";
 echo "Date de premier contact : " . htmlspecialchars($date) . "<br>";
 echo "Date de relance : " . htmlspecialchars($relance) . "<br>";
 echo "Date de compte-rendu : " . htmlspecialchars($cr) . "<br>";

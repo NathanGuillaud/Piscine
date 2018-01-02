@@ -175,6 +175,32 @@ class ModelSuivi {
 
 		return $numSuivi;
 		}
+
+		static public function getNomEditeurByNumSuivi($numSuivi) {
+			$sql = "SELECT nomEditeur from suivi,editeur WHERE suivi.numSuivi=:num_suivi AND suivi.numEditeur = editeur.numEditeur LIMIT 1";
+			try {
+								// Préparation de la requête
+				$req_prep = Model::$pdo->prepare($sql);
+
+				$values = array(
+					"num_suivi" => $numSuivi,
+				);
+								// On donne les valeurs et on exécute la requête
+				$req_prep->execute($values);
+
+				$req_prep->setFetchMode(PDO::FETCH_ASSOC);
+				$result = $req_prep->fetch();
+				$nomEditeur = $result['nomEditeur'];
+			} catch (PDOException $e) {
+				echo('Error tout casse ( /!\ method getNomEditeurByNumSuivi() /!\ )');
+			}
+					// Attention, si il n'y a pas de résultats, on renvoie false
+			if (empty($nomEditeur)) {
+				return false;
+			}
+
+			return $nomEditeur;
+			}
 }
 
 

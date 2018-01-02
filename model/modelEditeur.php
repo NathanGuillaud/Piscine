@@ -97,23 +97,23 @@ class ModelEditeur {
 			$req_prep->execute($values);
 
 			$numEditeur = Model::$pdo->lastInsertId();
-			print $numEditeur;
 			$sql2 = "INSERT INTO suivi (datePremierContact, relanceContact, compteRendu, interesse, estPresent, commentaire, numEditeur) VALUES (:datePremierContact, :relanceContact, :compteRendu, :interesse, :estPresent, :commentaire, :numEditeur)";
 
 			try {
-				print "Je suis dans le try";
+				$dateCourante = new DateTime();
+				$dateRelance = new DateTime("+ 2 weeks");
+				$dateCR = new DateTime("+ 4 weeks");
 				$req_prep2 = Model::$pdo->prepare($sql2);
 				$values2 = array(
-					"datePremierContact" => 1,
-					"relanceContact" => 1,
-					"compteRendu" => 1,
+					"datePremierContact" => $dateCourante->format('Y-m-d'),
+					"relanceContact" => $dateRelance->format('Y-m-d'),
+					"compteRendu" => $dateCR->format('Y-m-d'),
 					"interesse" => 1,
 					"estPresent" => 1,
 					"commentaire" => "",
 					"numEditeur" => $numEditeur,
 				);
 				$req_prep2->execute($values2);
-				print "Fin execute";
 			} catch (PDOException $e2) {
 				echo('Error tout casse ( /!\ methode save /!\ )' . $e2);
 			}
