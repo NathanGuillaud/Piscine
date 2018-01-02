@@ -55,36 +55,27 @@
 		}
 
 		public static function update(){
-			if (!empty(ModelSuivi::getsuiviByNum($_GET['numSuivi']))){
-				if (!empty(ModelEditeur::getEditeurByNum($_GET['numEditeur']))) {
-					$controller = "suivi";
-					$view = "updateSuivi";
-					$title = "Modifier un suivi";
-					$suivi = ModelSuivi::getSuiviByNum($_GET['numSuivi']);
-					require File::buildPath(array("view", "view.php"));
-					return 0;
-				}else{
-					$error = "Cet editeur n'existe pas !";
-				}
+			if (!empty(ModelSuivi::getSuiviByNum($_GET['numSuivi']))){
+				$controller = "suivi";
+				$view = "updateSuivi";
+				$title = "Modifier un suivi";
+				$suivi = ModelSuivi::getSuiviByNum($_GET['numSuivi']);
+				require File::buildPath(array("view", "view.php"));
+				return 0;
 			}else{
 				$error = "Ce suivi n'existe pas !";
 			}
-			$controller = "editeur";
-			$view = "listeEditeur";
-			$title = "Liste des éditeurs";
-			$tab_edit = ModelEditeur::getAllEditeurs();
-			require File::buildPath(array("view", "view.php"));
-			return 0;
 		}
 
-		public static function updatesuivi(){
-			if (!empty(ModelSuivi::getSuiviByNum($_GET['numSuivi']))){
-				$numEditeur = htmlspecialchars($_POST['numEditeur']);
+		public static function updateSuivi(){
+			$suivi = ModelSuivi::getSuiviByNum($_GET['numSuivi']);
+			$numEditeur = $suivi["numEditeur"];
+			if (!empty($suivi)){
 
 				if(isset($_POST['estPresent'])){
-					$present = 1;
+					$estPresent = 1;
 				}else{
-					$present = 0;
+					$estPresent = 0;
 				}
 
 				if(isset($_POST['interesse'])){
@@ -92,29 +83,43 @@
 				}else{
 					$interesse = 0;
 				}
-        $date = 'test date';
-        $relance = 'test relance';
-        $cr = 'test CR';
-        $commentaire = 'test commentaire';
+
+				if(isset($_POST['datePremierContact'])){
+					$date = $_POST['datePremierContact'];
+				}else{
+					echo 'ERREUR : MANQUE DATE PREMIER CONTACT';
+				}
+
+				if(isset($_POST['relanceContact'])){
+					$relance = $_POST['relanceContact'];
+				}else{
+					echo 'ERREUR : MANQUE DATE RELANCE CONTACT';
+				}
+
+				if(isset($_POST['compteRendu'])){
+					$cr = $_POST['compteRendu'];
+				}else{
+					echo 'ERREUR : MANQUE DATE COMPTE RENDU';
+				}
+
+				if(isset($_POST['commentaire'])){
+					$commentaire = $_POST['commentaire'];
+				}else{
+					echo 'ERREUR : MANQUE COMMENTAIRE';
+				}
 
 				//intval -> convertit un string en int
-				$suivi = new ModelSuivi($date, $relance, $cr, $interesse, $present, $commentaire, $numEditeur);
+				$suivi = new ModelSuivi($date, $relance, $cr, $interesse, $estPresent, $commentaire, $numEditeur);
 				$suivi->update($_GET['numSuivi']);
 
 				$controller = "suivi";
-				$view = "SuivisAdded";
+				$view = "detailSuivi";
 				$title = "Suivi modifié";
 				require File::buildPath(array("view", "view.php"));
 				return 0;
 			}else{
 				$error = "Ce suivi n'existe pas !";
 			}
-			$tab_edit = ModelEditeur::getAllEditeurs();
-			$controller = "editeur";
-			$view = "listeEditeur";
-			$title = "Liste éditeurs";
-			require File::buildPath(array("view", "view.php"));
-			return 0;
 		}
 	}
 ?>

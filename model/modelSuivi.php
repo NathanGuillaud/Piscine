@@ -57,7 +57,7 @@ class ModelSuivi {
 	}
 
 	static public function getSuiviByNum($numSuivi) {
-		$sql = "SELECT * from suivi WHERE numSuivi=:num_suivi";
+		$sql = "SELECT * from suivi WHERE numSuivi=:num_suivi LIMIT 1";
 		try {
 	            // Préparation de la requête
 			$req_prep = Model::$pdo->prepare($sql);
@@ -68,8 +68,8 @@ class ModelSuivi {
 	            // On donne les valeurs et on exécute la requête
 			$req_prep->execute($values);
 
-			$req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelSuivi');
-			$tab_prod = $req_prep->fetchAll();
+			$req_prep->setFetchMode(PDO::FETCH_ASSOC);
+			$tab_prod = $req_prep->fetch();
 		} catch (PDOException $e) {
 			echo('Error tout casse ( /!\ method getSuiviByNum() /!\ )');
 		}
@@ -79,7 +79,7 @@ class ModelSuivi {
 			return false;
 		}
 
-		return $tab_prod[0];
+		return $tab_prod;
 	}
 
 	public function save() {
@@ -121,8 +121,7 @@ class ModelSuivi {
 								   suivi.compteRendu = :compteRendu_tag,
 								   suivi.interesse = :interesse_tag,
 								   suivi.estPresent = :estPresent_tag,
-                   suivi.commentaire = :commentaire_tag,
-                   suivi.numEditeur = :num_Editeur
+                   suivi.commentaire = :commentaire_tag
 							 WHERE suivi.numSuivi = :num_suivi";
 		try {
 			$req_prep = Model::$pdo->prepare($sql);
@@ -133,7 +132,6 @@ class ModelSuivi {
 				"interesse_tag" => $this->getInteresse(),
 				"estPresent_tag" => $this->getEstPresent(),
 				"commentaire_tag" => $this->getCommentaire(),
-        "num_Editeur" => $this->getNumEditeur(),
 				"num_suivi" => $numSuivi,
 			);
 			$req_prep->execute($values);
@@ -151,6 +149,34 @@ class ModelSuivi {
 			echo('Error tout casse ( /!\ method getAllEditeurs() /!\ )');
 		}
 	}
+
+	static public function getNumSuiviByNumEditeur($numEditeur) {
+		$sql = "SELECT numSuivi from suivi WHERE numEditeur=:num_editeur LIMIT 1";
+		try {
+							// Préparation de la requête
+			$req_prep = Model::$pdo->prepare($sql);
+
+			$values = array(
+				"num_editeur" => $numEditeur,
+			);
+							// On donne les valeurs et on exécute la requête
+			$req_prep->execute($values);
+
+			$req_prep->setFetchMode(PDO::FETCH_ASSOC);
+			$result = $req_prep->fetch();
+			$numSuivi = $result['numSuivi'];
+		} catch (PDOException $e) {
+			echo('Error tout casse ( /!\ method getSuiviByNum() /!\ )');
+		}
+				// Attention, si il n'y a pas de résultats, on renvoie false
+		if (empty($numSuivi)) {
+			return false;
+		}
+
+		return $numSuivi;
+		}
 }
+
+
 
 ?>
