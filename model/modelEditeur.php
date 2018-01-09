@@ -8,31 +8,31 @@ class ModelEditeur {
 	private $telEditeur;
 	private $siteEditeur;
 	private $commentaire;
-	
+
 	public function getNumEditeur(){
 		return $this->numEditeur;
 	}
-	
+
 	public function getNomEditeur(){
 		return $this->nomEditeur;
 	}
-	
+
 	public function getMailEditeur(){
 		return $this->mailEditeur;
 	}
-	
+
 	public function getTelEditeur(){
 		return $this->telEditeur;
 	}
-	
+
 	public function getSiteEditeur(){
 		return $this->siteEditeur;
 	}
-	
+
 	public function getComEditeur(){
 		return $this->commentaire;
 	}
-	
+
 		// un constructeur
 	public function __construct($nomEditeur = NULL, $mailEditeur = NULL, $telEditeur = NULL, $siteEditeur = NULL, $commentaire = NULL) {
 		if (!is_null($nomEditeur) && !is_null($mailEditeur) && !is_null($telEditeur) && !is_null($siteEditeur) && !is_null($commentaire)) {
@@ -54,8 +54,8 @@ class ModelEditeur {
 		} catch (PDOException $e) {
 			echo('Error tout casse ( /!\ method getAllEditeurs() /!\ )');
 		}
-	}		
-	
+	}
+
 	static public function getEditeurByNum($numEditeur) {
 		$sql = "SELECT * from editeur WHERE numEditeur=:num_editeur";
 		try {
@@ -65,7 +65,7 @@ class ModelEditeur {
 			$values = array(
 				"num_editeur" => $numEditeur,
 			);
-	            // On donne les valeurs et on exécute la requête	 
+	            // On donne les valeurs et on exécute la requête
 			$req_prep->execute($values);
 
 			$req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelEditeur');
@@ -81,9 +81,8 @@ class ModelEditeur {
 
 		return $tab_prod[0];
 	}
-	
-	public function save() {
 
+	public function save() {
 		$sql = "INSERT INTO editeur (nomEditeur, mailEditeur, telEditeur, siteEditeur, commentaire) VALUES (:nom_tag, :mail_tag, :tel_tag, :site_tag, :com_tag)";
 
 		try {
@@ -96,11 +95,34 @@ class ModelEditeur {
 				"com_tag" => $this->getComEditeur(),
 			);
 			$req_prep->execute($values);
+
+			$numEditeur = Model::$pdo->lastInsertId();
+			$sql2 = "INSERT INTO suivi (datePremierContact, relanceContact, compteRendu, interesse, estPresent, commentaire, numEditeur) VALUES (:datePremierContact, :relanceContact, :compteRendu, :interesse, :estPresent, :commentaire, :numEditeur)";
+
+			try {
+				$dateCourante = new DateTime();
+				$dateRelance = new DateTime("+ 2 weeks");
+				$dateCR = new DateTime("+ 4 weeks");
+				$req_prep2 = Model::$pdo->prepare($sql2);
+				$values2 = array(
+					"datePremierContact" => $dateCourante->format('Y-m-d'),
+					"relanceContact" => $dateRelance->format('Y-m-d'),
+					"compteRendu" => $dateCR->format('Y-m-d'),
+					"interesse" => 1,
+					"estPresent" => 1,
+					"commentaire" => "",
+					"numEditeur" => $numEditeur,
+				);
+				$req_prep2->execute($values2);
+			} catch (PDOException $e2) {
+				echo('Error tout casse ( /!\ methode save /!\ )' . $e2);
+			}
+
 		} catch (PDOException $e) {
 			echo('Error tout casse ( /!\ methode save /!\ )' . $e);
 		}
 	}
-	
+
 	public function deleteEditeur() {
 		$sql = "DELETE FROM editeur WHERE editeur.numEditeur = :numEditeur_tag";
 		try {
@@ -112,13 +134,13 @@ class ModelEditeur {
 		} catch (PDOException $e) {
 			echo('Error tout casse ( /!\ method delete /!\ )');
 		}
-	} 
+	}
 
 	public function update($numEditeur){
-		$sql = "UPDATE editeur SET editeur.nomEditeur = :nom_tag, 
-								   editeur.mailEditeur = :mail_tag, 
-								   editeur.telEditeur = :tel_tag, 
-								   editeur.siteEditeur = :site_tag, 
+		$sql = "UPDATE editeur SET editeur.nomEditeur = :nom_tag,
+								   editeur.mailEditeur = :mail_tag,
+								   editeur.telEditeur = :tel_tag,
+								   editeur.siteEditeur = :site_tag,
 								   editeur.commentaire = :com_tag
 							 WHERE editeur.numEditeur = :num_editeur";
 		try {
@@ -136,6 +158,7 @@ class ModelEditeur {
 			echo('Error tout casse ( /!\ method update /!\ )');
 		}
 	}
+
 }
 
 ?>
