@@ -7,10 +7,9 @@ echo '<div class="infos">';
 echo "il reste " . ModelLouer::getNombrePlaceRestante(Conf::$idFestival) ." places disponilbes !<br>";
 if (isset($tab_reserv) && !empty($tab_reserv)){
 	echo "<table class='liste'>
-  <caption>Liste des reservations</caption>
+  <caption>Réservations</caption>
   <thead>
         <tr>
-            <th scope='col'>Numéro de reservation</th>
             <th scope='col'>Paye</th>
             <th scope='col'>Date reclamation</th>
             <th scope='col'>Date relance</th>
@@ -19,7 +18,7 @@ if (isset($tab_reserv) && !empty($tab_reserv)){
             <th scope='col'>Suppression</th>
         </tr>
     </thead>
-    
+
     <tbody>";
 	foreach ($tab_reserv as $reservation) {
 		$numReservation = htmlspecialchars($reservation->getNumReservation());
@@ -28,28 +27,26 @@ if (isset($tab_reserv) && !empty($tab_reserv)){
 		$dateFacture = htmlspecialchars($reservation->getDatefacture());
 		$dateRelance = htmlspecialchars($reservation->getDateRelance());
 		$deplacement = htmlspecialchars($reservation->getDeplacement());
-        
+
         // Affichage de "paye"
         if($paye){
 			$paye = "oui";
 		}else{
 			$paye = "non";
 		}
-        
+
         //Affichage de "deplacement"
         if($deplacement){
 			$deplacement = "oui";
 		}else{
 			$deplacement = "non";
 		}
-        
+
 		echo "<tr>
-                <td data-label='numReservation'>" . $numReservation . "</td>
-                
                 <td data-label='paye'> " . $paye . "</td><td data-label='dateFacture'>  " . $dateFacture . " </td>
-                
+
                 <td data-label='dateRelance'> " . $dateRelance . "</td><td> " . $prix . "€ </td><td data-label='deplacement'>" . $deplacement . "</td>";
-        
+
         echo "<td data-label='delete'><a class='edit-button-suppr' href='index.php?controller=reservation&action=delete&numReservation=" . rawurlencode($numReservation) . "'> Supprimer </a></td></tr> ";
 	}
 }else{

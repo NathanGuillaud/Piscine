@@ -7,11 +7,10 @@
 echo '<div class="infos">';
 if (isset($tab_edit) && isset($tab_edit[0])){
 	echo "<table class='liste' id='table'>
-  <caption>Liste des editeurs</caption>
+  <caption>Editeurs</caption>
   <p>(Cliquez sur le titre d'une colonne pour trier)</p>
   <thead>
         <tr>
-            <th  onclick='sortTable(0)' scope='col'>Numéro d'éditeur</th>
             <th onclick='sortTable(1)' scope='col'>Nom Editeur</th>
             <th onclick='sortTable(2)' scope='col'>Nombre de jeux</th>
             <th scope='col'>Suivi</th>
@@ -19,7 +18,7 @@ if (isset($tab_edit) && isset($tab_edit[0])){
             <th scope='col'>Infos</th>
         </tr>
     </thead>
-    
+
     <tbody>";
 	foreach ($tab_edit as $editeur) {
 		$numEditeur = htmlspecialchars($editeur->getNumEditeur());
@@ -32,21 +31,19 @@ if (isset($tab_edit) && isset($tab_edit[0])){
 			$nbrjeux = count($nbrjeux);
 		}
 		echo "<tr>
-                <td data-label='numEdit'>" . $numEditeur . "</td>
-                
                 <td data-label='nomEdit'> " . $nomEditeur . " </td>
-                
+
                 <td data-label='nbrJeux'> " . $nbrjeux ."</td>
-                
+
                 <td><p><a class='edit-button-table' href='index.php?controller=suivi&action=readSuivi&numSuivi=" . rawurlencode($numSuivi) . "'> Suivi</a> </p></td>
-                
+
                 <td><p><a class='edit-button-table' href='index.php?controller=editeur&action=readEditeur&numEditeur=" . rawurlencode($numEditeur) . "'>Reservation</a></p></td>
-                
+
                 <td><p><a class='edit-button-table' href='index.php?controller=editeur&action=readEditeur&numEditeur=" . rawurlencode($numEditeur) . "'>+</a></p></td>
-                
+
                 </tr>";
 	};
-    
+
     echo"</tbody>
          </table>";
 }else{
@@ -64,7 +61,7 @@ function sortTable(n) {
   table = document.getElementById("table");
   switching = true;
   //Set the sorting direction to ascending:
-  dir = "asc"; 
+  dir = "asc";
   /*Make a loop that will continue until
   no switching has been done:*/
   while (switching) {
@@ -102,7 +99,7 @@ function sortTable(n) {
       rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
       switching = true;
       //Each time a switch is done, increase this count by 1:
-      switchcount ++;      
+      switchcount ++;
     } else {
       /*If no switching has been done AND the direction is "asc",
       set the direction to "desc" and run the while loop again.*/

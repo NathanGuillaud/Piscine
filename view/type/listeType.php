@@ -7,29 +7,27 @@
 echo '<div class="infos">';
 if (isset($tab_type) && isset($tab_type[0])){
     echo "<table class='liste' id='table'>
-  <caption>Liste des types de jeu</caption>
+  <caption>Types de jeu</caption>
   <thead>
         <tr>
-            <th onclick='sortTable(0)' scope='col'>Numéro du type</th>
             <th onclick='sortTable(1)' scope='col'>Libellé du type</th>
             <th scope='col'>Modification</th>
             <th scope='col'>Suppression</th>
         </tr>
     </thead>
-    
+
     <tbody>";
 	foreach ($tab_type as $type) {
 		$numType = htmlspecialchars($type->getNumType());
 		$libelleType = htmlspecialchars($type->getLibelleType());
-        
+
         echo"<tr>
-                <td data-label='numEdit'>" . $numType . "</td>
                 <td data-label='nomEdit'> " . $libelleType . "</td>
                 <td><p><a class='edit-button-table' href=index.php?controller=type&action=update&numType=" . rawurlencode($numType) . "'> Modifier</a></p></td>
                 <td><p><a class='edit-button-suppr' href=index.php?controller=type&action=delete&numType=" . rawurlencode($numType) . "> Supprimer</a> </p></td>
             </tr>";
 	};
-    
+
     echo"</tbody>
          </table>";
 }else{
@@ -40,7 +38,7 @@ if (isset($tab_type) && isset($tab_type[0])){
 
 <br>
 <a class='edit-button' href=" index.php?controller=type&action=addType">Ajouter un type</a>
-<?php 
+<?php
 
 echo '<br><a class="edit-button" href=index.php?controller=editeur&action=readAllEditeur> Retour </a>';
 
@@ -53,7 +51,7 @@ function sortTable(n) {
   table = document.getElementById("table");
   switching = true;
   //Set the sorting direction to ascending:
-  dir = "asc"; 
+  dir = "asc";
   /*Make a loop that will continue until
   no switching has been done:*/
   while (switching) {
@@ -91,7 +89,7 @@ function sortTable(n) {
       rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
       switching = true;
       //Each time a switch is done, increase this count by 1:
-      switchcount ++;      
+      switchcount ++;
     } else {
       /*If no switching has been done AND the direction is "asc",
       set the direction to "desc" and run the while loop again.*/
