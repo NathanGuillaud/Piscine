@@ -32,6 +32,15 @@ $nomEditeur = ModelSuivi::getNomEditeurByNumSuivi($numSuivi);?>
   			}
   		?>
 
+			<?php if ($suivi["facture"] == 1){
+  				echo '<label>'. $nomEditeur .' a-t-il été facturé ?
+  				<input type="checkbox" name="facture" checked /></label>';
+  			}else{
+  				echo '<label>'. $nomEditeur .' a-t-il été facturé ?
+  				<input type="checkbox" name="facture" /></label>';
+  			}
+  		?>
+
       <label>Commentaire :
 	    	<input type="text" placeholder="commentaire"
 			name="commentaire" value="<?php echo $suivi["commentaire"]; ?>" required /></label>

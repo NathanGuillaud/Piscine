@@ -26,7 +26,7 @@
 	            require File::buildPath(array("view", "view.php"));
 	        }
 		}
-        
+
         public static function readAllSuivis() {
 			$tab_suivi = ModelSuivi::getAllSuivis();     //appel au modèle pour gerer la BD
 			$controller = "suivi";
@@ -92,6 +92,12 @@
 					$interesse = 0;
 				}
 
+				if(isset($_POST['facture'])){
+					$facture = 1;
+				}else{
+					$facture = 0;
+				}
+
 				if(isset($_POST['datePremierContact'])){
 					$date = $_POST['datePremierContact'];
 				}else{
@@ -117,7 +123,7 @@
 				}
 
 				//intval -> convertit un string en int
-				$suivi = new ModelSuivi($date, $relance, $cr, $interesse, $estPresent, $commentaire, $numEditeur);
+				$suivi = new ModelSuivi($date, $relance, $cr, $interesse, $estPresent, $commentaire, $numEditeur, $facture);
 				$suivi->update($_GET['numSuivi']);
 
 				$controller = "suivi";

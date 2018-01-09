@@ -10,6 +10,7 @@ class ModelSuivi {
 	private $present;
 	private $commentaire;
 	private $numEditeur;
+	private $facture;
 
 	public function getNumSuivi(){
 		return $this->numSuivi;
@@ -43,9 +44,13 @@ class ModelSuivi {
 		return $this->numEditeur;
 	}
 
+	public function getFacture(){
+		return $this->facture;
+	}
+
 	// un constructeur
-	public function __construct($date = NULL, $relance = NULL, $cr = NULL, $interesse = NULL, $present = NULL, $commentaire = NULL, $numEditeur = NULL) {
-		if (!is_null($date) && !is_null($relance) && !is_null($cr) && !is_null($interesse) && !is_null($present) && !is_null($commentaire) && !is_null($numEditeur)) {
+	public function __construct($date = NULL, $relance = NULL, $cr = NULL, $interesse = NULL, $present = NULL, $commentaire = NULL, $numEditeur = NULL, $facture = NULL) {
+		if (!is_null($date) && !is_null($relance) && !is_null($cr) && !is_null($interesse) && !is_null($present) && !is_null($commentaire) && !is_null($numEditeur) && !is_null($facture)) {
 			$this->datePremierContact = $date;
 			$this->relanceContact = $relance;
 			$this->compteRendu = $cr;
@@ -53,6 +58,7 @@ class ModelSuivi {
 			$this->estPresent = $present;
 		    $this->commentaire = $commentaire;
 		    $this->numEditeur = $numEditeur;
+				$this->facture = $facture;
 		}
 	}
 
@@ -83,7 +89,7 @@ class ModelSuivi {
 	}
 
 	public function save() {
-		$sql = "INSERT INTO suivi (datePremierContact, relanceContact, compteRendu, interesse, estPresent, commentaire, numEditeur) VALUES (:datePremierContact_tag, :relanceContact_tag, :compteRendu_tag, :interesse_tag, :estPresent_tag, :commentaire_tag, :num_Editeur)";
+		$sql = "INSERT INTO suivi (datePremierContact, relanceContact, compteRendu, interesse, estPresent, commentaire, numEditeur, facture) VALUES (:datePremierContact_tag, :relanceContact_tag, :compteRendu_tag, :interesse_tag, :estPresent_tag, :commentaire_tag, :num_Editeur, :facture_tag)";
 
 		try {
 			$req_prep = Model::$pdo->prepare($sql);
@@ -95,6 +101,7 @@ class ModelSuivi {
         "estPresent_tag" => $this->getEstPresent(),
         "commentaire_tag" => $this->getCommentaire(),
 				"num_Editeur" => $this->getNumEditeur(),
+				":facture_tag" => $this->getFacture(),
 			);
 			$req_prep->execute($values);
 		} catch (PDOException $e) {
@@ -121,7 +128,8 @@ class ModelSuivi {
 								   suivi.compteRendu = :compteRendu_tag,
 								   suivi.interesse = :interesse_tag,
 								   suivi.estPresent = :estPresent_tag,
-                   suivi.commentaire = :commentaire_tag
+                   suivi.commentaire = :commentaire_tag,
+									 suivi.facture = :facture_tag
 							 WHERE suivi.numSuivi = :num_suivi";
 		try {
 			$req_prep = Model::$pdo->prepare($sql);
@@ -133,6 +141,7 @@ class ModelSuivi {
 				"estPresent_tag" => $this->getEstPresent(),
 				"commentaire_tag" => $this->getCommentaire(),
 				"num_suivi" => $numSuivi,
+				"facture_tag" => $this->getFacture(),
 			);
 			$req_prep->execute($values);
 		} catch (PDOException $e) {
@@ -201,7 +210,7 @@ class ModelSuivi {
 
 			return $nomEditeur;
 			}
-    
+
     static public function getAllSuivis() {
 		try {
 			$rep = Model::$pdo->query('SELECT * FROM suivi');
@@ -212,8 +221,8 @@ class ModelSuivi {
 			echo('Error tout casse ( /!\ method getAllSuivis() /!\ )');
 		}
 	}
-    
-    
+
+
 }
 
 

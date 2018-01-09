@@ -97,7 +97,7 @@ class ModelEditeur {
 			$req_prep->execute($values);
 
 			$numEditeur = Model::$pdo->lastInsertId();
-			$sql2 = "INSERT INTO suivi (datePremierContact, relanceContact, compteRendu, interesse, estPresent, commentaire, numEditeur) VALUES (:datePremierContact, :relanceContact, :compteRendu, :interesse, :estPresent, :commentaire, :numEditeur)";
+			$sql2 = "INSERT INTO suivi (datePremierContact, relanceContact, compteRendu, interesse, estPresent, commentaire, numEditeur, facture) VALUES (:datePremierContact, :relanceContact, :compteRendu, :interesse, :estPresent, :commentaire, :numEditeur, :facture)";
 
 			try {
 				$dateCourante = new DateTime();
@@ -112,6 +112,7 @@ class ModelEditeur {
 					"estPresent" => 0,
 					"commentaire" => "",
 					"numEditeur" => $numEditeur,
+					"facture" => 0,
 				);
 				$req_prep2->execute($values2);
 			} catch (PDOException $e2) {

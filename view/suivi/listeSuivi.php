@@ -13,8 +13,9 @@ if (isset($tab_suivi) && isset($tab_suivi[0])){
             <th onclick='sortTable(0)' scope='col'> Nom Editeur</th>
 						<th  onclick='sortTable(1)' scope='col'> Intéressé</th>
             <th  onclick='sortTable(2)' scope='col'> Présent</th>
-            <th onclick='sortTable(3)' scope='col'> Date suivi</th>
-            <th onclick='sortTable(3)' scope='col'> Relance</th>
+						<th  onclick='sortTable(3)' scope='col'> Facture</th>
+            <th onclick='sortTable(4)' scope='col'> Date suivi</th>
+            <th onclick='sortTable(5)' scope='col'> Relance</th>
             <th scope='col'>Modifier</th>
         </tr>
     </thead>
@@ -29,6 +30,7 @@ if (isset($tab_suivi) && isset($tab_suivi[0])){
         $estPresent = htmlspecialchars($suivi->getEstPresent());
         $nomEditeur = ModelSuivi::getNomEditeurByNumSuivi($numSuivi);
         $dateRelance = htmlspecialchars($suivi->getRelance());
+				$facture = htmlspecialchars($suivi->getFacture());
 
         if($interesse == 1){
 			$interesse = "Oui";
@@ -42,12 +44,20 @@ if (isset($tab_suivi) && isset($tab_suivi[0])){
 			$estPresent = "Non" ;
 		}
 
+		if($facture == 1){
+	$facture = "Oui";
+}else{
+	$facture = "Non" ;
+}
+
 		echo "<tr>
                 <td data-label='nomEdit'> " . $nomEditeur ."</td>
 
 								<td data-label='interesse'>" . $interesse . "</td>
 
                 <td data-label='present'> " . $estPresent ."</td>
+
+								<td data-label='present'> " . $facture ."</td>
 
                 <td data-label='dateSuivi'> " . $dateSuivi . "</td>
 
