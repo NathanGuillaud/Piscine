@@ -6,14 +6,14 @@ if(!$nbrjeux){
 }else{
 	$nbrjeux = count($nbrjeux);
 }
-echo "Numero editeur: " . htmlspecialchars($numEditeur) . "<br> Nom Editeur: " . htmlspecialchars($editeur->getNomEditeur()) . "<br> Mail editeur: " . htmlspecialchars($editeur->getMailEditeur()) . " <br>Telephone: " . htmlspecialchars($editeur->getTelEditeur()) . " <br>Site: " . htmlspecialchars($editeur->getSiteEditeur()) . " <br>Commentaire: " . htmlspecialchars($editeur->getComEditeur()) . " <br>Nombre de jeux: " . $nbrjeux;
-echo ' </br></br> <a href="index.php?controller=editeur&action=update&numEditeur=' . rawurlencode($numEditeur) . '"> Modifier</a>';
+echo "<div class='infos'><h2> Informations sur l'editeur " . htmlspecialchars($editeur->getNomEditeur()) . "</h2><br/><p>Numero editeur:     " . htmlspecialchars($numEditeur) . "<hr/><p> Nom Editeur:     " . htmlspecialchars($editeur->getNomEditeur()) . "<hr/><p>Mail editeur:     " . htmlspecialchars($editeur->getMailEditeur()) . " <hr/><p>Telephone:      " . htmlspecialchars($editeur->getTelEditeur()) . "<hr/><p>Site:     " . htmlspecialchars($editeur->getSiteEditeur()) . " <hr/><p>Commentaire: </br></br>" . htmlspecialchars($editeur->getComEditeur()) . " <hr/><p>Nombre de jeux: " . $nbrjeux ."</p><hr/>";
+echo ' </br></br> <a class="edit-button" href="index.php?controller=editeur&action=update&numEditeur=' . rawurlencode($numEditeur) . '"> Modifier</a>';
 
-echo '</br><a href="index.php?controller=editeur&action=delete&numEditeur=' . rawurlencode($numEditeur) . '"> Supprimer</a>';
+echo '<a class="edit-button-suppr" href="index.php?controller=editeur&action=delete&numEditeur=' . rawurlencode($numEditeur) . '"> Supprimer</a>';
 
-echo '</br><a href="index.php?controller=contact&action=readAllContact&numEditeur=' . rawurlencode($numEditeur) . '"> Voir les contacts</a>';
+echo '<a class="edit-button" href="index.php?controller=contact&action=readAllContact&numEditeur=' . rawurlencode($numEditeur) . '"> Voir les contacts</a>';
 
-echo '</br><a href="index.php?controller=avoir&action=getJeux&numEditeur=' . rawurlencode($numEditeur) . '"> Voir les jeux</a>';
+echo '<a class="edit-button" href="index.php?controller=avoir&action=getJeux&numEditeur=' . rawurlencode($numEditeur) . '"> Voir les jeux</a>';
 
-echo '</br><p><a href="index.php?controller=editeur&action=readAllEditeur">Retour</a></p>';
+echo '<p><a class="edit-button" href="index.php?controller=editeur&action=readAllEditeur">Retour</a></p></div>';
 ?>

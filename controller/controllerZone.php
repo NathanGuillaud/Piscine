@@ -78,8 +78,8 @@
 		}
 
 		public static function updateZone(){
-			if (!empty(ModelZone::getZoneById($_POST['idZone']))){
-				$idZone = htmlspecialchars($_POST['idZone']);
+			if (!empty(ModelZone::getZoneById($_GET['idZone']))){
+				$idZone = htmlspecialchars($_GET['idZone']);
 				
 				//intval -> convertit un string en int
 				$zone = new ModelZone(Conf::$idFestival,$_POST['libelleZone'] );

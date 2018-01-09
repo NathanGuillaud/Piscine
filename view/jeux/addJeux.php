@@ -1,4 +1,5 @@
 <?php $numEditeur = htmlspecialchars($_GET['numEditeur']); ?>
+<div class="infos">
 <form method="post" action="index.php?controller=jeux&action=registerJeux">
 	<fieldset class="form-infos">
 	    <label>Libelle Jeu:
@@ -27,8 +28,8 @@
 			<input type="number" placeholder="Nombre d'exemplaire" name="nbExemplaire" required /></label>
 
    		<input type="hidden" value="<?php echo $numEditeur; ?>" name="numEditeur" required />
+        
+        <input class="edit-button-save" type="submit" name="submit" value="Enregistrer" />
     </fieldset>
-	<fieldset class="form-action">
-			<input class="form-bouton" type="submit" name="submit" value="Enregistrer" />
-	</fieldset>
 </form>
+</div>

@@ -26,6 +26,14 @@
 	            require File::buildPath(array("view", "view.php"));
 	        }
 		}
+        
+        public static function readAllSuivis() {
+			$tab_suivi = ModelSuivi::getAllSuivis();     //appel au modèle pour gerer la BD
+			$controller = "suivi";
+			$view = "listeSuivi";
+			$title = "Liste de l'ensemble des suivis";
+			require File::buildPath(array("view", "view.php")); //"redirige" vers la vue
+		}
 
 		public static function registerSuivi(){
 			$controller = "suivi";

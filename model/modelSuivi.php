@@ -39,7 +39,7 @@ class ModelSuivi {
 		return $this->commentaire;
 	}
 
-	public function getEditeur(){
+	public function getNumEditeur(){
 		return $this->numEditeur;
 	}
 
@@ -201,6 +201,19 @@ class ModelSuivi {
 
 			return $nomEditeur;
 			}
+    
+    static public function getAllSuivis() {
+		try {
+			$rep = Model::$pdo->query('SELECT * FROM suivi');
+			$rep->setFetchMode(PDO::FETCH_CLASS, 'ModelSuivi');
+			$tab_suivi = $rep->fetchAll();
+			return $tab_suivi;
+		} catch (PDOException $e) {
+			echo('Error tout casse ( /!\ method getAllSuivis() /!\ )');
+		}
+	}
+    
+    
 }
 
 

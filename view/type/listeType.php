@@ -4,23 +4,102 @@
 	</p>
 <?php endif;
 
-echo '<div class="present">';
-if (isset($tab_type) && !empty($tab_type)){
-	echo "<br> Liste des types de jeux: <br>";
+echo '<div class="infos">';
+if (isset($tab_type) && isset($tab_type[0])){
+    echo "<table class='liste' id='table'>
+  <caption>Liste des types de jeu</caption>
+  <thead>
+        <tr>
+            <th onclick='sortTable(0)' scope='col'>Numéro du type</th>
+            <th onclick='sortTable(1)' scope='col'>Libellé du type</th>
+            <th scope='col'>Modification</th>
+            <th scope='col'>Suppression</th>
+        </tr>
+    </thead>
+    
+    <tbody>";
 	foreach ($tab_type as $type) {
 		$numType = htmlspecialchars($type->getNumType());
 		$libelleType = htmlspecialchars($type->getLibelleType());
-		echo '<p> N°Type: ' . $numType . ' Libelle type: ' . $libelleType . '<a href=index.php?controller=type&action=update&numType=' . rawurlencode($numType) . '> Modifier</a> '. '<a href=index.php?controller=type&action=delete&numType=' . rawurlencode($numType) . '> Supprimer</a>'. '</p>';
+        
+        echo"<tr>
+                <td data-label='numEdit'>" . $numType . "</td>
+                <td data-label='nomEdit'> " . $libelleType . "</td>
+                <td><p><a class='edit-button-table' href=index.php?controller=type&action=update&numType=" . rawurlencode($numType) . "'> Modifier</a></p></td>
+                <td><p><a class='edit-button-suppr' href=index.php?controller=type&action=delete&numType=" . rawurlencode($numType) . "> Supprimer</a> </p></td>
+            </tr>";
 	};
+    
+    echo"</tbody>
+         </table>";
 }else{
-	echo"Vous n'avez pas de type de jeux :( ";
+	echo" Vous n'avez pas de type de jeu :( ";
 }
 ?>
 <br>
-<a href="index.php?controller=type&action=addType">Ajouter un type</a>
+
+<br>
+<a class='edit-button' href=" index.php?controller=type&action=addType">Ajouter un type</a>
 <?php 
 
-echo '<br><a href=index.php?controller=editeur&action=readAllEditeur> retour </a>';
+echo '<br><a class="edit-button" href=index.php?controller=editeur&action=readAllEditeur> Retour </a>';
 
 
 echo '</div>'?>
+
+<script>
+function sortTable(n) {
+  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+  table = document.getElementById("table");
+  switching = true;
+  //Set the sorting direction to ascending:
+  dir = "asc"; 
+  /*Make a loop that will continue until
+  no switching has been done:*/
+  while (switching) {
+    //start by saying: no switching is done:
+    switching = false;
+    rows = table.getElementsByTagName("TR");
+    /*Loop through all table rows (except the
+    first, which contains table headers):*/
+    for (i = 1; i < (rows.length - 1); i++) {
+      //start by saying there should be no switching:
+      shouldSwitch = false;
+      /*Get the two elements you want to compare,
+      one from current row and one from the next:*/
+      x = rows[i].getElementsByTagName("TD")[n];
+      y = rows[i + 1].getElementsByTagName("TD")[n];
+      /*check if the two rows should switch place,
+      based on the direction, asc or desc:*/
+      if (dir == "asc") {
+        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+          //if so, mark as a switch and break the loop:
+          shouldSwitch= true;
+          break;
+        }
+      } else if (dir == "desc") {
+        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+          //if so, mark as a switch and break the loop:
+          shouldSwitch= true;
+          break;
+        }
+      }
+    }
+    if (shouldSwitch) {
+      /*If a switch has been marked, make the switch
+      and mark that a switch has been done:*/
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+      //Each time a switch is done, increase this count by 1:
+      switchcount ++;      
+    } else {
+      /*If no switching has been done AND the direction is "asc",
+      set the direction to "desc" and run the while loop again.*/
+      if (switchcount == 0 && dir == "asc") {
+        dir = "desc";
+        switching = true;
+      }
+    }
+  }
+}
+</script>

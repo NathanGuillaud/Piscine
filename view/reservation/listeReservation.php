@@ -3,10 +3,24 @@
 		<?php echo $error; ?>
 	</p>
 <?php endif;
-echo '<div class="present">';
+echo '<div class="infos">';
 echo "il reste " . ModelLouer::getNombrePlaceRestante(Conf::$idFestival) ." places disponilbes !<br>";
 if (isset($tab_reserv) && !empty($tab_reserv)){
-	echo "<br> Liste des Réservations: <br>";
+	echo "<table class='liste'>
+  <caption>Liste des reservations</caption>
+  <thead>
+        <tr>
+            <th scope='col'>Numéro de reservation</th>
+            <th scope='col'>Paye</th>
+            <th scope='col'>Date reclamation</th>
+            <th scope='col'>Date relance</th>
+            <th scope='col'>Prix</th>
+            <th scope='col'>Deplacement</th>
+            <th scope='col'>Suppression</th>
+        </tr>
+    </thead>
+    
+    <tbody>";
 	foreach ($tab_reserv as $reservation) {
 		$numReservation = htmlspecialchars($reservation->getNumReservation());
 		$paye = htmlspecialchars($reservation->getPaye());
@@ -29,9 +43,14 @@ if (isset($tab_reserv) && !empty($tab_reserv)){
 			$deplacement = "non";
 		}
         
-		echo '<p> Numéro de reservation : ' . $numReservation . ' Payé : ' . $paye . '  Date de Facture : ' . $dateFacture . 'Date de Relance : ' . $dateRelance . ' Montant reservation : ' . $prix . '€ Deplacement ? : ' . $deplacement;
+		echo "<tr>
+                <td data-label='numReservation'>" . $numReservation . "</td>
+                
+                <td data-label='paye'> " . $paye . "</td><td data-label='dateFacture'>  " . $dateFacture . " </td>
+                
+                <td data-label='dateRelance'> " . $dateRelance . "</td><td> " . $prix . "€ </td><td data-label='deplacement'>" . $deplacement . "</td>";
         
-        echo '<a href="index.php?controller=reservation&action=delete&numReservation=' . rawurlencode($numReservation) . '"> Supprimer </a> ';
+        echo "<td data-label='delete'><a class='edit-button-suppr' href='index.php?controller=reservation&action=delete&numReservation=" . rawurlencode($numReservation) . "'> Supprimer </a></td></tr> ";
 	}
 }else{
 	echo"<br>Vous n'avez aucune reservation";

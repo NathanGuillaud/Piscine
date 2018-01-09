@@ -20,6 +20,16 @@
 			require File::buildPath(array("view", "view.php"));
 		}
         
+        public static function viewFestival(){
+			$controller = "festival";
+			$view = "festival";
+            $title = "Paramètre du festival";
+            $festival = ModelFestival::getFestivalById($_GET['idFestival']);
+                require File::buildPath(array("view", "view.php"));
+				return 0; 
+		}
+        
+        
         public static function update(){
 			if (!empty(ModelFestival::getFestivalById($_GET['idFestival']))){
 				$controller = "festival";
@@ -32,7 +42,7 @@
 				$error = "Ce festival n'existe plus !";
 			}
 			$controller = "festival";
-			$view = "detailFestival";
+			$view = "viewFestival";
 			$title = "Details de cette Edition";
 			require File::buildPath(array("view", "view.php"));
 			return 0;

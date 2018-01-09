@@ -4,9 +4,22 @@
 	</p>
 <?php endif;
 
-echo '<div class="present">';
+echo '<div class="infos">';
 if (isset($tab_zone) && !empty($tab_zone)){
-	echo "<br> Liste des zones: <br>";
+	echo "<table class='liste'>
+  <caption>Liste des zones</caption>
+  <thead>
+        <tr>
+            <th scope='col'>Numéro de la Zone</th>
+            <th scope='col'>Nom de la zone</th>
+            <th scope='col'>Type Zone</th>
+            <th scope='col'>Modification</th>
+            <th scope='col'>Suppression</th>
+        </tr>
+    </thead>
+    
+    <tbody>";
+    
 	foreach ($tab_zone as $zone) {
 		foreach ($listeType as $type) {
 			if($type->getNumType() == ModelConcerner::getTypeZone($zone->getIdZone())->getNumType()){
@@ -16,13 +29,20 @@ if (isset($tab_zone) && !empty($tab_zone)){
 		}
 		$idZone = htmlspecialchars($zone->getIdZone());
 		$libelleZone = htmlspecialchars($zone->getLibelleZone());
-		echo '<p> IdZone: ' . $idZone . ' Libellé de la Zone : ' . $libelleZone . ' Type zone: ' . $type;
-		echo '<a href="index.php?controller=zone&action=update&idZone='. rawurldecode($idZone) . '"> Modifier</a> <a href="index.php?controller=zone&action=delete&idZone=' . rawurlencode($idZone) . '"> Supprimer</a></p>';
+		echo "<tr>
+                <td data-label='numEdit'>" . $idZone . "</td><td data-label='libelleZone'> " . $libelleZone . " </td><td data-label='typeZone'> " . $type;
+		echo "</td><td data-label='modif'><a class='edit-button-table' href='index.php?controller=zone&action=update&idZone=". rawurldecode($idZone) . "'> Modifier</a> </td>
+                
+        <td data-label='nbrJeux'><a class='edit-button-suppr' href='index.php?controller=zone&action=delete&idZone=" . rawurlencode($idZone) . "'> Supprimer</a></p>
+        
+        </tr>
+        ";
 	}
+    echo "</tbody></table>";
 }else{
 	echo"Vous n'avez pas de zones ";
 }
 ?>
 <br>
-<a href="index.php?controller=zone&action=addZone">Ajouter une zone</a>
+<a class="edit-button" href="index.php?controller=zone&action=addZone">Ajouter une zone</a>
 <?php echo '</div>'?>

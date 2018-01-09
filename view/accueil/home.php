@@ -3,14 +3,16 @@
 		<?php echo $error; ?>
 	</p>
 <?php endif;
-	  echo "<br><div class='present'> Bienvenue sur la page d'accueil !</div>";
-	  if(!empty(ModelFestival::getFestivalById(1))){
-	  		$festival = ModelFestival::getFestivalById(1);
-	  		echo 'Festival en cours: <br>';
-	  		echo 'Salle: ' . htmlspecialchars($festival->getNomSalle()) . ' Places: ' . htmlspecialchars($festival->getnbTotalPlace()) . ' Prix: ' . htmlspecialchars($festival->getPrixUniTable()) . '€';
-	  	 	echo "<div><a href='index.php?controller=festival&action=update&idFestival=1'>Modifier les paramètres du festival</a></div>";
-	  	}else{
-	  		echo "<div><a href='index.php?controller=festival&action=addFestival&idFestival=1'>Ajouter un festival</a></div>";
-	  	}
-   
+        $tableDispo = ModelLouer::getNombrePlaceRestante(Conf::$idFestival);
+	  echo "<br><div class='infos'> <h2>Données essentielles :</h2>";
+      echo "<br><div class='data'><div class='bloc-infos'> <h3>Nombre de tables disponibles</h3><h3 class='c1'>" . $tableDispo ."</h3></div>
+      
+      <br><div class='bloc-infos'> <h3>Nombre de jeux  inscrits :</h3><h3 class='c2'> 89</h3></div>
+      
+      <br><div class='bloc-infos'> <h3>Nombre de tables reservées :</h3><h3 class='c3'> 133</h3></div>
+      
+      <br><div class='bloc-infos'> <h3>Nombre d'éditeurs présents : </h3><h3 class='c4'> 54</h3></div>
+      </div>
+      </div>";
+	     
 ?>

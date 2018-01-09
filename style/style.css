@@ -1,0 +1,6 @@
+/* On enlève les marges de la page et défini une police par défault */
+body {
+	margin: 0px;
+	font-family: 'Open Sans', sans-serif;
+	height: 100%;
+}

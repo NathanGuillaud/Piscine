@@ -1,7 +1,9 @@
+<div class="infos">
+    <h2>Ajout d'un éditeur : </h2>
 <form method="post" action="index.php?controller=editeur&action=registerEditeur">
 	<fieldset class="form-infos">
 	    <label>Nom Editeur:
-	    	<input type="text" placeholder="Nom" name="nomEditeur" required /></label>
+	    	<input type="text" placeholder="Nom de la société" name="nomEditeur" required /></label>
 
 		<label>Email:
 			<input type="email" placeholder="Email" name="mailEditeur" maxlengt=320 required /></label>
@@ -14,8 +16,8 @@
 
 		<label>Commentaire:
 			<input type="text" placeholder="commentaire" name="comEditeur"/></label>
+        
+        <input class="edit-button-save" type="submit" name="submit" value="Enregistrer" />
     </fieldset>
-	<fieldset class="form-action">
-			<input class="form-bouton" type="submit" name="submit" value="Enregistrer" />
-	</fieldset>
 </form>
+    </div>

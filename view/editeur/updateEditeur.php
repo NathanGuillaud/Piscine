@@ -1,8 +1,10 @@
 <?php $numEditeur = $editeur->getNumEditeur(); ?>
+<div class='infos'>
+    <h2>Modification des informations de : <b><?php echo $editeur->getNomEditeur(); ?></b></h2>
 <form method="post" action="index.php?controller=editeur&action=updateEditeur&numEditeur=<?php echo $numEditeur ?> ">
 	<fieldset class="form-infos">
 	    <label>Nom Editeur:
-	    	<input type="text" placeholder="Nom" 
+	    	<input type="text" placeholder="Nom de la société" 
 			name="nomEditeur" value="<?php echo $editeur->getNomEditeur(); ?>" required /></label>
 
 		<label>Email:
@@ -20,8 +22,8 @@
 		<label>Commentaire:
 			<input type="text" placeholder="commentaire"
 			value="<?php echo $editeur->getComEditeur(); ?>" name="comEditeur"/></label>
+        
+        <input class="edit-button-save" type="submit" name="submit" value="Enregistrer" />
     </fieldset>
-	<fieldset class="form-action">
-			<input class="form-bouton" type="submit" name="submit" value="Enregistrer" />
-	</fieldset>
 </form>
+</div>
