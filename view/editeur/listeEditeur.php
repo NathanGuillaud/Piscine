@@ -5,6 +5,9 @@
 <?php endif;
 
 echo '<div class="infos">';
+?>
+<a class='edit-button' href="index.php?controller=editeur&action=addEditeur">Ajouter un editeur</a>
+<?php
 if (isset($tab_edit) && isset($tab_edit[0])){
 	echo "<table class='liste' id='table'>
   <caption>Editeurs</caption>
@@ -16,6 +19,7 @@ if (isset($tab_edit) && isset($tab_edit[0])){
             <th scope='col'>Suivi</th>
             <th scope='col'>Reservation</th>
             <th scope='col'>Infos</th>
+						<th scope='col'>Suppression</th>
         </tr>
     </thead>
 
@@ -41,6 +45,8 @@ if (isset($tab_edit) && isset($tab_edit[0])){
 
                 <td><p><a class='edit-button-table' href='index.php?controller=editeur&action=readEditeur&numEditeur=" . rawurlencode($numEditeur) . "'>+</a></p></td>
 
+								<td><p><a class='edit-button-suppr' href='index.php?controller=editeur&action=delete&numEditeur=" . rawurlencode($numEditeur) . "'>Supprimer</a></p></td>
+
                 </tr>";
 	};
 
@@ -51,7 +57,7 @@ if (isset($tab_edit) && isset($tab_edit[0])){
 }
 ?>
 <br>
-<a class='edit-button' href="index.php?controller=editeur&action=addEditeur">Ajouter un editeur</a>
+
 <?php echo '</div>'
 ?>
 
@@ -111,4 +117,3 @@ function sortTable(n) {
   }
 }
 </script>
-}

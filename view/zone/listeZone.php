@@ -5,6 +5,9 @@
 <?php endif;
 
 echo '<div class="infos">';
+?>
+<a class="edit-button" href="index.php?controller=zone&action=addZone">Ajouter une zone</a>
+<?php
 if (isset($tab_zone) && !empty($tab_zone)){
 	echo "<table class='liste'>
   <caption>Zones</caption>
@@ -43,5 +46,5 @@ if (isset($tab_zone) && !empty($tab_zone)){
 }
 ?>
 <br>
-<a class="edit-button" href="index.php?controller=zone&action=addZone">Ajouter une zone</a>
+
 <?php echo '</div>'?>

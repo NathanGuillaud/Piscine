@@ -5,6 +5,9 @@
 <?php endif;
 
 echo '<div class="infos">';
+?>
+<a class='edit-button' href=" index.php?controller=type&action=addType">Ajouter un type</a>
+<?php
 if (isset($tab_type) && isset($tab_type[0])){
     echo "<table class='liste' id='table'>
   <caption>Types de jeu</caption>
@@ -37,10 +40,10 @@ if (isset($tab_type) && isset($tab_type[0])){
 <br>
 
 <br>
-<a class='edit-button' href=" index.php?controller=type&action=addType">Ajouter un type</a>
+
 <?php
 
-echo '<br><a class="edit-button" href=index.php?controller=editeur&action=readAllEditeur> Retour </a>';
+//echo '<br><a class="edit-button" href=index.php?controller=editeur&action=readAllEditeur> Retour </a>';
 
 
 echo '</div>'?>
