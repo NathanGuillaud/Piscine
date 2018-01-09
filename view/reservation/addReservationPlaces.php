@@ -1,5 +1,7 @@
 <?php if (isset($error)): echo $error; endif;
 	  echo "il reste ". ModelLouer::getNombrePlaceRestante(Conf::$idFestival) ." places disponilbes !";
+		$dateCourante = new DateTime();
+		$dateRelance = new DateTime("+ 2 weeks");
 ?>
 <form method="post" action="index.php?controller=reservation&action=registerReservation">
 	<fieldset class="form-infos">
@@ -15,7 +17,7 @@
 				<?php
 					foreach ($listeJeux as $jeux) {
 		           		echo '<option value="'. htmlspecialchars($jeux->getNumJeu()). '">' . htmlspecialchars($jeux->getLibelleJeu()) .'</option>';
-		           	} 
+		           	}
 				?>
 			</select>
 		</label>
@@ -24,13 +26,13 @@
 	    	<input type="CheckBox" placeholder="Oui" name="paye" /></label>
 
 		<label>Date de la facture:
-			<input type="date" placeholder="12/06/2018" name="dateFacture" required /></label>
-			
+			<input type="date" value="<?php echo $dateCourante->format('Y-m-d');?>" name="dateFacture" required /></label>
+
 		<label>Date de la relance :
-			<input type="date" placeholder="23/07/2018" name="dateRelance" required/></label>
+			<input type="date" value="<?php echo $dateRelance->format('Y-m-d');?>" name="dateRelance" required/></label>
 
 		<label>Prix en euros :
-			<input type="number" placeholder="153.37" name="prix" required/></label>
+			<input type="number" placeholder="20" name="prix" required/></label>
 
 		<label>L'editeur se déplace-t-il à l'évènement ? :
 			<input type="checkbox" placeholder="Oui" name="deplacement"/></label>

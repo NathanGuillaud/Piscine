@@ -108,8 +108,8 @@ class ModelEditeur {
 					"datePremierContact" => $dateCourante->format('Y-m-d'),
 					"relanceContact" => $dateRelance->format('Y-m-d'),
 					"compteRendu" => $dateCR->format('Y-m-d'),
-					"interesse" => 1,
-					"estPresent" => 1,
+					"interesse" => 0,
+					"estPresent" => 0,
 					"commentaire" => "",
 					"numEditeur" => $numEditeur,
 				);
