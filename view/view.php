@@ -11,6 +11,7 @@
 
 
 <body>
+	<div class="header-top">
 	<header><!-- EN TETE DE LA PAGE ! -->
 		<div id="logo">
 			<?php if (ModelUser::isConnected()){
@@ -26,7 +27,7 @@
 					<div class="menu-elem"><a href="index.php?controller=reservation&action=readAllReservation">Réservations</a></div>
 					<div class="menu-elem"><a href="index.php?controller=type&action=readAllType">Types de jeux</a></div>
         	<div class="menu-elem"><a href="index.php?controller=zone&action=readZones">Zones</a></div>
-					
+
                 </div>
 
                 <div class="menu-icon">
@@ -43,6 +44,7 @@
 			</nav>
 		</div>
 	</header>
+</div>
 	 <?php
         $filepath = File::buildPath(array("view", $controller, "$view.php"));
         require $filepath;
@@ -54,3 +56,33 @@
 	<script src="js/script.js"></script>
 </body>
 </html>
+
+<script>
+$(document).ready(function() {
+	   var s = $(".header-top");
+	   var pos = s.position();
+	   var s2 = $(".header-responsive");
+	   var pos2 = s.position();
+
+	   $(window).scroll(function() {
+		   var windowpos = $(window).scrollTop();
+			console.log($(window).width());
+			if ($(window).width() > 767){
+
+					   if (windowpos >= pos.top) {
+						   s.addClass("stick");
+					   } else {
+						   s.removeClass("stick");
+					   }
+
+			} else {
+							if (windowpos >= pos2.top) {
+						   s2.addClass("stick2");
+					   } else {
+						   s2.removeClass("stick2");
+					   }
+			}
+	  });
+
+	});
+</script>
