@@ -15,6 +15,7 @@ if (isset($tab_reserv) && !empty($tab_reserv)){
         <tr>
 						<th scope='col'>Nom Editeur</th>
 						<th scope='col'>Prix</th>
+						<th scope='col'>Nombre de Tables</th>
             <th scope='col'>Date Reservation</th>
             <th scope='col'>Date Relance</th>
             <th scope='col'>Paye</th>
@@ -34,6 +35,7 @@ if (isset($tab_reserv) && !empty($tab_reserv)){
 		$numEditeur = htmlspecialchars($reservation->getNumEditeur());
 		$editeur = ModelEditeur::getEditeurByNum($numEditeur);
 		$nomEditeur = htmlspecialchars($editeur->getNomEditeur());
+		$nbTable = ModelLouer::getAllTableByReservation($numReservation);
 
         // Affichage de "paye"
         if($paye){
@@ -51,7 +53,8 @@ if (isset($tab_reserv) && !empty($tab_reserv)){
 
 		echo "<tr>
                 <td data-label='nomEditeur'> " . $nomEditeur . "</td>
-								<td> " . $prix . "€ </td>
+								<td data-label='prix'> " . $prix . "€ </td>
+								<td data-label='nbTable'> " . $nbTable . "</td>
 								<td data-label='dateFacture'>  " . $dateFacture . " </td>
                 <td data-label='dateRelance'> " . $dateRelance . "</td>
 								<td data-label='paye'> " . $paye . "</td>

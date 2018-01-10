@@ -2,10 +2,10 @@
 require_once File::buildPath(array('model', 'model.php'));
 
 class ModelAvoir {
-	private $numEditeur;	
+	private $numEditeur;
 	private $numJeu;
 	private $nbExemplaire;
-	
+
 	public function getNumJeu(){
 		return $this->numJeu;
 	}
@@ -13,12 +13,12 @@ class ModelAvoir {
 	public function getNumEditeur(){
 		return $this->numEditeur;
 	}
-	
+
 	public function getNbExemplaire(){
 		return $this->nbExemplaire;
 	}
-	
-	
+
+
 	// un constructeur
 	public function __construct($numJeu = NULL, $numEditeur = NULL, $nbExemplaire = NULL) {
 		if (!is_null($numEditeur) && !is_null($numJeu) && !is_null($nbExemplaire)) {
@@ -39,7 +39,7 @@ class ModelAvoir {
 				"num_editeur" => $numEditeur,
 				"num_jeu" => $numJeu,
 			);
-	            // On donne les valeurs et on exécute la requête	 
+	            // On donne les valeurs et on exécute la requête
 			$req_prep->execute($values);
 
 			$req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelAvoir');
@@ -66,7 +66,7 @@ class ModelAvoir {
 			$values = array(
 				"num_editeur" => $numEditeur,
 			);
-	            // On donne les valeurs et on exécute la requête	 
+	            // On donne les valeurs et on exécute la requête
 			$req_prep->execute($values);
 
 			$req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelAvoir');
@@ -79,10 +79,11 @@ class ModelAvoir {
 		if (empty($tab_prod)) {
 			return false;
 		}
-
+		echo(count($tab_prod));
+		echo("---");
 		return $tab_prod;
-	}		
-	
+	}
+
 	public function save() {
 
 		$sql = "INSERT INTO avoir (numJeu, numEditeur, nbExemplaire) VALUES (:num_jeu,:num_editeur,:nb_exemplaire)";
@@ -99,9 +100,9 @@ class ModelAvoir {
 			echo('Error tout casse ( /!\ methode save /!\ )' . $e);
 		}
 	}
-	
+
 	public function updateAvoir(){
-		$sql = "UPDATE avoir SET avoir.nbExemplaire = :nb_exemplaire 
+		$sql = "UPDATE avoir SET avoir.nbExemplaire = :nb_exemplaire
 							WHERE avoir.numJeu = :num_jeu AND avoir.numEditeur = :num_editeur";
 		try {
 			$req_prep = Model::$pdo->prepare($sql);
