@@ -79,8 +79,6 @@ class ModelAvoir {
 		if (empty($tab_prod)) {
 			return false;
 		}
-		echo(count($tab_prod));
-		echo("---");
 		return $tab_prod;
 	}
 

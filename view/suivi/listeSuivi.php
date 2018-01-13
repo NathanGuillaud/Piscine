@@ -16,7 +16,7 @@ if (isset($tab_suivi) && isset($tab_suivi[0])){
 						<th  onclick='sortTable(3)' scope='col'> Facture</th>
             <th onclick='sortTable(4)' scope='col'> Date suivi</th>
             <th onclick='sortTable(5)' scope='col'> Relance</th>
-            <th scope='col'>Modifier</th>
+            <th scope='col'>Modification</th>
         </tr>
     </thead>
 

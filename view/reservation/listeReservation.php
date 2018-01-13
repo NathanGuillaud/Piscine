@@ -20,6 +20,7 @@ if (isset($tab_reserv) && !empty($tab_reserv)){
             <th scope='col'>Date Relance</th>
             <th scope='col'>Paye</th>
             <th scope='col'>Deplacement</th>
+						<th scope='col'>Modification</th>
             <th scope='col'>Suppression</th>
         </tr>
     </thead>
@@ -58,9 +59,11 @@ if (isset($tab_reserv) && !empty($tab_reserv)){
 								<td data-label='dateFacture'>  " . $dateFacture . " </td>
                 <td data-label='dateRelance'> " . $dateRelance . "</td>
 								<td data-label='paye'> " . $paye . "</td>
-								<td data-label='deplacement'>" . $deplacement . "</td>";
+								<td data-label='deplacement'>" . $deplacement . "</td>
 
-        echo "<td data-label='delete'><a class='edit-button-suppr' href='index.php?controller=reservation&action=delete&numReservation=" . rawurlencode($numReservation) . "'> Supprimer </a></td></tr> ";
+								<td data-label='modif'><a class='edit-button-table' href='index.php?controller=reservation&action=readReservation&numReservation=" . rawurlencode($numReservation) . "'> Modifier</a> </p></td>
+								<td data-label='delete'><a class='edit-button-suppr' href='index.php?controller=reservation&action=delete&numReservation=" . rawurlencode($numReservation) . "'> Supprimer </a></td></tr>";
+
 	}
 }else{
 	echo"<br>Vous n'avez aucune reservation";
