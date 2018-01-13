@@ -7,7 +7,7 @@
 echo '<div class="infos">';
 ?>
 <a class='edit-button' href="index.php?controller=editeur&action=addEditeur">Ajouter un editeur</a>
-<a class='edit-button' href="#" onclick="cacheEditeurNonInteresse()">Masquer les editeurs non intéressés</a>
+<a id="bouton_editeur" class='edit-button' href="#" onclick="cacheEditeurNonInteresse()">Masquer les éditeurs non intéressés</a>
 <?php
 if (isset($tab_edit) && isset($tab_edit[0])){
 	echo "<table class='liste' id='table'>
@@ -81,9 +81,18 @@ if (isset($tab_edit) && isset($tab_edit[0])){
 <script>
 
 function cacheEditeurNonInteresse(){
-  var editeurNonInteresse = document.getElementsByClassName("cache");;
-  for(i = 0; i<editeurNonInteresse.length; i++){
-    editeurNonInteresse[i].style.display = "none";
+  var editeurNonInteresse = document.getElementsByClassName("cache");
+  var btn = document.getElementById("bouton_editeur");
+  if(editeurNonInteresse[0].style.display == "none"){
+    for(i = 0; i<editeurNonInteresse.length; i++){
+     editeurNonInteresse[i].style.display = "";
+     btn.innerHTML = "Masquer les éditeurs non intéressés";
+    }
+  }else{
+    for(i = 0; i<editeurNonInteresse.length; i++){
+      editeurNonInteresse[i].style.display = "none";
+      btn.innerHTML = "Afficher les éditeurs non intéressés";
+    }
   }
 }
 
