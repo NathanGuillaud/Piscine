@@ -9,31 +9,31 @@ class ModelReservation {
 	private $prix;
 	private $deplacement;
 	private $numEditeur;
-	
+
 	public function getNumReservation(){
 		return $this->numReservation;
 	}
-	
+
 	public function getPaye(){
 		return $this->paye;
 	}
-	
+
 	public function getDateFacture(){
 		return $this->dateFacture;
 	}
-	
+
 	public function getDateRelance(){
 		return $this->dateRelance;
 	}
-	
+
 	public function getPrix(){
 		return $this->prix;
 	}
-	
+
 	public function getDeplacement(){
 		return $this->deplacement;
 	}
-	
+
 	public function getNumEditeur(){
 		return $this->numEditeur;
 	}
@@ -59,8 +59,8 @@ class ModelReservation {
 		} catch (PDOException $e) {
 			echo('Error tout casse ( /!\ method getAllReservations() /!\ )');
 		}
-	}		
-	
+	}
+
 	static public function getReservationByNum($numReservation) {
 		$sql = "SELECT * from reservation WHERE numReservation=:num_reservation";
 		try {
@@ -70,11 +70,11 @@ class ModelReservation {
 			$values = array(
 				"num_reservation" => $numReservation,
 			);
-	            // On donne les valeurs et on exécute la requête	 
+	            // On donne les valeurs et on exécute la requête
 			$req_prep->execute($values);
 
-			$req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelReservation');
-			$tab_prod = $req_prep->fetchAll();
+			$req_prep->setFetchMode(PDO::FETCH_ASSOC);
+			$tab_prod = $req_prep->fetch();
 		} catch (PDOException $e) {
 			echo('Error tout casse ( /!\ method getReservationByNum() /!\ )');
 		}
@@ -84,9 +84,9 @@ class ModelReservation {
 			return false;
 		}
 
-		return $tab_prod[0];
+		return $tab_prod;
 	}
-	
+
 	public function save() {
 
 		$sql = "INSERT INTO reservation (paye, dateFacture, dateRelance, prix, deplacement, numEditeur) VALUES (:paye_tag, :dateFacture_tag, :dateRelance_tag, :prix_tag, :deplacement_tag, :num_editeur)";
@@ -106,7 +106,7 @@ class ModelReservation {
 			echo('Error tout casse ( /!\ methode save de reservation /!\ )' . $e);
 		}
 	}
-	
+
 	public function deleteReservation() {
 		$sql = "DELETE FROM reservation WHERE reservation.numReservation = :numReservation_tag";
 		try {
@@ -118,12 +118,12 @@ class ModelReservation {
 		} catch (PDOException $e) {
 			echo('Error tout casse ( /!\ method delete() de reservation /!\ )');
 		}
-	} 
+	}
 
 	public function update($numReservation){
-		$sql = "UPDATE reservation SET reservation.paye = :paye_tag, 
-								   reservation.dateFacture = :dateFacture_tag, 
-								   reservation.dateRelance = :dateRelance_tag, 
+		$sql = "UPDATE reservation SET reservation.paye = :paye_tag,
+								   reservation.dateFacture = :dateFacture_tag,
+								   reservation.dateRelance = :dateRelance_tag,
 								   reservation.prix = :prix_tag,
                                    reservation.deplacement = :deplacement_tag,
 							 WHERE reservation.numReservation = :numReservation_tag";
@@ -152,6 +152,32 @@ class ModelReservation {
 			echo('Error tout casse ( /!\ method getLastNumReserv() /!\ )');
 		}
 	}
+
+	static public function getNomEditeurByNumReservation($numReservation) {
+		$sql = "SELECT nomEditeur from reservation,editeur WHERE reservation.numReservation=:num_reservation AND reservation.numEditeur = editeur.numEditeur LIMIT 1";
+		try {
+							// Préparation de la requête
+			$req_prep = Model::$pdo->prepare($sql);
+
+			$values = array(
+				"num_reservation" => $numReservation,
+			);
+							// On donne les valeurs et on exécute la requête
+			$req_prep->execute($values);
+
+			$req_prep->setFetchMode(PDO::FETCH_ASSOC);
+			$result = $req_prep->fetch();
+			$nomEditeur = $result['nomEditeur'];
+		} catch (PDOException $e) {
+			echo('Error tout casse ( /!\ method getNomEditeurByNumReservation() /!\ )');
+		}
+				// Attention, si il n'y a pas de résultats, on renvoie false
+		if (empty($nomEditeur)) {
+			return false;
+		}
+
+		return $nomEditeur;
+		}
 }
 
 ?>

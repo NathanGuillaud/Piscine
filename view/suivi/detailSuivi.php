@@ -14,7 +14,6 @@ if(!$suivi){
 }
 
 echo "<div class='infos'><h2> Suivi de l'éditeur " . htmlspecialchars($nomEditeur) . "</h2><br>";
-echo "<p>Nom editeur : " . htmlspecialchars($nomEditeur) . "<br>";
 echo "<hr/><p>Date de premier contact : " . htmlspecialchars($date) . "<br>";
 echo "<hr/><p>Date de relance : " . htmlspecialchars($relance) . "<br>";
 echo "<hr/><p>Date de compte-rendu : " . htmlspecialchars($cr) . "<br>";
