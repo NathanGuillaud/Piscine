@@ -11,7 +11,7 @@
 			$title = "Liste des réservations";
 			require File::buildPath(array("view", "view.php"));
 		}
-		
+
 		public static function readReservation(){
 			$reservation = ModelReservation::getReservationByNum($_GET['numReservation']);
 	        if ($reservation == false) {
@@ -28,7 +28,7 @@
 	            require File::buildPath(array("view", "view.php"));
 	        }
 		}
-		
+
 		public static function addReservation(){
 			$tab_edit = ModelEditeur::getAllEditeurs();
 			$tab_zone = ModelZone::getAllZones();
@@ -42,7 +42,7 @@
 					$controller = "reservation";
 					$view = "listeReservation";
 					$title = "Liste des reservations";
-				}				
+				}
 			}else{
 				$error = "Vous n'avez pas d'éditeur";
 				$controller = "reservation";
@@ -52,9 +52,9 @@
 			require File::buildPath(array("view","view.php"));
 		}
 
-		public static function registerInterReservation(){	
+		public static function registerInterReservation(){
 			$tab_edit = ModelEditeur::getAllEditeurs();
-			$tab_zone = ModelZone::getAllZones();		
+			$tab_zone = ModelZone::getAllZones();
 			$numEditeur = $_POST['numEditeur'];
 			$listeZone = $_POST['idZone'];//tableau id zones
 			$tabZone = array();
@@ -73,7 +73,7 @@
 			if(isset($listeJeux) && !empty($listeJeux)){
 				$controller = "reservation";
 				$view = "addReservationPlaces";
-				$title = "Ajouter une reservation";			
+				$title = "Ajouter une reservation";
 			}else{
 				$error = "L'éditeur n'a pas de jeux !";
 				$controller = "reservation";
@@ -82,7 +82,7 @@
 			}
 			require File::buildPath(array("view", "view.php"));
 		}
-		
+
 		public static function registerReservation(){
 			$controller = "reservation";
 			$view = "listeReservation";
@@ -93,7 +93,7 @@
 			$nbPlace = $_POST['nbPlace'];//tableau contenant le nombre de place par zone..
 			$numJeu = $_POST['numJeu'];//tableau des num jeux
 			$place = 0;
-			for ($i=0; $i < count($nbPlace); $i++) { 
+			for ($i=0; $i < count($nbPlace); $i++) {
 				$place = $place + intval($nbPlace[$i]);
 			}
 
@@ -119,8 +119,8 @@
 			}else{
 				$deplacement = 0;
 			}
-            
-          	$reservation = new ModelReservation($paye, $_POST['dateFacture'], $_POST['dateRelance'], $_POST['prix'], $deplacement, $numEditeur);               
+
+          	$reservation = new ModelReservation($paye, $_POST['dateFacture'], $_POST['dateRelance'], $_POST['prix'], $deplacement, $numEditeur);
             $reservation->save();
 
 			$numReservation = intval(ModelReservation::getLastNumReservation()[0]);
@@ -133,18 +133,18 @@
 			$tab_reserv = ModelReservation::getAllReservations();
 			require File::buildPath(array("view", "view.php"));
 		}
-		
+
 		public static function delete() {
 			if (!empty(ModelReservation::getReservationByNum($_GET['numReservation']))){
 				$reservation = ModelReservation::getReservationByNum($_GET['numReservation']);
 				$reservation->deleteReservation();
-			}else{$error = "Cette reservation n'existe pas !";}		
+			}else{$error = "Cette reservation n'existe pas !";}
 			$controller = "reservation";
 			$view = "listeReservation";
-			$title = "Liste des reservations pour cet editeur";			
+			$title = "Liste des reservations pour cet editeur";
 			$tab_reserv = ModelReservation::getAllReservations();
 			require File::buildPath(array("view", "view.php"));
-		} 
+		}
 
 		public static function update(){
 			if (!empty(ModelReservation::getReservationByNum($_GET['numReservation']))){
@@ -153,8 +153,8 @@
 				$title = "Modifier une reservation";
 				$editeur = ModelReservation::getReservationByNum($_GET['numReservation']);
 				require File::buildPath(array("view", "view.php"));
-				return 0; 		
-			}else{		
+				return 0;
+			}else{
 				$error = "Cette reservation n'existe pas !";
 			}
 			$controller = "reservation";
@@ -166,24 +166,57 @@
 		}
 
 		public static function updateReservation(){
-			if (!empty(ModelReservation::getReservationByNum($_GET['numReservation']))){
-				$reservation = new ModelReservation($_POST['paye'], $_POST['dateFacture'], $_POST['dateRelance'], $_POST['prix'], $_POST['deplacement']);
+			$reservation = ModelReservation::getReservationByNum($_GET['numReservation']);
+			$numEditeur = $reservation["numEditeur"];
+			if (!empty($reservation)){
+
+				if(isset($_POST['paye'])){
+					$paye = 1;
+				}else{
+					$paye = 0;
+				}
+
+				if(isset($_POST['dateFacture'])){
+					$dateFacture = $_POST['dateFacture'];
+				}else{
+					echo 'ERREUR : MANQUE DATE FACTURE';
+				}
+
+				if(isset($_POST['dateRelance'])){
+					$dateRelance = $_POST['dateRelance'];
+				}else{
+					echo 'ERREUR : MANQUE DATE RELANCE';
+				}
+
+				if(isset($_POST['prix'])){
+					$prix = $_POST['prix'];
+				}else{
+					echo 'ERREUR : MANQUE PRIX';
+				}
+
+				if(isset($_POST['deplacement'])){
+					$deplacement = 1;
+				}else{
+					$deplacement = 0;
+				}
+
+				$reservation = new ModelReservation($paye, $dateFacture, $dateRelance, $prix, $deplacement, $numEditeur);
 				$reservation->update($_GET['numReservation']);
-				$tab_edit = ModelReservation::getAllReservations();
+				//$tab_edit = ModelReservation::getAllReservations();
 				$controller = "reservation";
-				$view = "listeReservation";
-				$title = "Liste des reservations pour cet editeur";
+				$view = "detailReservation";
+				$title = "Réservation modifiée";
 				require File::buildPath(array("view", "view.php"));
 				return 0;
 			}else{
 				$error = "Cette reservation n'existe pas !";
 			}
-			$tab_edit = ModelReservation::getAllReservations();
+			/*$tab_edit = ModelReservation::getAllReservations();
 			$controller = "reservation";
 			$view = "listeReservation";
 			$title = "Liste des reservations";
 			require File::buildPath(array("view", "view.php"));
-			return 0;
+			return 0;*/
 		}
 	}
 ?>

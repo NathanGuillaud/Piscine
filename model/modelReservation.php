@@ -125,17 +125,17 @@ class ModelReservation {
 								   reservation.dateFacture = :dateFacture_tag,
 								   reservation.dateRelance = :dateRelance_tag,
 								   reservation.prix = :prix_tag,
-                                   reservation.deplacement = :deplacement_tag,
-							 WHERE reservation.numReservation = :numReservation_tag";
+									 reservation.deplacement = :deplacement_tag
+							 WHERE reservation.numReservation = :numReservation";
 		try {
 			$req_prep = Model::$pdo->prepare($sql);
 			$values = array(
-				"numReservation_tag" => $numReservation,
 				"paye_tag" => $this->getPaye(),
-				"dateFacture_tag" => $this->getdateFacture(),
-				"dateRelance_tag" => $this->getdateRelance(),
+				"dateFacture_tag" => $this->getDateFacture(),
+				"dateRelance_tag" => $this->getDateRelance(),
 				"prix_tag" => $this->getPrix(),
 				"deplacement_tag" => $this->getDeplacement(),
+				"numReservation" => $numReservation,
 			);
 			$req_prep->execute($values);
 		} catch (PDOException $e) {
