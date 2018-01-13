@@ -58,7 +58,7 @@ class ModelSuivi {
 			$this->estPresent = $present;
 		    $this->commentaire = $commentaire;
 		    $this->numEditeur = $numEditeur;
-				$this->facture = $facture;
+			$this->facture = $facture;
 		}
 	}
 
@@ -210,6 +210,27 @@ class ModelSuivi {
 
 			return $nomEditeur;
 			}
+
+	static public function getEditeurInteresseByNum($numEditeur) {
+			$sql = "SELECT interesse from suivi WHERE suivi.numEditeur=:num_editeur";
+			try {
+								// Préparation de la requête
+				$req_prep = Model::$pdo->prepare($sql);
+
+				$values = array(
+					"num_editeur" => $numEditeur,
+				);
+								// On donne les valeurs et on exécute la requête
+				$req_prep->execute($values);
+
+				$req_prep->setFetchMode(PDO::FETCH_ASSOC);
+				$result = $req_prep->fetch();
+				$interesse = $result['interesse'];
+			} catch (PDOException $e) {
+				echo('Error tout casse ( /!\ method getEditeurInteresseByNum() /!\ )');
+			}
+		return $interesse;
+	}
 
     static public function getAllSuivis() {
 		try {

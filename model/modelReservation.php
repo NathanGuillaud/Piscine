@@ -178,6 +178,29 @@ class ModelReservation {
 
 		return $nomEditeur;
 		}
+		
+	static public function getReservationByEditeur($numEditeur) {
+		$sql = "SELECT numReservation from reservation WHERE numEditeur=:num_editeur";
+		try {
+	            // Préparation de la requête
+			$req_prep = Model::$pdo->prepare($sql);
+
+			$values = array(
+				"num_editeur" => $numEditeur,
+			);
+	            // On donne les valeurs et on exécute la requête	 
+			$req_prep->execute($values);
+			$tab_prod[] = $req_prep->fetchAll();
+		} catch (PDOException $e) {
+			echo('Error tout casse ( /!\ method getReservationByNum() /!\ )');
+		}
+
+        // Attention, si il n'y a pas de résultats, on renvoie false
+		if (empty($tab_prod)) {
+			return false;
+		}
+		return $tab_prod[0];
+	}
 }
 
 ?>

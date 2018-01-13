@@ -39,7 +39,12 @@
 			$controller = "editeur";
 			$view = "listeEditeur";
 			$title = "Liste éditeurs";
-			$editeur = new ModelEditeur($_POST['nomEditeur'], $_POST['mailEditeur'], $_POST['telEditeur'], $_POST['siteEditeur'], $_POST['comEditeur'], $_POST['nbrJeux']);
+			if(isset($_POST['nbrJeux'])){
+				$nbrJeux = $_POST['nbrJeux'];
+			}else{
+				$nbrJeux = 0;
+			}
+			$editeur = new ModelEditeur($_POST['nomEditeur'], $_POST['mailEditeur'], $_POST['telEditeur'], $_POST['siteEditeur'], $_POST['comEditeur'], $nbrJeux);
 			$editeur->save();
 			$tab_edit = ModelEditeur::getAllEditeurs();
 			require File::buildPath(array("view", "view.php"));
