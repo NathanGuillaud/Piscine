@@ -7,6 +7,7 @@
 echo '<div class="infos">';
 ?>
 <a class='edit-button' href="index.php?controller=editeur&action=addEditeur">Ajouter un editeur</a>
+<a class='edit-button' href="#" onclick="cacheEditeurNonInteresse()">Masquer les editeurs non intéressés</a>
 <?php
 if (isset($tab_edit) && isset($tab_edit[0])){
 	echo "<table class='liste' id='table'>
@@ -16,6 +17,7 @@ if (isset($tab_edit) && isset($tab_edit[0])){
         <tr>
             <th onclick='sortTable(1)' scope='col'>Nom Editeur</th>
             <th onclick='sortTable(2)' scope='col'>Nombre de jeux</th>
+            <th onclick='sortTable(3)' scope='col'>Nombre de tables</th>
             <th scope='col'>Suivi</th>
             <th scope='col'>Reservation</th>
             <th scope='col'>Infos</th>
@@ -26,18 +28,33 @@ if (isset($tab_edit) && isset($tab_edit[0])){
     <tbody>";
 	foreach ($tab_edit as $editeur) {
 		$numEditeur = htmlspecialchars($editeur->getNumEditeur());
+    $interesse = ModelSuivi::getEditeurInteresseByNum($numEditeur);
 		$nomEditeur = htmlspecialchars($editeur->getNomEditeur());
 		$nbrjeux = ModelAvoir::getAllJeuxByEditeur($numEditeur);
-        $numSuivi = ModelSuivi::getNumSuiviByNumEditeur($numEditeur);
+    $numSuivi = ModelSuivi::getNumSuiviByNumEditeur($numEditeur);
+    $numReservation = ModelReservation::getReservationByEditeur($numEditeur);
+    $nbrtables = 0;
+    if($numReservation != false){
+      foreach ($numReservation as $reservation) {
+        $nbrtables += ModelLouer::getAllTableByReservation($reservation[0]);
+      }
+    }
+
 		if(!$nbrjeux){
 			$nbrjeux = 0;
 		}else{
 			$nbrjeux = count($nbrjeux);
 		}
-		echo "<tr>
-                <td data-label='nomEdit'> " . $nomEditeur . " </td>
+    if($interesse == 0){      
+      echo '<tr class="cache">';
+    }else{
+      echo "<tr>";
+    }
+               echo "<td data-label='nomEdit'> " . $nomEditeur . " </td>
 
                 <td data-label='nbrJeux'> " . $nbrjeux ."</td>
+
+                <td data-label='nbrJeux'> " . $nbrtables ."</td>
 
                 <td><p><a class='edit-button-table' href='index.php?controller=suivi&action=readSuivi&numSuivi=" . rawurlencode($numSuivi) . "'> Suivi</a> </p></td>
 
@@ -62,6 +79,14 @@ if (isset($tab_edit) && isset($tab_edit[0])){
 ?>
 
 <script>
+
+function cacheEditeurNonInteresse(){
+  var editeurNonInteresse = document.getElementsByClassName("cache");;
+  for(i = 0; i<editeurNonInteresse.length; i++){
+    editeurNonInteresse[i].style.display = "none";
+  }
+}
+
 function sortTable(n) {
   var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
   table = document.getElementById("table");

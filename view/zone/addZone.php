@@ -4,7 +4,7 @@
 	    	<input type="text" placeholder="Zone Verte" name="libelleZone" required /></label>
 
 		<label>Type jeux:
-			<select name="numType">
+			<select name="numType" required>
 	           <?php
 	           		foreach ($listeType as $type) {
 	           			echo '<option value="'. htmlspecialchars($type->getNumType()). '">' . htmlspecialchars($type->getLibelleType()) .'</option>';

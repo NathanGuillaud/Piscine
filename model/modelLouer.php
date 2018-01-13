@@ -103,7 +103,7 @@ class ModelLouer {
 	}
 
 	static public function getAllTableByReservation($numReservation) {
-		$sql = "SELECT quantitetable from louer WHERE numReservation=:numReservation";
+		$sql = "SELECT SUM(quantitetable) from louer WHERE numReservation=:numReservation";
 		try {
 	            // Préparation de la requête
 			$req_prep = Model::$pdo->prepare($sql);
