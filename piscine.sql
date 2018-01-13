@@ -223,8 +223,8 @@ CREATE TABLE `suivi` (
   `interesse` tinyint(1) NOT NULL,
   `estPresent` tinyint(1) NOT NULL,
   `commentaire` varchar(200) NOT NULL,
-  `numEditeur` smallint(2) NOT NULL
-  `facture` tinyint(1) NOT NULL,
+  `numEditeur` smallint(2) NOT NULL,
+  `facture` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
