@@ -9,8 +9,6 @@ foreach($typeJeux as $key => $value) {
 }
 $jeux = ModelZone::getJeuxAndEditeurById($numZone);
 
-
-
 echo "<div class='infos'><h2> Détails de la zone " . htmlspecialchars($libelle) . "</h2><br>";
 echo "<hr/><p>Type de jeux : " . htmlspecialchars($type) . "<br>";
 echo "<hr/>";
@@ -26,18 +24,20 @@ if(!empty($jeux)){
      </tr>";
      $i = 0;
      foreach($jeux as $key => $value) {
-       if ($i%2 == 0){
-         echo "<tr><td class='tab2'><p>";
-       } else {
+       echo "<tr>";
+
+       $j = 0;
+       foreach($jeux[$i] as $key2 => $value2) {
          echo "<td class='tab2'><p>";
-       }
 
-       echo "$value";
+         echo "$value2";
 
-       if ($i%2 == 0){
-         echo "</p></td>";
-       } else {
-         echo "</p></td></tr>";
+         if ($j%2 == 0){
+           echo "</p></td>";
+         } else {
+           echo "</p></td></tr>";
+         }
+         $j = $j + 1;
        }
        $i = $i + 1;
      }
@@ -47,7 +47,7 @@ if(!empty($jeux)){
 
 
 } else {
-  echo "Pas de jeu dans cette zone.";
+  echo "<p>Pas de jeu dans cette zone.</p>";
 }
 
 
