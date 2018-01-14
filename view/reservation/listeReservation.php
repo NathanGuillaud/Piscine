@@ -9,7 +9,9 @@ echo '<div class="infos">';
 <?php
 echo "il reste " . ModelLouer::getNombrePlaceRestante($_SESSION['idFestival']) ." places disponilbes !<br>";
 if (isset($tab_reserv) && !empty($tab_reserv)){
-	echo "<table class='liste'>
+	echo "
+    <div class='table-container'>
+    <table class='liste'>
   <caption>Réservations</caption>
   <thead>
         <tr>
@@ -63,7 +65,7 @@ if (isset($tab_reserv) && !empty($tab_reserv)){
 
 								<td data-label='modif'><a class='edit-button-table' href='index.php?controller=reservation&action=readReservation&numReservation=" . rawurlencode($numReservation) . "'> Modifier</a> </p></td>
 								<td data-label='delete'><a class='edit-button-suppr' href='index.php?controller=reservation&action=delete&numReservation=" . rawurlencode($numReservation) . "'> Supprimer </a></td></tr>";
-
+echo'</div>';
 	}
 }else{
 	echo"<br>Vous n'avez aucune reservation";
