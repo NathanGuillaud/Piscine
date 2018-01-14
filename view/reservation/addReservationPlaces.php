@@ -4,6 +4,8 @@
 		$dateCourante = new DateTime();
 		$dateRelance = new DateTime("+ 2 weeks");
 ?>
+
+<div class="infos">
 <form method="post" action="index.php?controller=reservation&action=registerReservation">
 	<fieldset class="form-infos">
 		<?php foreach ($tabZone as $zone) {
@@ -35,7 +37,7 @@
 		<label>Prix en euros :
 			<input id="affiche" type="number" placeholder="20" value="<?php echo $prixUnitaire ?>" name="prix" required/></label>
         
-        <button onclick="calcul()" value="refresh le prix maggle"> Nique </button>
+        <button onclick="calcul()" value="calculPrix"> Calculer le prix </button>
 		<label>L'editeur se déplace-t-il à l'évènement ? :
 			<input type="checkbox" placeholder="Oui" name="deplacement"/></label>
 
@@ -43,13 +45,12 @@
 			echo '<input type="hidden" value="'. $zone .'" name="idZone[]" required />';
 		}?>
 		<input type="hidden" value="<?php echo $numEditeur; ?>" name="numEditeur" required / >
-    </fieldset>
-	<fieldset class="form-action">
-			<input class="form-bouton" type="submit" name="submit" value="Suivant" />
+		<input class="edit-button-save" type="submit" name="submit" value="Suivant" />
 	</fieldset>
 </form>
 <div class="none">
     <p id="prix"><?php echo($prixUnitaire)?></p>
+</div>
 </div>
 
 

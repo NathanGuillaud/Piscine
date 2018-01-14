@@ -1,13 +1,13 @@
 <?php
-$numReservation = $_GET['numReservation'];
+$numReservation = htmlspecialchars($_GET['numReservation']);
 $reservation = ModelReservation::getReservationByNum($numReservation);
 
 $nomEditeur = ModelReservation::getNomEditeurByNumReservation($numReservation);
-$paye = ($reservation['paye']==1) ? "Oui" : "Non";
-$dateFacture = $reservation['dateFacture'];
-$dateRelance = $reservation['dateRelance'];
-$prix = $reservation['prix'];
-$deplacement = ($reservation['deplacement']==1) ? "Oui" : "Non";
+$paye = ($reservation->getPaye()==1) ? "Oui" : "Non";
+$dateFacture = $reservation->getDateFacture();
+$dateRelance = $reservation->getDateRelance();
+$prix = $reservation->getPrix();
+$deplacement = ($reservation->getDeplacement()==1) ? "Oui" : "Non";
 
 echo "<div class='infos'><h2> Réservation de l'éditeur " . htmlspecialchars($nomEditeur) . "</h2><br>";
 echo "<hr/><p>Date de facture : " . htmlspecialchars($dateFacture) . "<br>";
