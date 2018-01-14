@@ -73,8 +73,8 @@ class ModelReservation {
 	            // On donne les valeurs et on exécute la requête
 			$req_prep->execute($values);
 
-			$req_prep->setFetchMode(PDO::FETCH_ASSOC);
-			$tab_prod = $req_prep->fetch();
+			$req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelReservation');
+			$tab_prod = $req_prep->fetchAll();
 		} catch (PDOException $e) {
 			echo('Error tout casse ( /!\ method getReservationByNum() /!\ )');
 		}
@@ -83,8 +83,7 @@ class ModelReservation {
 		if (empty($tab_prod)) {
 			return false;
 		}
-
-		return $tab_prod;
+		return $tab_prod[0];
 	}
 
 	public function save() {
