@@ -30,7 +30,7 @@
 					<div class="menu-elem"><a href="index.php?controller=reservation&action=readAllReservation">Réservations</a></div>
 					<div class="menu-elem"><a href="index.php?controller=type&action=readAllType">Types de jeux</a></div>
         	<div class="menu-elem"><a href="index.php?controller=zone&action=readZones">Zones</a></div>
-
+            </nav>
                 </div>
 
                 <div class="menu-icon">
@@ -39,13 +39,32 @@
 					<div class="menu-icon"><a class="logout" href="index.php?controller=user&action=actionDisconnect"><i class="fa fa-sign-out" aria-hidden="true"></i></a></div>
 
                 </div>
+        
+            
 
-				<?php else: ?>
-					<div class="menu-elem"><a href="index.php?controller=user&action=viewConnect">Se connecter</a></div>
-					<div class="menu-elem"><a href="index.php?controller=user&action=viewRegister">Creer un compte</a></div>
+            <?php else: ?>
+					<div class="menu-elem">
+                        <a href="index.php?controller=user&action=viewConnect">Se connecter</a>
+                    </div>
+        
+					<div class="menu-elem">
+                        <a href="index.php?controller=user&action=viewRegister">Creer un compte</a>
+                    </div>
 				<?php endif ?>
-			</nav>
 		</div>
+            <?php if (ModelUser::isConnected()):?>
+            <div class="submenu">
+                <label>Selectionnez votre edition :</label>
+                <select>
+                <?php 
+                    foreach ($listeFestival as $festival) {
+                           echo '<option value="'. htmlspecialchars($type->getAnnee()). '">'.'</option>';
+                       }
+                        ?>
+                
+                </select>
+            </div>
+            <?php endif?>
 	</header>
 </div>
 	 <?php
@@ -68,7 +87,7 @@ $(document).ready(function() {
 	   $(window).scroll(function() {
 		   var windowpos = $(window).scrollTop();
 			console.log($(window).width());
-			if ($(window).width() > 767){
+			if ($(window).width() > 760){
 
 					   if (windowpos >= pos.top) {
 						   s.addClass("stick");
