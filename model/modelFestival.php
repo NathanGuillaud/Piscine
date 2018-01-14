@@ -134,7 +134,7 @@ class ModelFestival {
 			echo('Error tout casse ( /!\ method getNombrePlace() /!\ )');
 		}
 
-        // Attention, si il n'y a pas de résultats, on renvoie false
+        // Attention, si il n'y a pas de résultats!, on renvoie false
 		if (empty($tab_prod)) {
 			return false;
 		}
