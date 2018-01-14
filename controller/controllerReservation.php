@@ -151,7 +151,7 @@
 				$controller = "reservation";
 				$view = "updateReservation";
 				$title = "Modifier une reservation";
-				$editeur = ModelReservation::getReservationByNum($_GET['numReservation']);
+				$reservation = ModelReservation::getReservationByNum($_GET['numReservation']);
 				require File::buildPath(array("view", "view.php"));
 				return 0;
 			}else{
