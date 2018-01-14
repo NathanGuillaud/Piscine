@@ -7,9 +7,8 @@
 	</title>
 	<link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="../style/font-awesome/css/font-awesome.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<link href="JS/jquery-ui/jquery-ui.css" rel="stylesheet">
-	<script src="JS/jquery-ui/jquery-ui.js"></script>
+    <style type="text/css">
+    </style>
 </head>
 
 
@@ -21,6 +20,7 @@
 						echo '<h1>Bonjour, ' . $_SESSION['login'] . '</h1>';
 			}?>
 		</div>
+        <div class="mobileHide">
 		<div id="menu">
 			<nav>
 				<div class="menu-elem"><a href="index.php?controller=user&action=viewConnect">Accueil</a></div>
@@ -30,7 +30,9 @@
 					<div class="menu-elem"><a href="index.php?controller=reservation&action=readAllReservation">Réservations</a></div>
 					<div class="menu-elem"><a href="index.php?controller=type&action=readAllType">Types de jeux</a></div>
         	<div class="menu-elem"><a href="index.php?controller=zone&action=readZones">Zones</a></div>
-            </nav>
+                <img style="margin-left: 347px" src="logo.jpg" alt="" />
+        </div>
+
                 </div>
 
                 <div class="menu-icon">
@@ -39,18 +41,33 @@
 					<div class="menu-icon"><a class="logout" href="index.php?controller=user&action=actionDisconnect"><i class="fa fa-sign-out" aria-hidden="true"></i></a></div>
 
                 </div>
-        
-            
 
-            <?php else: ?>
-					<div class="menu-elem">
-                        <a href="index.php?controller=user&action=viewConnect">Se connecter</a>
-                    </div>
-        
-					<div class="menu-elem">
-                        <a href="index.php?controller=user&action=viewRegister">Creer un compte</a>
-                    </div>
+        <div class="mobileShow">
+            <a href="#" class="burger-box">
+                <div class="burger">
+                    Menu
+                </div>
+            </a>
+            <nav class="sliding-panel-content">
+                <ul>
+                    <li><a href="index.php?controller=user&action=viewConnect">Accueil</a></li>
+                    <li><a href="index.php?controller=editeur&action=readAllEditeur">Editeurs</a></li>
+                    <li><a href="index.php?controller=suivi&action=readAllSuivis">Suivis</a></li>
+                    <li><a href="index.php?controller=reservation&action=readAllReservation">Réservations</a></li>
+                    <li><a href="index.php?controller=type&action=readAllType">Types de jeux</a></li>
+                    <li><a href="index.php?controller=zone&action=readZones">Zones</a></li>
+                </ul>
+            </nav>
+            <img style="margin-left:300 px" src="logo.jpg" alt="" />
+
+            <div class="sliding-panel-fade-screen"></div></div>
+        <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+				<?php else: ?>
+					<div class="menu-elem"><a href="index.php?controller=user&action=viewConnect">Se connecter</a></div>
+					<div class="menu-elem"><a href="index.php?controller=user&action=viewRegister">Creer un compte</a></div>
 				<?php endif ?>
+			</nav>
 		</div>
 	</header>
 </div>
@@ -61,6 +78,8 @@
 	<footer>
 
 	</footer>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="js/script.js"></script>
 </body>
 </html>
 
@@ -74,7 +93,7 @@ $(document).ready(function() {
 	   $(window).scroll(function() {
 		   var windowpos = $(window).scrollTop();
 			console.log($(window).width());
-			if ($(window).width() > 760){
+			if ($(window).width() > 767){
 
 					   if (windowpos >= pos.top) {
 						   s.addClass("stick");
@@ -92,4 +111,13 @@ $(document).ready(function() {
 	  });
 
 	});
+$(function() {
+    $('.burger-box,.sliding-panel-fade-screen,.sliding-panel-close').on('click touchstart', function(e) {
+        e.preventDefault();
+        $('.burger-box').toggleClass('is-open');
+        $('.sliding-panel-content,.sliding-panel-fade-screen').toggleClass('is-visible');
+    });
+});
 </script>
+
+
