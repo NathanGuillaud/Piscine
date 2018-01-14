@@ -7,6 +7,9 @@
 	</title>
 	<link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="../style/font-awesome/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<link href="JS/jquery-ui/jquery-ui.css" rel="stylesheet">
+	<script src="JS/jquery-ui/jquery-ui.js"></script>
 </head>
 
 
@@ -52,8 +55,6 @@
 	<footer>
 
 	</footer>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<script src="js/script.js"></script>
 </body>
 </html>
 

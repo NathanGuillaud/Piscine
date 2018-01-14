@@ -28,6 +28,7 @@
 			<input type="number" placeholder="Nombre d'exemplaire" name="nbExemplaire" required /></label>
 
    		<input type="hidden" value="<?php echo $numEditeur; ?>" name="numEditeur" required />
+   		<input type="hidden" name="popupJS" value="true" />
         
         <input class="edit-button-save" type="submit" name="submit" value="Enregistrer" />
     </fieldset>

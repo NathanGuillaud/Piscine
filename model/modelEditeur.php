@@ -160,6 +160,15 @@ class ModelEditeur {
 		}
 	}
 
+	public static function getLastNumEditeur(){
+		try {
+			$rep = Model::$pdo->query('SELECT MAX(numEditeur) FROM editeur');
+			$maxNum = $rep->fetch();
+			return $maxNum;
+		} catch (PDOException $e) {
+			echo('Error tout casse ( /!\ method getLastNumEditeur() /!\ )');
+		}
+	}
 }
 
 ?>

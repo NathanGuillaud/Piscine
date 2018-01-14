@@ -34,6 +34,10 @@
 			$title = "Ajouter un éditeur";
 			require File::buildPath(array("view","view.php"));
 		}
+
+		public static function getLastEditeur(){
+			return ModelEditeur::getLastNumEditeur();
+		}
 		
 		public static function registerEditeur(){
 			$controller = "editeur";
@@ -47,7 +51,17 @@
 			$editeur = new ModelEditeur($_POST['nomEditeur'], $_POST['mailEditeur'], $_POST['telEditeur'], $_POST['siteEditeur'], $_POST['comEditeur'], $nbrJeux);
 			$editeur->save();
 			$tab_edit = ModelEditeur::getAllEditeurs();
-			require File::buildPath(array("view", "view.php"));
+
+
+			//On regarde si on vient d'une popup ou non
+			if(isset($_POST['popupJS']) && $_POST['popupJS'] == true){
+				$lastNum = ModelEditeur::getLastNumEditeur();
+				echo $lastNum[0];
+				return 0;
+			}else{
+				require File::buildPath(array("view", "view.php"));
+				return 0;
+			}
 		}
 		
 		public static function delete() {

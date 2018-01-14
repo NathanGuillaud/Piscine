@@ -57,7 +57,13 @@
 			$avoir = new ModelAvoir(intval($lastNumJeux[0]), $numEditeur, $_POST['nbExemplaire']);
 			$avoir->save();
 
-			require File::buildPath(array("view", "view.php"));
+			$listeType = ModelType::getAllType();
+			
+			//On regarde si on vient d'une popup ou non
+			if(!isset($_POST['popupJS'])){				
+				require File::buildPath(array("view", "view.php"));
+			}
+			return 0;
 		}
 		
 		public static function delete() {

@@ -1,3 +1,5 @@
+<div class="infos">
+	<h2>Ajout d'une zone : </h2>
 <form method="post" action="index.php?controller=zone&action=registerZone">
 	<fieldset class="form-infos">
 	    <label>Libelle Zone:
@@ -12,8 +14,7 @@
 	           ?>
 	       	</select>
    		</label>
-    </fieldset>
-	<fieldset class="form-action">
-			<input class="form-bouton" type="submit" name="submit" value="Enregistrer" />
+		<input class="edit-button-save" type="submit" name="submit" value="Enregistrer" />
 	</fieldset>
 </form>
+</div>

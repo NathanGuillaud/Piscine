@@ -35,10 +35,17 @@
 			$concerner = new ModelConcerner($_POST['numType'], intval($lastIdZone[0]));
 			$concerner->save();
 
-			$tab_zone = ModelZone::getAllZones(); 
+
 			$listeType = ModelType::getAllType();
 
-			require File::buildPath(array("view", "view.php"));
+			//On regarde si on vient d'une popup ou non
+			if(isset($_POST['popupJS']) && $_POST['popupJS'] == true){
+				echo $lastIdZone[0];
+				return 0;
+			}else{
+				$tab_zone = ModelZone::getAllZones();
+				require File::buildPath(array("view", "view.php"));
+			}
 		}
 		
         
