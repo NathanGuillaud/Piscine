@@ -88,7 +88,7 @@
 				$title = "Modifier zone";
 				$zone = ModelZone::getZoneById($_GET['idZone']);
 				$listeType = ModelType::getAllType();
-	            require File::buildPath(array("view", "view.php"));
+	      require File::buildPath(array("view", "view.php"));
 				return 0;
 			}else{
 				$error = "Cette zone n'existe pas !";

@@ -1,6 +1,6 @@
-<form method="post" action="index.php?controller=zone&action=updateZone">
+<form method="post" action="index.php?controller=zone&action=updateZone&idZone=<?php echo $zone->getIdZone(); ?> ">
 	<fieldset class="form-infos">
-	    <label> Libelle de la zone : 
+	    <label> Libelle de la zone :
 	    	<input type="text"  placeholder="Zone Verte" name="libelleZone" value="<?php echo $zone->getLibelleZone(); ?>" required /></label>
 
         <label>Type jeux:
@@ -11,9 +11,9 @@
 	           		}
 	           ?>
 	       	</select>
-   		</label>    
+   		</label>
 	</fieldset>
-    
+
 	<input type="hidden" value="<?php echo $zone->getIdZone(); ?>" name="idZone" required />
 
 	<fieldset class="form-action">
