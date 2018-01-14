@@ -43,7 +43,7 @@
 			$title = "Liste des zones";
 
 			//intval -> convertit un string en int
-			$zone = new ModelZone(Conf::$idFestival, $_POST['libelleZone']);
+			$zone = new ModelZone($_SESSION['idFestival'], $_POST['libelleZone']);
 
 			$zone->save();
 
@@ -106,7 +106,7 @@
 				$idZone = htmlspecialchars($_GET['idZone']);
 
 				//intval -> convertit un string en int
-				$zone = new ModelZone(Conf::$idFestival,$_POST['libelleZone'] );
+				$zone = new ModelZone($_SESSION['idFestival'],$_POST['libelleZone'] );
 				$zone->update($idZone);
 
 				$concerner = new ModelConcerner($_POST['numType'], $idZone);

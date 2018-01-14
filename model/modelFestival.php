@@ -141,6 +141,16 @@ class ModelFestival {
 
 		return $tab_prod[0][0];
 	}
+
+	public static function getLastIdFestival(){
+		try {
+			$rep = Model::$pdo->query('SELECT MAX(idFestival) FROM festival');
+			$maxNum = $rep->fetch();
+			return $maxNum;
+		} catch (PDOException $e) {
+			echo('Error tout casse ( /!\ method getLastIdFestival() /!\ )');
+		}
+	}
     
 }
 

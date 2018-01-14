@@ -122,8 +122,7 @@
 					echo 'ERREUR : MANQUE COMMENTAIRE';
 				}
 
-				//intval -> convertit un string en int
-				$suivi = new ModelSuivi($date, $relance, $cr, $interesse, $estPresent, $commentaire, $numEditeur, $facture);
+				$suivi = new ModelSuivi($date, $relance, $cr, $interesse, $estPresent, $commentaire, $numEditeur, $facture, $_SESSION['idFestival']);
 				$suivi->update($_GET['numSuivi']);
 
 				$controller = "suivi";

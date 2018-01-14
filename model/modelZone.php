@@ -18,7 +18,7 @@ class ModelZone {
 		return $this->libelleZone;
 	}
 	
-	
+
 	// un constructeur
 	public function __construct($idFestival = NULL, $libelleZone = NULL) {
 		if (!is_null($idFestival) && !is_null($libelleZone)) {

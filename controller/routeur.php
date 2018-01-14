@@ -11,6 +11,10 @@
 	require_once File::buildPath(array('controller', 'controllerSuivi.php'));
 	//require_once File::buildPath(array('controller', 'controllerLogement.php'));
 
+	if(!isset($_SESSION['idFestival'])){
+		$_SESSION['idFestival'] = ModelFestival::getLastIdFestival();
+	}
+
 	if (isset($_GET['controller'])) {
 		$controller = htmlspecialchars($_GET['controller']);
 	} else {

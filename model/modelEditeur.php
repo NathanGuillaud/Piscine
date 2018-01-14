@@ -97,7 +97,7 @@ class ModelEditeur {
 			$req_prep->execute($values);
 
 			$numEditeur = Model::$pdo->lastInsertId();
-			$sql2 = "INSERT INTO suivi (datePremierContact, relanceContact, compteRendu, interesse, estPresent, commentaire, numEditeur, facture) VALUES (:datePremierContact, :relanceContact, :compteRendu, :interesse, :estPresent, :commentaire, :numEditeur, :facture)";
+			$sql2 = "INSERT INTO suivi (datePremierContact, relanceContact, compteRendu, interesse, estPresent, commentaire, numEditeur, facture, idFestival) VALUES (:datePremierContact, :relanceContact, :compteRendu, :interesse, :estPresent, :commentaire, :numEditeur, :facture, :idFestival)";
 
 			try {
 				$dateCourante = new DateTime();
@@ -113,14 +113,15 @@ class ModelEditeur {
 					"commentaire" => "",
 					"numEditeur" => $numEditeur,
 					"facture" => 0,
+					"idFestival" => $_SESSION['idFestival'],
 				);
 				$req_prep2->execute($values2);
 			} catch (PDOException $e2) {
-				echo('Error tout casse ( /!\ methode save /!\ )' . $e2);
+				echo('Error tout casse ( /!\ methode save suivi /!\ )' . $e2);
 			}
 
 		} catch (PDOException $e) {
-			echo('Error tout casse ( /!\ methode save /!\ )' . $e);
+			echo('Error tout casse ( /!\ methode save editeur/!\ )' . $e);
 		}
 	}
 

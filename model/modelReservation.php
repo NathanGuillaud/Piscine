@@ -9,6 +9,7 @@ class ModelReservation {
 	private $prix;
 	private $deplacement;
 	private $numEditeur;
+	private $idFestival;
 
 	public function getNumReservation(){
 		return $this->numReservation;
@@ -38,14 +39,19 @@ class ModelReservation {
 		return $this->numEditeur;
 	}
 
-	public function __construct($paye = NULL, $dateFacture = NULL, $dateRelance = NULL, $prix = NULL, $deplacement = NULL, $numEditeur = NULL) {
-		if ( !is_null($paye) && !is_null($dateFacture) && !is_null($dateRelance) && !is_null($prix) && !is_null($deplacement) && !is_null($numEditeur)) {
+	public function getIdFestival(){
+		return $this->idFestival;
+	}
+
+	public function __construct($paye = NULL, $dateFacture = NULL, $dateRelance = NULL, $prix = NULL, $deplacement = NULL, $numEditeur = NULL, $idFestival = NULL) {
+		if ( !is_null($paye) && !is_null($dateFacture) && !is_null($dateRelance) && !is_null($prix) && !is_null($deplacement) && !is_null($numEditeur) && !is_null($idFestival)) {
 			$this->paye = $paye;
 			$this->dateFacture = $dateFacture;
 			$this->dateRelance = $dateRelance;
 			$this->prix = $prix;
             $this->deplacement = $deplacement;
             $this->numEditeur = $numEditeur;
+            $this->idFestival = $idFestival;
 		}
 	}
 
@@ -88,7 +94,7 @@ class ModelReservation {
 
 	public function save() {
 
-		$sql = "INSERT INTO reservation (paye, dateFacture, dateRelance, prix, deplacement, numEditeur) VALUES (:paye_tag, :dateFacture_tag, :dateRelance_tag, :prix_tag, :deplacement_tag, :num_editeur)";
+		$sql = "INSERT INTO reservation (paye, dateFacture, dateRelance, prix, deplacement, numEditeur, idFestival) VALUES (:paye_tag, :dateFacture_tag, :dateRelance_tag, :prix_tag, :deplacement_tag, :num_editeur, :idFestival)";
 
 		try {
 			$req_prep = Model::$pdo->prepare($sql);
@@ -99,6 +105,7 @@ class ModelReservation {
 				"prix_tag" => $this->getPrix(),
 				"deplacement_tag" => $this->getDeplacement(),
 				"num_editeur" => $this->getNumEditeur(),
+				"idFestival" => $this->getIdFestival(),
 			);
 			$req_prep->execute($values);
 		} catch (PDOException $e) {
@@ -124,7 +131,8 @@ class ModelReservation {
 								   reservation.dateFacture = :dateFacture_tag,
 								   reservation.dateRelance = :dateRelance_tag,
 								   reservation.prix = :prix_tag,
-									 reservation.deplacement = :deplacement_tag
+								   reservation.deplacement = :deplacement_tag,
+								   reservation.idFestival = :idFestival
 							 WHERE reservation.numReservation = :numReservation";
 		try {
 			$req_prep = Model::$pdo->prepare($sql);
@@ -135,6 +143,7 @@ class ModelReservation {
 				"prix_tag" => $this->getPrix(),
 				"deplacement_tag" => $this->getDeplacement(),
 				"numReservation" => $numReservation,
+				"idFestival" => $this->getIdFestival(),
 			);
 			$req_prep->execute($values);
 		} catch (PDOException $e) {
