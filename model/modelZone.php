@@ -71,7 +71,7 @@ class ModelZone {
 
     static public function getAllZones() {
 		try {
-			$rep = Model::$pdo->query('SELECT * FROM zone');
+			$rep = Model::$pdo->query('SELECT * FROM zone WHERE idFestival =' . $_SESSION['idFestival']);
 			$rep->setFetchMode(PDO::FETCH_CLASS, 'ModelZone');
 			$tab_prod = $rep->fetchAll();
 			return $tab_prod;
