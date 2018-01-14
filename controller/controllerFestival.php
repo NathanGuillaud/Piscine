@@ -3,7 +3,15 @@
 
 	class ControllerFestival {
 
-		
+		public static function changeFestival(){
+			$controller = "accueil";
+			$view = "home";
+            $title = "Accueil";
+			$_SESSION['idFestival'] = $_POST['idFestival'];
+			$error = "Festival changé !";
+			require File::buildPath(array("view", "view.php"));
+		}
+
 		public static function addFestival(){
 			$controller = "festival";
 			$view = "addFestival";

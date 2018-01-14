@@ -52,19 +52,6 @@
                     </div>
 				<?php endif ?>
 		</div>
-            <?php if (ModelUser::isConnected()):?>
-            <div class="submenu">
-                <label>Selectionnez votre edition :</label>
-                <select>
-                <?php 
-                    foreach ($listeFestival as $festival) {
-                           echo '<option value="'. htmlspecialchars($type->getAnnee()). '">'.'</option>';
-                       }
-                        ?>
-                
-                </select>
-            </div>
-            <?php endif?>
 	</header>
 </div>
 	 <?php

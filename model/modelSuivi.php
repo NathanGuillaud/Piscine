@@ -169,7 +169,7 @@ class ModelSuivi {
 	}
 
 	static public function getNumSuiviByNumEditeur($numEditeur) {
-		$sql = "SELECT numSuivi from suivi WHERE numEditeur=:num_editeur LIMIT 1";
+		$sql = "SELECT numSuivi from suivi WHERE numEditeur=:num_editeur";
 		try {
 							// Préparation de la requête
 			$req_prep = Model::$pdo->prepare($sql);

@@ -6,6 +6,7 @@ class ModelFestival {
 	private $nomSalle;
 	private $nbTotalPlace;
 	private $prixUniTable;
+	private $annee;
 	
 	public function getIdFestival(){
 		return $this->idFestival;
@@ -23,18 +24,33 @@ class ModelFestival {
 		return $this->prixUniTable;
 	}
 	
+	public function getAnneeFestival(){
+		return $this->annee;
+	}
 	
 	// un constructeur
-	public function __construct($nomSalle = NULL/*'The girl has no name' luul*/, $nbTotalPlace = NULL, $prixUniTable = NULL) {
-		if (!is_null($nomSalle) && !is_null($nbTotalPlace) && !is_null($prixUniTable)) {
+	public function __construct($nomSalle = NULL, $nbTotalPlace = NULL, $prixUniTable = NULL, $annee = NULL) {
+		if (!is_null($nomSalle) && !is_null($nbTotalPlace) && !is_null($prixUniTable) && !is_null($annee)) {
 			$this->nomSalle = $nomSalle;
 			$this->nbTotalPlace = $nbTotalPlace;
 			$this->prixUniTable = $prixUniTable;
+			$this->annee = $annee;
 		}
 	}
+
+	static public function getAllFestivals() {
+		try {
+			$rep = Model::$pdo->query('SELECT * FROM festival');
+			$rep->setFetchMode(PDO::FETCH_CLASS, 'ModelFestival');
+			$tab_prod = $rep->fetchAll();
+			return $tab_prod;
+		} catch (PDOException $e) {
+			echo('Error tout casse ( /!\ method getAllFestivals() /!\ )');
+		}
+	} 
 	
 	public function save() {
-		$sql = "INSERT INTO festival (nomSalle, nbTotalPlace, prixUniTable) VALUES (:nomSalle_tag, :nbTotalPlace_tag, :prixUniTable_tag)";
+		$sql = "INSERT INTO festival (nomSalle, nbTotalPlace, prixUniTable, annee) VALUES (:nomSalle_tag, :nbTotalPlace_tag, :prixUniTable_tag, :annee)";
 
 		try {
 			$req_prep = Model::$pdo->prepare($sql);
@@ -42,6 +58,7 @@ class ModelFestival {
 				"nomSalle_tag" => $this->getNomSalle(),
 				"nbTotalPlace_tag" => $this->getNbTotalPlace(),
 				"prixUniTable_tag" => $this->getPrixUniTable(),
+				"annee" => $this->getAnneeFestival(),
 			);
 			$req_prep->execute($values);
 		} catch (PDOException $e) {
@@ -146,7 +163,7 @@ class ModelFestival {
 		try {
 			$rep = Model::$pdo->query('SELECT MAX(idFestival) FROM festival');
 			$maxNum = $rep->fetch();
-			return $maxNum;
+			return $maxNum[0];
 		} catch (PDOException $e) {
 			echo('Error tout casse ( /!\ method getLastIdFestival() /!\ )');
 		}

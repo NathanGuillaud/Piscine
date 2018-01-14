@@ -3,7 +3,21 @@
 		<?php echo $error; ?>
 	</p>
 <?php endif;
-	  echo "<br><div class='infos'> <h2> Paramètres du festival : </h2>";
+	  echo '<br><div class="infos">
+            <div class="submenu">
+                <form method="post" action="index.php?controller=festival&action=changeFestival">
+                <h2> Changer de festival : </h2>
+                <label>Selectionnez votre edition :</label>
+                <select name="idFestival">';
+                
+                   foreach (ModelFestival::getAllFestivals() as $festival) {
+	           			echo '<option value="'. htmlspecialchars($festival->getIdFestival()). '">' . htmlspecialchars($festival->getAnneeFestival()) .'</option>';
+	           		}
+                
+                echo "</select> <div><button type='submit' class='edit-button'>Ok</button>
+                </form>
+            </div><br>";
+	  echo "<br><h2> Paramètres du festival : </h2>";
 	  if(!empty(ModelFestival::getFestivalById(1))){
 	  		$festival = ModelFestival::getFestivalById(1);
 	  		echo '<p>Salle: ' . htmlspecialchars($festival->getNomSalle()) . '</p><hr/><p> Places: ' . htmlspecialchars($festival->getnbTotalPlace()) . ' </p><hr/><p>Prix: ' . htmlspecialchars($festival->getPrixUniTable()) . '<hr/></p>' ;

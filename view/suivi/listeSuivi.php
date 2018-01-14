@@ -30,7 +30,7 @@ if (isset($tab_suivi) && isset($tab_suivi[0])){
         $estPresent = htmlspecialchars($suivi->getEstPresent());
         $nomEditeur = ModelSuivi::getNomEditeurByNumSuivi($numSuivi);
         $dateRelance = htmlspecialchars($suivi->getRelance());
-				$facture = htmlspecialchars($suivi->getFacture());
+		$facture = htmlspecialchars($suivi->getFacture());
 
         if($interesse == 1){
 			$interesse = "Oui";
@@ -64,7 +64,7 @@ if (isset($tab_suivi) && isset($tab_suivi[0])){
                 <td data-label='dateSuivi'>". $dateRelance . "</td>
 
                 <td data-label='modif'>
-                    <a class='edit-button-table' href='index.php?controller=suivi&action=readSuivi&numSuivi=" . rawurlencode($numSuivi) . "'> Modifier</a> </p></td>
+                    <a class='edit-button-table' href='index.php?controller=suivi&action=readSuivi&numSuivi=" . rawurlencode($numSuivi) . "'> Détails</a> </p></td>
                 </tr>
 
                 ";

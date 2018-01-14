@@ -77,7 +77,7 @@
 
 		public static function updateSuivi(){
 			$suivi = ModelSuivi::getSuiviByNum($_GET['numSuivi']);
-			$numEditeur = $suivi["numEditeur"];
+			$numEditeur = $suivi->getNumEditeur();
 			if (!empty($suivi)){
 
 				if(isset($_POST['estPresent'])){
@@ -122,7 +122,7 @@
 					echo 'ERREUR : MANQUE COMMENTAIRE';
 				}
 
-				$suivi = new ModelSuivi($date, $relance, $cr, $interesse, $estPresent, $commentaire, $numEditeur, $facture, $_SESSION['idFestival']);
+				$suivi = new ModelSuivi($date, $relance, $cr, $interesse, $estPresent, $commentaire, $numEditeur, $facture, $suivi->getIdFestival());
 				$suivi->update($_GET['numSuivi']);
 
 				$controller = "suivi";

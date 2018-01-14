@@ -2,16 +2,13 @@
 $numSuivi = $_GET['numSuivi'];
 $suivi = ModelSuivi::getSuiviByNum($numSuivi);
 $nomEditeur = ModelSuivi::getNomEditeurByNumSuivi($numSuivi);
-$date = $suivi['datePremierContact'];
-$relance = $suivi['relanceContact'];
-$cr = $suivi['compteRendu'];
-$interesse = ($suivi['interesse']==1) ? "Oui" : "Non";
-$present = ($suivi['estPresent']==1) ? "Oui" : "Non";
-$facture = ($suivi['facture']==1) ? "Oui" : "Non";
-$commentaire = $suivi['commentaire'];
-if(!$suivi){
-	$suivi = 0;
-}
+$date = $suivi->getDateSuivi();
+$relance = $suivi->getRelance();
+$cr = $suivi->getCR();
+$interesse = ($suivi->getInteresse()==1) ? "Oui" : "Non";
+$present = ($suivi->getEstPresent()==1) ? "Oui" : "Non";
+$facture = ($suivi->getFacture()==1) ? "Oui" : "Non";
+$commentaire = $suivi->getCommentaire();
 
 echo "<div class='infos'><h2> Suivi de l'éditeur " . htmlspecialchars($nomEditeur) . "</h2><br>";
 echo "<hr/><p>Date de premier contact : " . htmlspecialchars($date) . "<br>";
