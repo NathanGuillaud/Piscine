@@ -3,6 +3,15 @@
 
 	class ControllerType {
 
+		public static function getListeType(){
+			$listeType = ModelType::getAllType();
+			$arrayListeType = [];
+			foreach ($listeType as $type) {
+				$arrayListeType[$type->getNumType()] = htmlspecialchars($type->getLibelleType());
+			}
+			echo json_encode($arrayListeType, JSON_UNESCAPED_UNICODE);
+		}
+
 		public static function readAllType() {
 			$tab_type = ModelType::getAllType();     //appel au modèle pour gerer la BD
 			$controller = "type";

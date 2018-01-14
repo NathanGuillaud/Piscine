@@ -1,6 +1,4 @@
-<?php if (isset($error)): echo $error; endif;
-	  $listeType = ModelType::getAllType();
- ?>
+<?php if (isset($error)): echo $error; endif; ?>
 <div class="infos">
 	<h2>Ajout d'une réservation : </h2>
 <form method="post" action="index.php?controller=reservation&action=registerInterReservation">

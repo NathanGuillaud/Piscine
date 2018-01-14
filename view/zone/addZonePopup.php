@@ -1,13 +1,3 @@
-<?php 
-	 
-	$file = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'piscine' . DIRECTORY_SEPARATOR . 'library' . DIRECTORY_SEPARATOR . 'file.php';
-	$file = str_replace('/', DIRECTORY_SEPARATOR, $file);
-	if(!in_array($file, get_required_files())){
-		require_once $file;
-		require_once File::buildPath(array('model', 'modelType.php'));
-	}
-	$listeType = ModelType::getAllType();
-?>
 <div class="infos">
 	<h2>Ajout d'une zone : </h2>
 <form method="post">
@@ -16,12 +6,7 @@
 	    	<input type="text" placeholder="Zone Verte" name="libelleZone" required /></label>
 
 		<label>Type jeux:
-			<select name="numType" required>
-	           <?php
-	           		foreach ($listeType as $type) {
-	           			echo '<option value="'. htmlspecialchars($type->getNumType()). '">' . htmlspecialchars($type->getLibelleType()) .'</option>';
-	           		}
-	           ?>
+			<select name="numTypeZone" required>
 	       	</select>
    		</label>
 
@@ -36,7 +21,7 @@
 	//Requete AJAX pour ajouter un editeur et récupérer son id et l'ajouter au select
 	$("input[name='addZone']").click(function(){
 		var libelleZone = $("input[name='libelleZone']").val();
-		var numType = $("select[name='numType']").val();		
+		var numType = $("select[name='numTypeZone']").val();		
 		var popupJS = $("input[name='popupJS']").val();
 
 		$.post('index.php?controller=zone&action=registerZone',
@@ -77,4 +62,17 @@
 	        ]
 		});
 	}
+
+	//on récupère la liste des types
+	$.ajax({
+		type: "GET",
+		url: "index.php?controller=type&action=getListeType"
+		}).done(function(html){
+			 $.each( JSON.parse(html), function( key, val ) {
+			 	$("select[name='numTypeZone']").append($('<option>', {
+				    value: key,
+				    text: val
+				}));
+			 })
+		});
 </script>
