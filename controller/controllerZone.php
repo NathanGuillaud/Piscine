@@ -3,6 +3,23 @@
 	require_once File::buildPath(array('model', 'modelConcerner.php'));
 	class ControllerZone {
 
+		public static function readZone(){
+			$zone = ModelZone::getZoneById($_GET['idZone']);
+	        if ($zone == false) {
+	            $controller = "zone";
+	            $view = "listeZone";
+	            $error = "Cette zone n'existe pas !";
+	            $title = "Liste des zones";
+	            $tab_edit = ModelZone::getAllZones();
+	            require File::buildPath(array("view", "view.php"));
+	        } else {
+	            $controller = "zone";
+	            $view = "detailZone";
+	            $title = "Détails Zone";
+	            require File::buildPath(array("view", "view.php"));
+	        }
+		}
+
 		public static function readZones(){
 			$tab_zone = ModelZone::getAllZones();     //appel au modèle pour gerer la BD
 			$controller = "zone";
@@ -19,12 +36,12 @@
 			$listeType = ModelType::getAllType();
 			require File::buildPath(array("view","view.php"));
 		}
-		
+
 		public static function registerZone(){
 			$controller = "zone";
 			$view = "listeZone";
 			$title = "Liste des zones";
-			
+
 			//intval -> convertit un string en int
 			$zone = new ModelZone(Conf::$idFestival, $_POST['libelleZone']);
 
@@ -47,14 +64,14 @@
 				require File::buildPath(array("view", "view.php"));
 			}
 		}
-		
-        
+
+
 		public static function delete() {
 			if (!empty(ModelZone::getZoneById($_GET['idZone']))){
 				$zone = ModelZone::getZoneById($_GET['idZone']);
 				$zone->deleteZone();
-			}else{$error = "Cette zone n'existe pas !";}		
-			
+			}else{$error = "Cette zone n'existe pas !";}
+
             $controller = "zone";
 			$view = "listeZone";
 			$title = "Liste des Zones créées";
@@ -63,7 +80,7 @@
 			require File::buildPath(array("view", "view.php"));
 		}
 
-        
+
 		public static function update(){
 			if (!empty(ModelZone::getZoneById($_GET['idZone']))){
 				$controller = "zone";
@@ -72,8 +89,8 @@
 				$zone = ModelZone::getZoneById($_GET['idZone']);
 				$listeType = ModelType::getAllType();
 	            require File::buildPath(array("view", "view.php"));
-				return 0; 		
-			}else{		
+				return 0;
+			}else{
 				$error = "Cette zone n'existe pas !";
 			}
 			$controller = "zone";
@@ -87,7 +104,7 @@
 		public static function updateZone(){
 			if (!empty(ModelZone::getZoneById($_GET['idZone']))){
 				$idZone = htmlspecialchars($_GET['idZone']);
-				
+
 				//intval -> convertit un string en int
 				$zone = new ModelZone(Conf::$idFestival,$_POST['libelleZone'] );
 				$zone->update($idZone);
