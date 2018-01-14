@@ -13,31 +13,31 @@ $jeux = ModelZone::getJeuxAndEditeurById($numZone);
 
 echo "<div class='infos'><h2> Détails de la zone " . htmlspecialchars($libelle) . "</h2><br>";
 echo "<hr/><p>Type de jeux : " . htmlspecialchars($type) . "<br>";
-echo "<hr/><p>Liste des jeux de la zone : <br><br>";
+echo "<hr/>";
 
 if(!empty($jeux)){
 
-  echo "<table>
-     <caption>Liste des jeux de la zone</caption>
+  echo "<table class='tab1'>
+     <caption><p>Liste des jeux de la zone</p></caption>
 
      <tr>
-         <th>Jeux</th>
-         <th>Editeurs</th>
+         <th class='tab2'><p>Jeux</p></th>
+         <th class='tab2'><p>Editeurs</p></th>
      </tr>";
      $i = 0;
      foreach($jeux as $key => $value) {
        if ($i%2 == 0){
-         echo "<tr><td>";
+         echo "<tr><td class='tab2'><p>";
        } else {
-         echo "<td>";
+         echo "<td class='tab2'><p>";
        }
 
        echo "$value";
 
        if ($i%2 == 0){
-         echo "</td>";
+         echo "</p></td>";
        } else {
-         echo "</td></tr>";
+         echo "</p></td></tr>";
        }
        $i = $i + 1;
      }

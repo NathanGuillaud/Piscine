@@ -603,4 +603,10 @@ and (max-device-width : 1024px) {
     }
 }
 
+.tab1{
+  border-collapse: collapse;
+}
 
+.tab2{
+  border: 1px solid black;
+}
