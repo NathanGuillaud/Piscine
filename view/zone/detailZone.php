@@ -1,6 +1,14 @@
 <?php
 $numZone = $_GET['idZone'];
 $zone = ModelZone::getZoneById($numZone);
+
+$libelle = $zone->getLibelleZone();
+$typeJeux = ModelZone::getTypeById($numZone);
+foreach($typeJeux as $key => $value) {
+    $type = $value;
+}
+echo "<div class='infos'><h2> Détails de la zone " . htmlspecialchars($libelle) . "</h2><br>";
+echo "<hr/><p>Type de jeux : " . htmlspecialchars($type) . "<br>";
 /*$nomEditeur = ModelSuivi::getNomEditeurByNumSuivi($numSuivi);
 $date = $suivi['datePremierContact'];
 $relance = $suivi['relanceContact'];
