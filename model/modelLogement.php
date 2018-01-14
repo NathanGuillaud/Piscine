@@ -45,7 +45,7 @@ class ModelLogement {
 		return $this->siteLogement;
 	}
     
-    public function getPayeParFestival(){
+    public function getPayeParFestival() {
         return $this->payeParFestival;
     }
 
@@ -102,7 +102,6 @@ class ModelLogement {
 		return $tab_prod[0];
 	}
 
-       
 	public function save() {
 		$sql = "INSERT INTO logement (nomLogement, rueLogement, villeLogement, CPLogement, mailLogement, telLogement, siteLogement, payeParLogement) VALUES (:nom_tag, :rue_tag, :ville_tag, CP_tag, mail_tag :tel_tag, :site_tag, :paye_tag)";
 

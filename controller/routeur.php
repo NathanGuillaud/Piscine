@@ -9,7 +9,7 @@
 	require_once File::buildPath(array('controller', 'controllerZone.php'));
 	require_once File::buildPath(array('controller', 'controllerReservation.php'));
 	require_once File::buildPath(array('controller', 'controllerSuivi.php'));
-	require_once File::buildPath(array('controller', 'controllerLogement.php'));
+	//require_once File::buildPath(array('controller', 'controllerLogement.php'));
 
 	if (isset($_GET['controller'])) {
 		$controller = htmlspecialchars($_GET['controller']);
