@@ -58,7 +58,7 @@ class ModelReservation {
 		//methode d'affichage de tous les editeurs
 	static public function getAllReservations() {
 		try {
-			$rep = Model::$pdo->query('SELECT * FROM reservation');
+			$rep = Model::$pdo->query('SELECT * FROM reservation WHERE idFestival =' . $_SESSION["idFestival"]);
 			$rep->setFetchMode(PDO::FETCH_CLASS, 'ModelReservation');
 			$tab_prod = $rep->fetchAll();
 			return $tab_prod;

@@ -89,7 +89,8 @@ class ModelLouer {
 	public static function getNombrePlaceRestante($idFestival){
 		$placeTotal = ModelFestival::getNombrePlace($idFestival);
 		try {
-			$rep = Model::$pdo->query('SELECT SUM(quantitetable) FROM louer');
+			$rep = Model::$pdo->query('SELECT SUM(quantitetable) FROM louer WHERE numReservation in (
+				SELECT numReservation FROM reservation WHERE idFestival =' . $idFestival . ')');
 			$tab_prod = $rep->fetchAll();
 			if($tab_prod[0][0] == NULL){
 				$placeRestante = intval($placeTotal);

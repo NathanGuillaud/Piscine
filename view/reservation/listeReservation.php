@@ -7,7 +7,7 @@ echo '<div class="infos">';
 ?>
 <a class="edit-button" href="index.php?controller=reservation&action=addReservation">Ajouter une reservation </a>
 <?php
-echo "il reste " . ModelLouer::getNombrePlaceRestante(Conf::$idFestival) ." places disponilbes !<br>";
+echo "il reste " . ModelLouer::getNombrePlaceRestante($_SESSION['idFestival']) ." places disponilbes !<br>";
 if (isset($tab_reserv) && !empty($tab_reserv)){
 	echo "<table class='liste'>
   <caption>Réservations</caption>

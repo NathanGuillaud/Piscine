@@ -3,7 +3,7 @@
 		<?php echo $error; ?>
 	</p>
 <?php endif;
-        $tableDispo = ModelLouer::getNombrePlaceRestante(Conf::$idFestival);
+        $tableDispo = ModelLouer::getNombrePlaceRestante($_SESSION['idFestival']);
 	  echo "<br><div class='infos'> <h2>Données essentielles du festival de " . ModelFestival::getFestivalById($_SESSION['idFestival'])->getAnneeFestival() ." :</h2>";
       echo "<br><div class='data'><div class='bloc-infos'> <h3>Nombre de tables disponibles</h3><h3 class='c1'>" . $tableDispo ."</h3></div>
       

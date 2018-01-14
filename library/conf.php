@@ -7,6 +7,6 @@
 		// Action par défault à charger
 		public static $defaultAction = 'viewConnect';
 		//Id du festival
-		public static $idFestival = 1;
+		//public static $idFestival = 1;
 	}
 ?>
