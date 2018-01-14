@@ -1,6 +1,8 @@
 <?php 
-	if(!in_array('C:\MAMP\htdocs\Piscine\library\file.php', get_required_files())){
-		require_once 'C:\MAMP\htdocs\Piscine\library\file.php';
+	$file = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'piscine' . DIRECTORY_SEPARATOR . 'library' . DIRECTORY_SEPARATOR . 'file.php';
+	$file = str_replace('/', DIRECTORY_SEPARATOR, $file);
+	if(!in_array($file, get_required_files())){
+		require_once $file;
 		require_once File::buildPath(array('model', 'modelType.php'));
 	}
 	$listeType = ModelType::getAllType();
