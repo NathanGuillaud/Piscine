@@ -56,10 +56,10 @@
 			if (!empty(ModelLogement::getLogementByNum($_GET['numLogement']))){
 				$Logement = ModelLogement::getLogementByNum($_GET['numLogement']);
 				$Logement->deleteLogement();
-			}else{$error = "Cet Logement n'existe pas !";}		
+			}else{$error = "Ce Logement n'existe pas !";}		
 			$controller = "Logement";
 			$view = "listeLogement";
-			$title = "Liste des éditeurs";
+			$title = "Liste des logements";
 			$tab_edit = ModelLogement::getAllLogements();
 			require File::buildPath(array("view", "view.php"));
 		} 

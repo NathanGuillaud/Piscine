@@ -1,6 +1,6 @@
 <div class="infos">
     <h2>Ajout d'un logement : </h2>
-<form method="post" action="index.php?controller=editeur&action=registerEditeur">
+<form method="post" action="index.php?controller=logement&action=registerLogement">
 	<fieldset class="form-infos">
 	    <label>Nom Logement:
 	    	<input type="text" placeholder="Hotel F1" name="nomEditeur" required /></label>

@@ -34,19 +34,19 @@ class ModelLogement {
 	}
     
     public function getmailLogement(){
-        return $this->$mailLogement
+        return $this->$mailLogement;
     }
 	
     public function getTelLogement(){
-        return $this->$telLogement
+        return $this->$telLogement;
     }
     
 	public function getSiteLogement(){
 		return $this->siteLogement;
 	}
     
-    public function getPayeParFestival{
-        
+    public function getPayeParFestival() {
+        return $this->payeParFestival;
     }
 
 
@@ -101,18 +101,6 @@ class ModelLogement {
 
 		return $tab_prod[0];
 	}
-
-    
-    private $numLogement;
-	private $nomLogement;
-	private $rueLogement;
-	private $villeLogement;
-	private $CPLogement;
-	private $mailLogement;
-    private $telLogement; 
-    private $siteLogement;
-	private $payeParFestival;
-   
     
 	public function save() {
 		$sql = "INSERT INTO logement (nomLogement, rueLogement, villeLogement, CPLogement, mailLogement, telLogement, siteLogement, payeParLogement) VALUES (:nom_tag, :rue_tag, :ville_tag, CP_tag, mail_tag :tel_tag, :site_tag, :paye_tag)";

@@ -6,7 +6,7 @@
 
 echo '<div class="infos">';
 ?>
-<a class='edit-button' href="index.php?controller=editeur&action=addLogement">Ajouter un logement</a>
+<a class='edit-button' href="index.php?controller=logement&action=addLogement">Ajouter un logement</a>
 
 <?php
 if (isset($tab_edit) && isset($tab_edit[0])){
