@@ -124,6 +124,32 @@ class ModelType {
 			return true;
 		}
 	}
+
+    static public function getLibelleTypeByNumType($numType) {
+        $sql = "SELECT libelleType from type WHERE numType=:num_type LIMIT 1";
+        try {
+            // Préparation de la requête
+            $req_prep = Model::$pdo->prepare($sql);
+
+            $values = array(
+                "num_type" => $numType,
+            );
+            // On donne les valeurs et on exécute la requête
+            $req_prep->execute($values);
+
+            $req_prep->setFetchMode(PDO::FETCH_ASSOC);
+            $result = $req_prep->fetch();
+            $libelleType = $result['libelleType'];
+        } catch (PDOException $e) {
+            echo('Error tout casse ( /!\ method getSuiviByNum() /!\ )');
+        }
+        // Attention, si il n'y a pas de résultats, on renvoie false
+        if (empty($libelleType)) {
+            return false;
+        }
+
+        return $libelleType;
+    }
 }
 
 ?>
