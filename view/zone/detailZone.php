@@ -16,19 +16,41 @@ echo "<hr/><p>Type de jeux : " . htmlspecialchars($type) . "<br>";
 echo "<hr/><p>Liste des jeux de la zone : <br><br>";
 
 if(!empty($jeux)){
-  $i = 0;
-  foreach($jeux as $key => $value) {
-      echo "$value";
-      if ($i%2 == 0){
-        echo " de ";
-      } else {
-        echo "<br>";
-      }
-      $i = $i + 1;
-  }
+
+  echo "<table>
+     <caption>Liste des jeux de la zone</caption>
+
+     <tr>
+         <th>Jeux</th>
+         <th>Editeurs</th>
+     </tr>";
+     $i = 0;
+     foreach($jeux as $key => $value) {
+       if ($i%2 == 0){
+         echo "<tr><td>";
+       } else {
+         echo "<td>";
+       }
+
+       echo "$value";
+
+       if ($i%2 == 0){
+         echo "</td>";
+       } else {
+         echo "</td></tr>";
+       }
+       $i = $i + 1;
+     }
+
+  echo "</table>";
+
+
+
 } else {
   echo "Pas de jeu dans cette zone.";
 }
+
+
 /*$nomEditeur = ModelSuivi::getNomEditeurByNumSuivi($numSuivi);
 $date = $suivi['datePremierContact'];
 $relance = $suivi['relanceContact'];
