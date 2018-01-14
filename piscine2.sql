@@ -208,6 +208,11 @@ CREATE TABLE `posseder` (
   `numReservation` smallint(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+INSERT INTO `posseder` (`Envoi`, `Don`,`numJeu`, `numReservation`) VALUES
+(0,0,15,26),
+(0,0,16,26),
+(0,0,17,27);
+
 -- --------------------------------------------------------
 
 --

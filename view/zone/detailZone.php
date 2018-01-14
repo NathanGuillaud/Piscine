@@ -7,8 +7,28 @@ $typeJeux = ModelZone::getTypeById($numZone);
 foreach($typeJeux as $key => $value) {
     $type = $value;
 }
+$jeux = ModelZone::getJeuxAndEditeurById($numZone);
+
+
+
 echo "<div class='infos'><h2> Détails de la zone " . htmlspecialchars($libelle) . "</h2><br>";
 echo "<hr/><p>Type de jeux : " . htmlspecialchars($type) . "<br>";
+echo "<hr/><p>Liste des jeux de la zone : <br><br>";
+
+if(!empty($jeux)){
+  $i = 0;
+  foreach($jeux as $key => $value) {
+      echo "$value";
+      if ($i%2 == 0){
+        echo " de ";
+      } else {
+        echo "<br>";
+      }
+      $i = $i + 1;
+  }
+} else {
+  echo "Pas de jeu dans cette zone.";
+}
 /*$nomEditeur = ModelSuivi::getNomEditeurByNumSuivi($numSuivi);
 $date = $suivi['datePremierContact'];
 $relance = $suivi['relanceContact'];

@@ -133,7 +133,40 @@ class ModelZone {
 			$req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelZone');
 			$tab_prod = $req_prep->fetchAll();
 		} catch (PDOException $e) {
-			echo('Error tout casse ( /!\ method getTypeByid() /!\ )');
+			echo('Error tout casse ( /!\ method getTypeById() /!\ )');
+		}
+
+				// Attention, si il n'y a pas de résultats, on renvoie false
+		if (empty($tab_prod)) {
+			return false;
+		}
+
+		return $tab_prod[0];
+	}
+
+	static public function getJeuxAndEditeurById($idZone) {
+		$sql = "SELECT jeux.libelleJeu, editeur.nomEditeur
+		FROM jeux,posseder,louer,zone,avoir,editeur
+		WHERE zone.idZone=:idZone
+		AND zone.idZone=louer.idZone
+		AND louer.numReservation=posseder.numReservation
+		AND posseder.numJeu=jeux.numJeu
+		AND jeux.numJeu=avoir.numJeu
+		AND avoir.numEditeur=editeur.numEditeur";
+		try {
+							// Préparation de la requête
+			$req_prep = Model::$pdo->prepare($sql);
+
+			$values = array(
+				"idZone" => $idZone,
+			);
+							// On donne les valeurs et on exécute la requête
+			$req_prep->execute($values);
+
+			$req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelZone');
+			$tab_prod = $req_prep->fetchAll();
+		} catch (PDOException $e) {
+			echo('Error tout casse ( /!\ method getJeuxAndEditeurById() /!\ )');
 		}
 
 				// Attention, si il n'y a pas de résultats, on renvoie false
