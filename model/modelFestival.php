@@ -6,10 +6,7 @@ class ModelFestival {
 	private $nomSalle;
 	private $nbTotalPlace;
 	private $prixUniTable;
-<<<<<<< Updated upstream
 	private $annee;
-=======
->>>>>>> Stashed changes
 	
 	public function getIdFestival(){
 		return $this->idFestival;
@@ -26,8 +23,6 @@ class ModelFestival {
 	public function getPrixUniTable(){
 		return $this->prixUniTable;
 	}
-	
-<<<<<<< Updated upstream
 	public function getAnneeFestival(){
 		return $this->annee;
 	}
@@ -53,10 +48,6 @@ class ModelFestival {
 		}
 	} 
 	
-	public function save() {
-		$sql = "INSERT INTO festival (nomSalle, nbTotalPlace, prixUniTable, annee) VALUES (:nomSalle_tag, :nbTotalPlace_tag, :prixUniTable_tag, :annee)";
-=======
-	
 	// un constructeur
 	public function __construct($nomSalle = NULL/*'The girl has no name' luul*/, $nbTotalPlace = NULL, $prixUniTable = NULL) {
 		if (!is_null($nomSalle) && !is_null($nbTotalPlace) && !is_null($prixUniTable)) {
@@ -68,7 +59,6 @@ class ModelFestival {
 	
 	public function save() {
 		$sql = "INSERT INTO festival (nomSalle, nbTotalPlace, prixUniTable) VALUES (:nomSalle_tag, :nbTotalPlace_tag, :prixUniTable_tag)";
->>>>>>> Stashed changes
 
 		try {
 			$req_prep = Model::$pdo->prepare($sql);
@@ -76,10 +66,7 @@ class ModelFestival {
 				"nomSalle_tag" => $this->getNomSalle(),
 				"nbTotalPlace_tag" => $this->getNbTotalPlace(),
 				"prixUniTable_tag" => $this->getPrixUniTable(),
-<<<<<<< Updated upstream
 				"annee" => $this->getAnneeFestival(),
-=======
->>>>>>> Stashed changes
 			);
 			$req_prep->execute($values);
 		} catch (PDOException $e) {
@@ -156,7 +143,6 @@ class ModelFestival {
 		return $tab_prod[0][0];
 	}
 
-<<<<<<< Updated upstream
     static public function getPrixUnitaire($idFestival) {
 		$sql = "SELECT prixUniTable from festival WHERE idFestival=:id_festival";
 		try {
@@ -190,9 +176,6 @@ class ModelFestival {
 			echo('Error tout casse ( /!\ method getLastIdFestival() /!\ )');
 		}
 	}
-    
-=======
->>>>>>> Stashed changes
 }
 
 ?>
