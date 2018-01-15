@@ -43,14 +43,14 @@ class ModelPosseder {
 
 	public function save() {
 
-		$sql = "INSERT INTO posseder (envoi, don, nbExemplaire, numJeu, numReservation) VALUES (:evnoi, :don, :nb_exemplaire, :numJeu, :numReservation)";
+		$sql = "INSERT INTO posseder (Envoi, Don, nbExemplaire, numJeu, numReservation) VALUES (:envoi, :don, :nb_exemplaire, :numJeu, :numReservation)";
 
 		try {
 			$req_prep = Model::$pdo->prepare($sql);
 			$values = array(
 				"envoi" => $this->getEnvoi(),
 				"don" => $this->getDon(),
-				"nbExemplaire" => $this->getNbExemplaire(),
+				"nb_exemplaire" => $this->getNbExemplaire(),
 				"numJeu" => $this->getNumJeu(),
 				"numReservation" => $this->getNumReservation(),
 			);

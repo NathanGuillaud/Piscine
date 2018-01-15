@@ -151,12 +151,12 @@
 			$nbExemplaire = $_POST['nbExemplaire'];
 			$numReservation = $_POST['numReservation'];
 			for ($i=0; $i < count($numJeu); $i++) { 
-				if($envoi[$i] == "on"){
+				if(isset($envoi[$i])){
 					$en = 1;
 				}else{
 					$en = 0;
 				}
-				if($don[$i] == "on"){
+				if(isset($don[$i])){
 					$dn = 1;
 				}else{
 					$dn = 0;
