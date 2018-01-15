@@ -7,8 +7,9 @@
 	</title>
 	<link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="../style/font-awesome/css/font-awesome.min.css">
-    <style type="text/css">
-    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<link href="JS/jquery-ui/jquery-ui.css" rel="stylesheet">
+	<script src="JS/jquery-ui/jquery-ui.js"></script>
 </head>
 
 
@@ -61,7 +62,6 @@
             <img style="margin-left:300 px" src="logo.jpg" alt="" />
 
             <div class="sliding-panel-fade-screen"></div></div>
-        <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 
 				<?php else: ?>
 					<div class="menu-elem"><a href="index.php?controller=user&action=viewConnect">Se connecter</a></div>
@@ -78,8 +78,6 @@
 	<footer>
 
 	</footer>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<script src="js/script.js"></script>
 </body>
 </html>
 

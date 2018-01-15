@@ -169,13 +169,14 @@ class ModelSuivi {
 	}
 
 	static public function getNumSuiviByNumEditeur($numEditeur) {
-		$sql = "SELECT numSuivi from suivi WHERE numEditeur=:num_editeur";
+		$sql = "SELECT numSuivi from suivi WHERE numEditeur=:num_editeur AND idFestival = :idFestival";
 		try {
 							// Préparation de la requête
 			$req_prep = Model::$pdo->prepare($sql);
 
 			$values = array(
 				"num_editeur" => $numEditeur,
+				"idFestival" => $_SESSION['idFestival'],
 			);
 							// On donne les valeurs et on exécute la requête
 			$req_prep->execute($values);
@@ -243,7 +244,7 @@ class ModelSuivi {
 
     static public function getAllSuivis() {
 		try {
-			$rep = Model::$pdo->query('SELECT * FROM suivi');
+			$rep = Model::$pdo->query('SELECT * FROM suivi where idFestival =' . $_SESSION['idFestival']);
 			$rep->setFetchMode(PDO::FETCH_CLASS, 'ModelSuivi');
 			$tab_suivi = $rep->fetchAll();
 			return $tab_suivi;

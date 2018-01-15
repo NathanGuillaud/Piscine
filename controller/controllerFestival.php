@@ -23,7 +23,7 @@
 			$controller = "accueil";
 			$view = "home";
             $title = "Accueil";
-            $festival = new ModelFestival($_POST['nomSalle'], $_POST['nbTotalPlace'], $_POST['prixUniTable']); 
+            $festival = new ModelFestival($_POST['nomSalle'], $_POST['nbTotalPlace'], $_POST['prixUniTable']	); 
 			$festival->save();
 			require File::buildPath(array("view", "view.php"));
 		}

@@ -18,6 +18,14 @@
 
 <script>
 
+
+	$(document).ready( function() {
+		
+	};
+
+
+
+
 	//Requete AJAX pour ajouter un editeur et récupérer son id et l'ajouter au select
 	$("input[name='addZone']").click(function(){
 		var libelleZone = $("input[name='libelleZone']").val();
@@ -42,7 +50,7 @@
 	
 	//On affiche la popup pour ajouter un editeur
 	function popupZone(){
-		$("#newZone").dialog({
+		var popup = $("#newZone").dialog({
 			width: 1000,			
        		closeOnEscape: false,
        		 open: function(event, ui) {  $(".ui-dialog-titlebar-close", $(this).parent()).hide() },
