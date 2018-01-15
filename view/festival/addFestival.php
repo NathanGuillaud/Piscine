@@ -9,6 +9,9 @@
 		<label>Prix unitaire d'une table (en euros) :
 			<input type="number" name="prixUniTable" placeholder="55" required /></label>
 
+		<label>Année :
+			<input type="text" name="annee" placeholder="2018" required /></label>
+
     </fieldset>
 	<fieldset class="form-action">
 			<input class="form-bouton" type="submit" name="submit" value="Enregistrer les informations sur le festival" />

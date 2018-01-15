@@ -23,7 +23,7 @@
 			$controller = "accueil";
 			$view = "home";
             $title = "Accueil";
-            $festival = new ModelFestival($_POST['nomSalle'], $_POST['nbTotalPlace'], $_POST['prixUniTable']	); 
+            $festival = new ModelFestival($_POST['nomSalle'], $_POST['nbTotalPlace'], $_POST['prixUniTable'], $_POST['annee']); 
 			$festival->save();
 			require File::buildPath(array("view", "view.php"));
 		}
@@ -58,7 +58,7 @@
 
 		public static function updateFestival(){
 			if (!empty(ModelFestival::getFestivalById($_POST['idFestival']))){
-				$festival = new ModelFestival($_POST['nomSalle'], $_POST['nbTotalPlace'], $_POST['prixUniTable']);
+				$festival = new ModelFestival($_POST['nomSalle'], $_POST['nbTotalPlace'], $_POST['prixUniTable'], $_POST['annee']);
 				$festival->update($_POST['idFestival']);
 			}else{
 				$error = "Ce festival n'existe pas !";

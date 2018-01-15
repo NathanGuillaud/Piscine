@@ -49,7 +49,7 @@ class ModelFestival {
 	} 
 	
 	public function save() {
-		$sql = "INSERT INTO festival (nomSalle, nbTotalPlace, prixUniTable) VALUES (:nomSalle_tag, :nbTotalPlace_tag, :prixUniTable_tag)";
+		$sql = "INSERT INTO festival (nomSalle, nbTotalPlace, prixUniTable, annee) VALUES (:nomSalle_tag, :nbTotalPlace_tag, :prixUniTable_tag, :annee)";
 
 		try {
 			$req_prep = Model::$pdo->prepare($sql);
@@ -94,7 +94,8 @@ class ModelFestival {
 	public function update($idFestival){
 		$sql = "UPDATE festival SET festival.nomSalle = :nom_salle, 
 								   festival.nbTotalPlace = :nb_place, 
-								   festival.prixUniTable = :prix
+								   festival.prixUniTable = :prix,
+								   festival.annee = :annee
 							 WHERE festival.idFestival = :id_festival";
 		try {
 			$req_prep = Model::$pdo->prepare($sql);
@@ -103,6 +104,7 @@ class ModelFestival {
 				"nom_salle" => $this->getNomSalle(),
 				"nb_place" => $this->getnbTotalPlace(),
 				"prix" => $this->getPrixUniTable(),
+				"annee" => $this->getAnnee(),
 			);
 			$req_prep->execute($values);
 		} catch (PDOException $e) {

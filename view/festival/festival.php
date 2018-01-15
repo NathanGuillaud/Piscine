@@ -25,9 +25,9 @@
 	  if(!empty(ModelFestival::getFestivalById($_SESSION['idFestival']))){
 	  		$festival = ModelFestival::getFestivalById($_SESSION['idFestival']);
 	  		echo '<p>Salle: ' . htmlspecialchars($festival->getNomSalle()) . '</p><hr/><p> Places: ' . htmlspecialchars($festival->getnbTotalPlace()) . ' </p><hr/><p>Prix: ' . htmlspecialchars($festival->getPrixUniTable()) . '<hr/></p>' ;
-	  	 	echo "<div><a  class='edit-button' href='index.php?controller=festival&action=update&idFestival=1'>Modifier les paramètres du festival</a></div>";
-	  	}else{
-	  		echo "<div><a href='index.php?controller=festival&action=addFestival&idFestival=1'>Ajouter un festival</a></div>";
+	  	 	echo "<div><a  class='edit-button' href='index.php?controller=festival&action=update&idFestival=" . $_SESSION['idFestival'] ."'>Modifier les paramètres du festival</a></div>";
 	  	}
-   
+	  		
+	  	echo "<div><a class='edit-button' href='index.php?controller=festival&action=addFestival&idFestival=1'>Ajouter un festival</a></div>";
+	  	  
 ?>
