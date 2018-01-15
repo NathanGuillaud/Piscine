@@ -18,14 +18,6 @@
 
 <script>
 
-
-	$(document).ready( function() {
-		
-	};
-
-
-
-
 	//Requete AJAX pour ajouter un editeur et récupérer son id et l'ajouter au select
 	$("input[name='addZone']").click(function(){
 		var libelleZone = $("input[name='libelleZone']").val();
