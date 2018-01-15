@@ -167,7 +167,7 @@
 
 		public static function updateReservation(){
 			$reservation = ModelReservation::getReservationByNum($_GET['numReservation']);
-			$numEditeur = $reservation["numEditeur"];
+			$numEditeur = $reservation->getNumEditeur();
 			if (!empty($reservation)){
 
 				if(isset($_POST['paye'])){
@@ -200,9 +200,8 @@
 					$deplacement = 0;
 				}
 
-				$reservation = new ModelReservation($paye, $dateFacture, $dateRelance, $prix, $deplacement, $numEditeur);
+				$reservation = new ModelReservation($paye, $dateFacture, $dateRelance, $prix, $deplacement, $numEditeur, $reservation->getIdFestival());
 				$reservation->update($_GET['numReservation']);
-				//$tab_edit = ModelReservation::getAllReservations();
 				$controller = "reservation";
 				$view = "detailReservation";
 				$title = "Réservation modifiée";
@@ -211,12 +210,6 @@
 			}else{
 				$error = "Cette reservation n'existe pas !";
 			}
-			/*$tab_edit = ModelReservation::getAllReservations();
-			$controller = "reservation";
-			$view = "listeReservation";
-			$title = "Liste des reservations";
-			require File::buildPath(array("view", "view.php"));
-			return 0;*/
 		}
 	}
 ?>

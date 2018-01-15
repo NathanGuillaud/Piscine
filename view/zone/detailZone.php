@@ -9,26 +9,48 @@ foreach($typeJeux as $key => $value) {
 }
 $jeux = ModelZone::getJeuxAndEditeurById($numZone);
 
-
-
 echo "<div class='infos'><h2> Détails de la zone " . htmlspecialchars($libelle) . "</h2><br>";
 echo "<hr/><p>Type de jeux : " . htmlspecialchars($type) . "<br>";
-echo "<hr/><p>Liste des jeux de la zone : <br><br>";
+echo "<hr/>";
 
 if(!empty($jeux)){
-  $i = 0;
-  foreach($jeux as $key => $value) {
-      echo "$value";
-      if ($i%2 == 0){
-        echo " de ";
-      } else {
-        echo "<br>";
-      }
-      $i = $i + 1;
-  }
+
+  echo "<table class='tab1'>
+     <caption><p>Liste des jeux de la zone</p></caption>
+
+     <tr>
+         <th class='tab2'><p>Jeux</p></th>
+         <th class='tab2'><p>Editeurs</p></th>
+     </tr>";
+     $i = 0;
+     foreach($jeux as $key => $value) {
+       echo "<tr>";
+
+       $j = 0;
+       foreach($jeux[$i] as $key2 => $value2) {
+         echo "<td class='tab2'><p>";
+
+         echo "$value2";
+
+         if ($j%2 == 0){
+           echo "</p></td>";
+         } else {
+           echo "</p></td></tr>";
+         }
+         $j = $j + 1;
+       }
+       $i = $i + 1;
+     }
+
+  echo "</table>";
+
+
+
 } else {
-  echo "Pas de jeu dans cette zone.";
+  echo "<p>Pas de jeu dans cette zone.</p>";
 }
+
+
 /*$nomEditeur = ModelSuivi::getNomEditeurByNumSuivi($numSuivi);
 $date = $suivi['datePremierContact'];
 $relance = $suivi['relanceContact'];

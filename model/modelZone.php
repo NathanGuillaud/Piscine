@@ -174,7 +174,7 @@ class ModelZone {
 			return false;
 		}
 
-		return $tab_prod[0];
+		return $tab_prod;
 	}
 }
 
