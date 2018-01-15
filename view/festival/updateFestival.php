@@ -13,7 +13,7 @@
 			<input type="number" name="prixUniTable" placeholder="55" value="<?php echo $festival->getPrixUniTable(); ?>" required /></label>
 
 		<label>Année :
-			<input type="text" name="annee" value="<?php echo $festival->getAnnee(); ?>" required /></label>
+			<input type="text" name="annee" value="<?php echo ModelFestival::getFestivalById($idFestival)->getAnneeFestival(); ?>" required /></label>
 			
 		<input type="hidden" value="<?php echo $idFestival; ?>" name="idFestival"  required />
         

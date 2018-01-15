@@ -1,6 +1,6 @@
 <?php if (isset($error)): echo $error; endif;
-	  echo "il reste ". ModelLouer::getNombrePlaceRestante(Conf::$idFestival) ." places disponilbes !";
-      $prixUnitaire = ModelFestival::getPrixUnitaire(Conf::$idFestival);
+	  echo "il reste ". ModelLouer::getNombrePlaceRestante($_SESSION['idFestival']) ." places disponilbes !";
+      $prixUnitaire = ModelFestival::getPrixUnitaire($_SESSION['idFestival']);
 		$dateCourante = new DateTime();
 		$dateRelance = new DateTime("+ 2 weeks");
 ?>
@@ -23,6 +23,7 @@
 		           	}
 				?>
 			</select>
+
 		</label>
 
 	    <label>La reservation est-elle payée ? (cochez si payé):

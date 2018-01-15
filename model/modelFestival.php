@@ -104,7 +104,7 @@ class ModelFestival {
 				"nom_salle" => $this->getNomSalle(),
 				"nb_place" => $this->getnbTotalPlace(),
 				"prix" => $this->getPrixUniTable(),
-				"annee" => $this->getAnnee(),
+				"annee" => $this->getAnneeFestival(),
 			);
 			$req_prep->execute($values);
 		} catch (PDOException $e) {
