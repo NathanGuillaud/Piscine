@@ -1,31 +1,23 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 4.7.3
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Jan 02, 2018 at 04:16 PM
--- Server version: 5.6.34-log
--- PHP Version: 7.1.5
+-- Hôte : localhost:3306
+-- Généré le :  lun. 15 jan. 2018 à 18:28
+-- Version du serveur :  5.6.35
+-- Version de PHP :  7.1.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
 --
--- Database: `piscine`
+-- Base de données :  `piscine`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `avoir`
+-- Structure de la table `avoir`
 --
 
 CREATE TABLE `avoir` (
@@ -35,13 +27,24 @@ CREATE TABLE `avoir` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `avoir`
+-- Déchargement des données de la table `avoir`
 --
+
+INSERT INTO `avoir` (`numJeu`, `numEditeur`, `nbExemplaire`) VALUES
+(38, 19, 3),
+(39, 19, 5),
+(40, 20, 6),
+(41, 20, 1),
+(42, 20, 2),
+(43, 20, 4),
+(45, 19, 2),
+(46, 22, 2),
+(47, 19, 3);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `concerner`
+-- Structure de la table `concerner`
 --
 
 CREATE TABLE `concerner` (
@@ -50,13 +53,19 @@ CREATE TABLE `concerner` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `concerner`
+-- Déchargement des données de la table `concerner`
 --
+
+INSERT INTO `concerner` (`numType`, `idZone`) VALUES
+(12, 18),
+(13, 19),
+(14, 20),
+(17, 23);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `contact`
+-- Structure de la table `contact`
 --
 
 CREATE TABLE `contact` (
@@ -71,13 +80,19 @@ CREATE TABLE `contact` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `contact`
+-- Déchargement des données de la table `contact`
 --
+
+INSERT INTO `contact` (`numContact`, `estPrivilegie`, `nomContact`, `prenomContact`, `mailContact`, `poste`, `telContact`, `numEditeur`) VALUES
+(4, 1, 'Tom Dupont', 'Tom', 'tom.dupont@gmail.com', 'Directeur', '0456758493', 20),
+(6, 0, 'Marion Dupont', 'Marion', 'marion@gmail.com', 'Trésorière', '0687986777', 20),
+(7, 1, 'Patrick Castel', 'Patrick', 'patrick@gmail.com', 'Directeur', '0434566758', 19),
+(9, 1, 'Dupont', 'Pierre', 'Dupond@gmail.com', 'commercial', '0998899876', 22);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `correspondre`
+-- Structure de la table `correspondre`
 --
 
 CREATE TABLE `correspondre` (
@@ -90,7 +105,7 @@ CREATE TABLE `correspondre` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `editeur`
+-- Structure de la table `editeur`
 --
 
 CREATE TABLE `editeur` (
@@ -103,30 +118,43 @@ CREATE TABLE `editeur` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `editeur`
+-- Déchargement des données de la table `editeur`
 --
+
+INSERT INTO `editeur` (`numEditeur`, `nomEditeur`, `mailEditeur`, `telEditeur`, `siteEditeur`, `commentaire`) VALUES
+(19, 'Ankama', 'ankama@gmail.com', '0456765432', 'ankama.fr', 'Vient tous les ans.'),
+(20, 'Hasbro', 'hasbro@gmail.com', '0456789067', 'hasbro.fr', ''),
+(22, 'Asmodee', 'Asmodee@gmail.com', '0998877667', 'Asmodee.com', '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `festival`
+-- Structure de la table `festival`
 --
 
 CREATE TABLE `festival` (
   `idFestival` smallint(2) NOT NULL,
   `nomSalle` varchar(50) NOT NULL,
   `nbTotalPlace` smallint(2) NOT NULL,
-  `prixUniTable` smallint(2) NOT NULL
+  `prixUniTable` smallint(2) NOT NULL,
+  `annee` smallint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `festival`
+-- Déchargement des données de la table `festival`
 --
+
+INSERT INTO `festival` (`idFestival`, `nomSalle`, `nbTotalPlace`, `prixUniTable`, `annee`) VALUES
+(1, 'Corum de Montpellier', 145, 40, 2018),
+(3, 'ferzfzergzergzergzregz', 100, 13, 2019),
+(4, 'Chez moi', 456, 776, 2020),
+(5, 'Polytech', 100, 35, 2021),
+(6, 'Polytech', 100, 200, 2022);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jeux`
+-- Structure de la table `jeux`
 --
 
 CREATE TABLE `jeux` (
@@ -139,31 +167,39 @@ CREATE TABLE `jeux` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `jeux`
+-- Déchargement des données de la table `jeux`
 --
+
+INSERT INTO `jeux` (`numJeu`, `libelleJeu`, `estPrototype`, `estSurdim`, `payerFrais`, `numType`) VALUES
+(38, 'Monopoly', 1, 0, 0, 12),
+(39, 'Uno', 0, 0, 1, 12),
+(40, 'Cluedo', 0, 1, 0, 14),
+(41, 'Time\'s up', 0, 0, 0, 12),
+(42, 'Scrabble junior', 0, 0, 1, 13),
+(43, 'Risk', 1, 0, 0, 14),
+(45, 'Echec', 1, 0, 0, 15),
+(46, 'Jungle speed', 1, 0, 1, 13),
+(47, 'Poker', 1, 0, 0, 17);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `logement`
+-- Structure de la table `logement`
 --
 
 CREATE TABLE `logement` (
   `numLogement` smallint(2) NOT NULL,
-  `nomLogement` varchar(40) NOT NULL,
-  `rueLogement` varchar(40) NOT NULL,
-  `villeLogement` varchar(40) NOT NULL,
-  `CPLogement` mediumint(3) NOT NULL,
-  `mailLogement` varchar(40) NOT NULL,
-  `telLogement` varchar(40) NOT NULL,
-  `siteLogement` varchar(40) NOT NULL,
-  `payeParFestival` tinyint(1) NOT NULL
+  `veutLogement` smallint(2) NOT NULL,
+  `aEuLogement` smallint(2) NOT NULL,
+  `cbPersonnes` int(10) NOT NULL,
+  `numEditeur` smallint(2) NOT NULL,
+  `commentaire` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `louer`
+-- Structure de la table `louer`
 --
 
 CREATE TABLE `louer` (
@@ -173,26 +209,50 @@ CREATE TABLE `louer` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `louer`
+-- Déchargement des données de la table `louer`
 --
+
+INSERT INTO `louer` (`quantitetable`, `idZone`, `numReservation`) VALUES
+(3, 18, 35),
+(1, 19, 36),
+(1, 19, 37),
+(1, 19, 38),
+(2, 19, 39),
+(3, 19, 40),
+(3, 23, 42);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `posseder`
+-- Structure de la table `posseder`
 --
 
 CREATE TABLE `posseder` (
   `Envoi` tinyint(1) NOT NULL,
   `Don` smallint(2) NOT NULL,
+  `nbExemplaire` smallint(2) NOT NULL,
   `numJeu` smallint(2) NOT NULL,
   `numReservation` smallint(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Déchargement des données de la table `posseder`
+--
+
+INSERT INTO `posseder` (`Envoi`, `Don`, `nbExemplaire`, `numJeu`, `numReservation`) VALUES
+(1, 0, 3, 38, 35),
+(1, 0, 2, 38, 39),
+(1, 0, 4, 38, 40),
+(0, 1, 2, 39, 35),
+(1, 0, 3, 42, 36),
+(1, 0, 1, 42, 37),
+(1, 0, 2, 42, 38),
+(1, 0, 3, 42, 42);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `reservation`
+-- Structure de la table `reservation`
 --
 
 CREATE TABLE `reservation` (
@@ -202,17 +262,27 @@ CREATE TABLE `reservation` (
   `dateRelance` date NOT NULL,
   `prix` float NOT NULL,
   `deplacement` tinyint(1) NOT NULL,
-  `numEditeur` smallint(2) NOT NULL
+  `numEditeur` smallint(2) NOT NULL,
+  `idFestival` smallint(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `reservation`
+-- Déchargement des données de la table `reservation`
 --
+
+INSERT INTO `reservation` (`numReservation`, `paye`, `dateFacture`, `dateRelance`, `prix`, `deplacement`, `numEditeur`, `idFestival`) VALUES
+(35, 0, '2018-01-15', '2018-01-29', 99, 1, 19, 1),
+(36, 1, '2018-01-15', '2018-01-29', 33, 1, 20, 1),
+(37, 1, '2018-01-15', '2018-01-29', 33, 1, 20, 1),
+(38, 1, '2018-01-15', '2018-01-29', 33, 1, 20, 1),
+(39, 0, '2018-01-15', '2018-01-29', 66, 0, 19, 1),
+(40, 0, '2018-01-15', '2018-01-29', 99, 0, 19, 1),
+(42, 0, '2018-01-15', '2018-01-29', 100, 1, 20, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `suivi`
+-- Structure de la table `suivi`
 --
 
 CREATE TABLE `suivi` (
@@ -224,13 +294,23 @@ CREATE TABLE `suivi` (
   `estPresent` tinyint(1) NOT NULL,
   `commentaire` varchar(200) NOT NULL,
   `numEditeur` smallint(2) NOT NULL,
-  `facture` tinyint(1) NOT NULL
+  `facture` tinyint(1) NOT NULL,
+  `idFestival` smallint(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `suivi`
+--
+
+INSERT INTO `suivi` (`numSuivi`, `datePremierContact`, `relanceContact`, `compteRendu`, `interesse`, `estPresent`, `commentaire`, `numEditeur`, `facture`, `idFestival`) VALUES
+(9, '2018-01-18', '2018-02-01', '2018-02-12', 1, 0, '', 19, 0, 1),
+(10, '2018-01-15', '2018-01-29', '2018-02-12', 0, 0, '', 20, 1, 1),
+(12, '2018-01-15', '2018-01-29', '2018-02-12', 1, 0, '', 22, 0, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `type`
+-- Structure de la table `type`
 --
 
 CREATE TABLE `type` (
@@ -239,13 +319,21 @@ CREATE TABLE `type` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `type`
+-- Déchargement des données de la table `type`
 --
+
+INSERT INTO `type` (`numType`, `libelleType`) VALUES
+(12, 'Famille'),
+(13, 'Enfants'),
+(14, 'Stratégie'),
+(15, 'Reflexion'),
+(16, 'Ankama'),
+(17, 'Jeu de carte');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Structure de la table `user`
 --
 
 CREATE TABLE `user` (
@@ -257,13 +345,17 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `user`
+-- Déchargement des données de la table `user`
 --
+
+INSERT INTO `user` (`idUser`, `login`, `password`, `email`, `registerDate`) VALUES
+(13, 'igwall', '1ae94fe89c65d63c024d1e55e65aa55cb4621a69ef5fb28639c23eb08a9183d3', 'lucas.perso@mail.com', '2018-01-13 11:03:42'),
+(14, 'admin', 'bad932406c7610c527e79469b7dd24dfdb613674ab21ec7889c1a956533b9e3d', 'admin@admin.fr', '2018-01-15 13:16:04');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `zone`
+-- Structure de la table `zone`
 --
 
 CREATE TABLE `zone` (
@@ -273,243 +365,253 @@ CREATE TABLE `zone` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `zone`
+-- Déchargement des données de la table `zone`
+--
+
+INSERT INTO `zone` (`idZone`, `idFestival`, `libelleZone`) VALUES
+(18, 1, 'Jeux familiaux'),
+(19, 1, 'Jeux enfants'),
+(20, 1, 'Jeux de stratégie'),
+(23, 1, 'Carte');
+
+--
+-- Index pour les tables déchargées
 --
 
 --
--- Indexes for dumped tables
---
-
---
--- Indexes for table `avoir`
+-- Index pour la table `avoir`
 --
 ALTER TABLE `avoir`
   ADD PRIMARY KEY (`numJeu`,`numEditeur`),
   ADD KEY `numEditeur` (`numEditeur`);
 
 --
--- Indexes for table `concerner`
+-- Index pour la table `concerner`
 --
 ALTER TABLE `concerner`
   ADD PRIMARY KEY (`numType`,`idZone`),
   ADD KEY `idZone` (`idZone`);
 
 --
--- Indexes for table `contact`
+-- Index pour la table `contact`
 --
 ALTER TABLE `contact`
   ADD PRIMARY KEY (`numContact`),
   ADD KEY `numEditeur` (`numEditeur`);
 
 --
--- Indexes for table `correspondre`
+-- Index pour la table `correspondre`
 --
 ALTER TABLE `correspondre`
   ADD PRIMARY KEY (`numReversation`),
   ADD KEY `numLogement` (`numLogement`);
 
 --
--- Indexes for table `editeur`
+-- Index pour la table `editeur`
 --
 ALTER TABLE `editeur`
   ADD PRIMARY KEY (`numEditeur`) KEY_BLOCK_SIZE=2;
 
 --
--- Indexes for table `festival`
+-- Index pour la table `festival`
 --
 ALTER TABLE `festival`
   ADD PRIMARY KEY (`idFestival`);
 
 --
--- Indexes for table `jeux`
+-- Index pour la table `jeux`
 --
 ALTER TABLE `jeux`
   ADD PRIMARY KEY (`numJeu`),
   ADD KEY `numType` (`numType`);
 
 --
--- Indexes for table `logement`
+-- Index pour la table `logement`
 --
 ALTER TABLE `logement`
-  ADD PRIMARY KEY (`numLogement`);
+  ADD PRIMARY KEY (`numLogement`),
+  ADD KEY `editeur` (`numEditeur`);
 
 --
--- Indexes for table `louer`
+-- Index pour la table `louer`
 --
 ALTER TABLE `louer`
   ADD PRIMARY KEY (`idZone`,`numReservation`),
   ADD KEY `numReservation` (`numReservation`);
 
 --
--- Indexes for table `posseder`
+-- Index pour la table `posseder`
 --
 ALTER TABLE `posseder`
   ADD PRIMARY KEY (`numJeu`,`numReservation`),
   ADD KEY `numReservation` (`numReservation`);
 
 --
--- Indexes for table `reservation`
+-- Index pour la table `reservation`
 --
 ALTER TABLE `reservation`
   ADD PRIMARY KEY (`numReservation`),
-  ADD KEY `numEditeur` (`numEditeur`);
+  ADD KEY `numEditeur` (`numEditeur`),
+  ADD KEY `reservation_ibfk_2` (`idFestival`);
 
 --
--- Indexes for table `suivi`
+-- Index pour la table `suivi`
 --
 ALTER TABLE `suivi`
   ADD PRIMARY KEY (`numSuivi`),
   ADD KEY `numEditeur` (`numEditeur`);
 
 --
--- Indexes for table `type`
+-- Index pour la table `type`
 --
 ALTER TABLE `type`
   ADD PRIMARY KEY (`numType`) KEY_BLOCK_SIZE=2;
 
 --
--- Indexes for table `user`
+-- Index pour la table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`idUser`),
   ADD UNIQUE KEY `pseudo` (`login`);
 
 --
--- Indexes for table `zone`
+-- Index pour la table `zone`
 --
 ALTER TABLE `zone`
   ADD PRIMARY KEY (`idZone`,`idFestival`),
   ADD KEY `idFestival` (`idFestival`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT pour les tables déchargées
 --
 
 --
--- AUTO_INCREMENT for table `contact`
+-- AUTO_INCREMENT pour la table `contact`
 --
 ALTER TABLE `contact`
-  MODIFY `numContact` tinyint(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `numContact` tinyint(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
--- AUTO_INCREMENT for table `correspondre`
+-- AUTO_INCREMENT pour la table `correspondre`
 --
 ALTER TABLE `correspondre`
   MODIFY `numReversation` smallint(2) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `editeur`
+-- AUTO_INCREMENT pour la table `editeur`
 --
 ALTER TABLE `editeur`
-  MODIFY `numEditeur` smallint(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `numEditeur` smallint(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
--- AUTO_INCREMENT for table `festival`
+-- AUTO_INCREMENT pour la table `festival`
 --
 ALTER TABLE `festival`
-  MODIFY `idFestival` smallint(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idFestival` smallint(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
--- AUTO_INCREMENT for table `jeux`
+-- AUTO_INCREMENT pour la table `jeux`
 --
 ALTER TABLE `jeux`
-  MODIFY `numJeu` smallint(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `numJeu` smallint(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 --
--- AUTO_INCREMENT for table `logement`
+-- AUTO_INCREMENT pour la table `logement`
 --
 ALTER TABLE `logement`
   MODIFY `numLogement` smallint(2) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `reservation`
+-- AUTO_INCREMENT pour la table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `numReservation` smallint(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `numReservation` smallint(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 --
--- AUTO_INCREMENT for table `suivi`
+-- AUTO_INCREMENT pour la table `suivi`
 --
 ALTER TABLE `suivi`
-  MODIFY `numSuivi` smallint(2) NOT NULL AUTO_INCREMENT;
+  MODIFY `numSuivi` smallint(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
--- AUTO_INCREMENT for table `type`
+-- AUTO_INCREMENT pour la table `type`
 --
 ALTER TABLE `type`
-  MODIFY `numType` tinyint(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `numType` tinyint(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `idUser` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `idUser` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
--- AUTO_INCREMENT for table `zone`
+-- AUTO_INCREMENT pour la table `zone`
 --
 ALTER TABLE `zone`
-  MODIFY `idZone` smallint(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `idZone` smallint(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 --
--- Constraints for dumped tables
+-- Contraintes pour les tables déchargées
 --
 
 --
--- Constraints for table `avoir`
+-- Contraintes pour la table `avoir`
 --
 ALTER TABLE `avoir`
   ADD CONSTRAINT `Avoir_ibfk_1` FOREIGN KEY (`numEditeur`) REFERENCES `editeur` (`numEditeur`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `Avoir_ibfk_2` FOREIGN KEY (`numJeu`) REFERENCES `jeux` (`numJeu`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `concerner`
+-- Contraintes pour la table `concerner`
 --
 ALTER TABLE `concerner`
   ADD CONSTRAINT `Concerner_ibfk_1` FOREIGN KEY (`numType`) REFERENCES `type` (`numType`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `Concerner_ibfk_2` FOREIGN KEY (`idZone`) REFERENCES `zone` (`idZone`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `contact`
+-- Contraintes pour la table `contact`
 --
 ALTER TABLE `contact`
   ADD CONSTRAINT `Contact_ibfk_1` FOREIGN KEY (`numEditeur`) REFERENCES `editeur` (`numEditeur`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `correspondre`
+-- Contraintes pour la table `correspondre`
 --
 ALTER TABLE `correspondre`
   ADD CONSTRAINT `Correspondre_ibfk_1` FOREIGN KEY (`numReversation`) REFERENCES `reservation` (`numReservation`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `Correspondre_ibfk_2` FOREIGN KEY (`numLogement`) REFERENCES `logement` (`numLogement`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `jeux`
+-- Contraintes pour la table `jeux`
 --
 ALTER TABLE `jeux`
   ADD CONSTRAINT `Jeux_ibfk_1` FOREIGN KEY (`numType`) REFERENCES `type` (`numType`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `louer`
+-- Contraintes pour la table `logement`
+--
+ALTER TABLE `logement`
+  ADD CONSTRAINT `editeur` FOREIGN KEY (`numEditeur`) REFERENCES `editeur` (`numEditeur`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `louer`
 --
 ALTER TABLE `louer`
   ADD CONSTRAINT `Louer_ibfk_1` FOREIGN KEY (`idZone`) REFERENCES `zone` (`idZone`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `Louer_ibfk_2` FOREIGN KEY (`numReservation`) REFERENCES `reservation` (`numReservation`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `posseder`
+-- Contraintes pour la table `posseder`
 --
 ALTER TABLE `posseder`
   ADD CONSTRAINT `Posseder_ibfk_1` FOREIGN KEY (`numJeu`) REFERENCES `jeux` (`numJeu`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `Posseder_ibfk_2` FOREIGN KEY (`numReservation`) REFERENCES `reservation` (`numReservation`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `reservation`
+-- Contraintes pour la table `reservation`
 --
 ALTER TABLE `reservation`
-  ADD CONSTRAINT `reservation_ibfk_1` FOREIGN KEY (`numEditeur`) REFERENCES `editeur` (`numEditeur`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `reservation_ibfk_1` FOREIGN KEY (`numEditeur`) REFERENCES `editeur` (`numEditeur`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `reservation_ibfk_2` FOREIGN KEY (`idFestival`) REFERENCES `festival` (`idFestival`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `suivi`
+-- Contraintes pour la table `suivi`
 --
 ALTER TABLE `suivi`
   ADD CONSTRAINT `Suivi_ibfk_1` FOREIGN KEY (`numEditeur`) REFERENCES `editeur` (`numEditeur`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `zone`
+-- Contraintes pour la table `zone`
 --
 ALTER TABLE `zone`
   ADD CONSTRAINT `Zone_ibfk_1` FOREIGN KEY (`idFestival`) REFERENCES `festival` (`idFestival`) ON DELETE CASCADE ON UPDATE CASCADE;
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
