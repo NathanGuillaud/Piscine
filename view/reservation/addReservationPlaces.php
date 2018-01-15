@@ -38,7 +38,7 @@
 		<label>Prix en euros :
 			<input id="affiche" type="number" placeholder="20" value="<?php echo $prixUnitaire ?>" name="prix" required/></label>
         
-        <button onclick="calcul()" value="calculPrix"> Calculer le prix </button>
+        <!--<button onclick="calcul()" value="calculPrix"> Calculer le prix </button>-->
 		<label>L'editeur se déplace-t-il à l'évènement ? :
 			<input type="checkbox" placeholder="Oui" name="deplacement"/></label>
 

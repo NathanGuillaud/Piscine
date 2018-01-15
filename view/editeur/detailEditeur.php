@@ -13,6 +13,8 @@ echo '<a class="edit-button-suppr" href="index.php?controller=editeur&action=del
 
 echo '<a class="edit-button" href="index.php?controller=contact&action=readAllContact&numEditeur=' . rawurlencode($numEditeur) . '"> Voir les contacts</a>';
 
+echo '<a class="edit-button" href="index.php?controller=logement&action=readLogement&numEditeur=' . rawurlencode($numEditeur) . '">Infos logements</a>';
+
 echo '<a class="edit-button" href="index.php?controller=avoir&action=getJeux&numEditeur=' . rawurlencode($numEditeur) . '"> Voir les jeux</a>';
 
 echo '<p><a class="edit-button" href="index.php?controller=editeur&action=readAllEditeur">Retour</a></p></div>';

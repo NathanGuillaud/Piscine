@@ -1,19 +1,36 @@
 <?php
 $numEditeur = $_GET['numEditeur'];
-$nbrjeux = ModelAvoir::getAllJeuxByEditeur($numEditeur);
-if(!$nbrjeux){
-	$nbrjeux = 0;
-}else{
-	$nbrjeux = count($nbrjeux);
+$veutLogement = $logement->getVeutLogement();
+$aEuLogement = $logement->getAEuLogement();
+$nbPersonnes = $logement->getNbPersonnes();
+$commentaire = $logement->getCommentaire();
+$editeur = ModelEditeur::getEditeurByNum($numEditeur);
+$nomEditeur = $editeur->getNomEditeur();
+if (isset($logement) && !empty($logement)){
+    if($logement->getVeutLogement()){
+        $veutLogement = "Oui";
+    }else{
+        $veutLogement = "Non";
+    }
+
+    if($logement->getAEuLogement()){
+        $aEuLogement = "Oui";
+    }else{
+        $aEuLogement = "Non";
+    }
+
+    echo "<div class='infos'>
+
+
+
+    <h2> Logement pour l'editeur" . htmlspecialchars($nomEditeur) . "</h2><br/><p>L'editeur veut-il un logement:     " . htmlspecialchars($veutLogement) . "<hr/><p> L'editeur a t'il eu son logement ? :     " . htmlspecialchars($aEuLogement) . "<hr/><p>Pour combien de personne est destiné ce logement:     " . htmlspecialchars($nbPersonnes) . " <hr/><p>Commentaires:      " . htmlspecialchars($commentaire) . "<hr/>";
+    
+    echo ' </br></br> <a class="edit-button" href="index.php?controller=editeur&action=update&numEditeur=' . rawurlencode($numEditeur) . '"> Modifier</a>';
+
+
+    echo '<p><a class="edit-button" href="index.php?controller=editeur&action=readAllEditeur">Retour</a></p></div>';
+} else {
+    
+    echo "Aucune informations pour le logement de cet editeur <a style='float:right' class='edit-button' href='index.php?controller=logement&action=addLogement&numEditeur=".  rawurldecode($_GET['numEditeur']) . "'/>Ajouter des informations</a>" ;
 }
-echo "<div class='infos'><h2> Informations sur l'editeur " . htmlspecialchars($editeur->getNomEditeur()) . "</h2><br/><p>Numero editeur:     " . htmlspecialchars($numEditeur) . "<hr/><p> Nom Editeur:     " . htmlspecialchars($editeur->getNomEditeur()) . "<hr/><p>Mail editeur:     " . htmlspecialchars($editeur->getMailEditeur()) . " <hr/><p>Telephone:      " . htmlspecialchars($editeur->getTelEditeur()) . "<hr/><p>Site:     " . htmlspecialchars($editeur->getSiteEditeur()) . " <hr/><p>Commentaire: </br></br>" . htmlspecialchars($editeur->getComEditeur()) . " <hr/><p>Nombre de jeux: " . $nbrjeux ."</p><hr/>";
-echo ' </br></br> <a class="edit-button" href="index.php?controller=editeur&action=update&numEditeur=' . rawurlencode($numEditeur) . '"> Modifier</a>';
-
-echo '<a class="edit-button-suppr" href="index.php?controller=editeur&action=delete&numEditeur=' . rawurlencode($numEditeur) . '"> Supprimer</a>';
-
-echo '<a class="edit-button" href="index.php?controller=contact&action=readAllContact&numEditeur=' . rawurlencode($numEditeur) . '"> Voir les contacts</a>';
-
-echo '<a class="edit-button" href="index.php?controller=avoir&action=getJeux&numEditeur=' . rawurlencode($numEditeur) . '"> Voir les jeux</a>';
-
-echo '<p><a class="edit-button" href="index.php?controller=editeur&action=readAllEditeur">Retour</a></p></div>';
 ?>

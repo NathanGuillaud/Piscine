@@ -5,27 +5,31 @@
 <?php endif;
 
 echo '<div class="infos">';
-if (isset($tab_edit) && isset($tab_edit[0])){
+if (isset($tab_cont) && isset($tab_cont[0])){
 	echo "<table class='liste'>
-  <caption>Liste des types de jeu</caption>
+  <caption>Liste des contacts</caption>
   <thead>
         <tr>
-            <th scope='col'>Nom :</th>
-            <th scope='col'>Prenom :</th>
-            <th scope='col'>Mail :</th>
-            <th scope='col'>Téléphone :</th>
-            <th scope ='col>Privilégié :</th>
+            <th scope='col'>Nom</th>
+            <th scope='col'>Prenom</th>
+            <th scope='col'>Téléphone</th>
+            <th scope='col'>Mail</th>
+            <th scope ='col'>Poste</th>
+            <th scope ='col'>Privilégié</th>
+            <th scope ='col'>Modification</th>
+            <th scope ='col'>Suppression</th>
         </tr>
     </thead>
     
     <tbody>";
 	foreach ($tab_cont as $contact) {
-        $numEditeur = htmlspecialchars($editeur->getNumEditeur());
+        $numContact = htmlspecialchars($contact->getNumContact());
+        $numEditeur = htmlspecialchars($contact->getNumEditeur());
 		$nomContact = htmlspecialchars($contact->getNomContact());
         $prenomContact = htmlspecialchars($contact->getPrenomContact());
         $mailContact = htmlspecialchars($contact->getMailContact());
         $telContact = htmlspecialchars($contact->getTelContact());
-        $posteContact = htmlspecialchars($contact->getPosteContact());
+        $posteContact = htmlspecialchars($contact->getPoste());
 		$estPrivilegie = htmlspecialchars($contact->getEstPrivilegie());
 		if($estPrivilegie){
 			$estPrivilegie = "oui";
@@ -39,12 +43,13 @@ if (isset($tab_edit) && isset($tab_edit[0])){
                 <td data-label='telContact'> " . $telContact . " </td>
                 <td data-label='mailContact'> " . $mailContact ."</td>
                 <td data-label='posteContact'> " . $posteContact . " </td>
-                <td data-label='privilégie'> " . $estPrevilegie ."</td>
-                <td><p><a class='edit-button-table' href='index.php?controller=contact&action=update&numContact=" . rawurlencode($numContact) . '"> Modifier</a></td>' .
-            '<td><a class="edit-button-suppr" href="index.php?controller=contact&action=delete&numContact=' . rawurlencode($numContact) . '"> Supprimer</a></td>';
+                <td data-label='privilégie'> " . $estPrivilegie .'</td>
+                <td><p><a class="edit-button-table" href="index.php?controller=contact&action=update&numContact=' . rawurlencode($numContact) . '"> Modifier</a></td>' .
+            '<td><a class="edit-button-suppr" href="index.php?controller=contact&action=delete&numContact=' . rawurlencode($numContact) . '"> Supprimer</a></td>
+            </tr>';
 	};
 }else{
-	echo"Vous n'avez pas de contact :( ";
+	echo"<h2>Vous n'avez pas de contact</h2>  ";
 }
 ?>
 <br>

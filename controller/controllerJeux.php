@@ -57,7 +57,16 @@
 			$avoir = new ModelAvoir(intval($lastNumJeux[0]), $numEditeur, $_POST['nbExemplaire']);
 			$avoir->save();
 
-			$listeType = ModelType::getAllType();
+			/*$tab_avoir = ModelAvoir::getAllJeuxByEditeur($numEditeur);
+            $tab_jeux = array();
+            if (isset($tab_avoir) && !empty($tab_avoir)){
+                foreach($tab_avoir as $avoir){
+                    $jeux = ModelJeux::getJeuxByNum($avoir->getNumJeu());
+                    array_push($tab_jeux, $jeux);
+                }
+            }*/
+            $listeType = ModelType::getAllType();
+            require File::buildPath(array("view", "view.php"));
 			
 			//On regarde si on vient d'une popup ou non
 			if(!isset($_POST['popupJS'])){				
