@@ -162,15 +162,15 @@ class ModelReservation {
 	}
 
 	static public function getNomEditeurByNumReservation($numReservation) {
-		$sql = "SELECT nomEditeur from reservation,editeur WHERE reservation.numReservation=:num_reservation AND reservation.numEditeur = editeur.numEditeur LIMIT 1";
+		$sql = "SELECT nomEditeur from reservation,editeur WHERE reservation.numReservation =:num_reservation AND reservation.numEditeur = editeur.numEditeur LIMIT 1";
 		try {
-							// Préparation de la requête
+			// Préparation de la requête
 			$req_prep = Model::$pdo->prepare($sql);
 
 			$values = array(
 				"num_reservation" => $numReservation,
 			);
-							// On donne les valeurs et on exécute la requête
+			// On donne les valeurs et on exécute la requête
 			$req_prep->execute($values);
 
 			$req_prep->setFetchMode(PDO::FETCH_ASSOC);
@@ -188,13 +188,14 @@ class ModelReservation {
 		}
 		
 	static public function getReservationByEditeur($numEditeur) {
-		$sql = "SELECT numReservation from reservation WHERE numEditeur=:num_editeur";
+		$sql = "SELECT numReservation from reservation WHERE numEditeur=:num_editeur and idFestival = :idFestival";
 		try {
 	            // Préparation de la requête
 			$req_prep = Model::$pdo->prepare($sql);
 
 			$values = array(
 				"num_editeur" => $numEditeur,
+				"idFestival" => $_SESSION['idFestival'],
 			);
 	            // On donne les valeurs et on exécute la requête	 
 			$req_prep->execute($values);
