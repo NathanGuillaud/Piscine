@@ -21,6 +21,7 @@
         font-size: 35px;
         font-family: "Ubuntu";
         margin-bottom: 3%;
+        text-align:center;
     }
 
     .none {
@@ -315,7 +316,7 @@
         background-color: #2ecc71 !important;
         margin: auto !important;
         padding-top: 10px !important;
-        padding-bottom: 23px !important;
+        padding-bottom: 10px !important;
         padding-left: 25px !important;
         padding-right: 25px !important;
         border-radius: 6px !important;
