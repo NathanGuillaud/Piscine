@@ -48,15 +48,6 @@ class ModelFestival {
 		}
 	} 
 	
-	// un constructeur
-	public function __construct($nomSalle = NULL/*'The girl has no name' luul*/, $nbTotalPlace = NULL, $prixUniTable = NULL) {
-		if (!is_null($nomSalle) && !is_null($nbTotalPlace) && !is_null($prixUniTable)) {
-			$this->nomSalle = $nomSalle;
-			$this->nbTotalPlace = $nbTotalPlace;
-			$this->prixUniTable = $prixUniTable;
-		}
-	}
-	
 	public function save() {
 		$sql = "INSERT INTO festival (nomSalle, nbTotalPlace, prixUniTable) VALUES (:nomSalle_tag, :nbTotalPlace_tag, :prixUniTable_tag)";
 
