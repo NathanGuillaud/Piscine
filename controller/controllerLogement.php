@@ -2,24 +2,14 @@
 	require_once File::buildPath(array('model', 'modelLogement.php'));
 
 	class ControllerLogement {
-
-		public static function readAllLogement() {
-			$tab_edit = ModelLogement::getAllLogements();     //appel au modèle pour gerer la BD
-			$controller = "Logement";
-			$view = "listeLogement";
-			$title = "Liste des Logements";
-			require File::buildPath(array("view", "view.php")); //"redirige" vers la vue
-		}
-
         
 		public static function readLogement(){
-			$logement = ModelLogement::getLogementByNum($_GET['numLogement']);
+			$logement = ModelLogement::getLogement($_GET['numEditeur']);
 	        if ($logement == false) {
 	            $controller = "Logement";
-	            $view = "listeLogement";
-	            $error = "Cet Logement n'existe pas !";
-	            $title = "Liste des éditeurs";
-	            $tab_edit = ModelLogement::getAllLogements();
+	            $view = "detailLogement";
+	            $error = "L'editeur n'a pas d'informations";
+	            $title = "Details sur le logement";
 	            require File::buildPath(array("view", "view.php"));
 	        } else {
 	            $controller = "Logement";
@@ -29,6 +19,7 @@
 	        }
 		}
 		
+        
 		public static function addLogement(){
 			$controller = "Logement";
 			$view = "addLogement";
@@ -38,46 +29,64 @@
 		
 		public static function registerLogement(){
 			$controller = "Logement";
-			$view = "listeLogement";
-			$title = "Liste logements";
-            if(isset($_POST['payeParFestival'])){
-				$nbrJeux = $_POST['payeParFestival'];
-			}else{
-				$nbrJeux = 0;
-			}
+			$view = "detailEditeur";
+			$title = "Informations sur le logement";
             
-			$logement = new ModelLogement($_POST['nomLogement'],$_POST['rueLogement'], $_POST['villeLogement'], $_POST['CPLogement'],$_POST['mailLogement'], $_POST['telLogement'], $_POST['siteLogement'], $payeParFestival);
+            if(isset($_POST['veutLogement'])){
+					$veutLogement = 1;
+				}else{
+					$veutLogement = 0;
+				}
+
+				if(isset($_POST['aEuLogement'])){
+					$aEuLogement = 1;
+				}else{
+					$aEuLogement = 0;
+				}
+
+				if(isset($_POST['facture'])){
+					$facture = 1;
+				}else{
+					$facture = 0;
+				}
+            
+                if(isset($_POST['commentaire'])){
+					$commentaire = $_POST['commentaire'] ;
+				}else{
+					$facture = "Aucun commentaire";
+				}
+            
+			$logement = new ModelLogement();
 			$logement->save();
-			$tab_edit = ModelLogement::getAllLogements();
 			require File::buildPath(array("view", "view.php"));
 		}
 		
 		public static function delete() {
-			if (!empty(ModelLogement::getLogementByNum($_GET['numLogement']))){
-				$Logement = ModelLogement::getLogementByNum($_GET['numLogement']);
+			if (!empty(ModelLogement::getLogement($_GET['numLogement']))){
+				$Logement = ModelLogement::getLogement($_GET['numLogement']);
 				$Logement->deleteLogement();
 			}else{$error = "Ce Logement n'existe pas !";}		
-			$controller = "Logement";
-			$view = "listeLogement";
-			$title = "Liste des logements";
-			$tab_edit = ModelLogement::getAllLogements();
+			$controller = "editeur";
+			$view = "listeEditeur";
+			$title = "Liste des editeurs";
+			$tab_edit = ModelEditeur::getAllEditeurs();
 			require File::buildPath(array("view", "view.php"));
 		} 
-
+/*
 		public static function update(){
-			if (!empty(ModelLogement::getLogementByNum($_GET['numLogement']))){
+			if (!empty(ModelLogement::getLogement($_GET['numEditeur']))){
 				$controller = "Logement";
 				$view = "updateLogement";
 				$title = "Modifier un logement";
-				$logement = ModelLogement::getLogementByNum($_GET['numLogement']);
+				$logement = ModelLogement::getLogement($_GET['numEditeur']);
 				require File::buildPath(array("view", "view.php"));
 				return 0; 		
 			}else{		
-				$error = "Cet Logement n'existe pas !";
+				$error = "Ce Logement n'existe pas !";
 			}
 			$controller = "Logement";
-			$view = "listeLogement";
-			$title = "Liste logements";
+			$view = "detailLogement";
+			$title = "Detail du logement";
 			$tab_edit = ModelLogement::getAllLogements();
 			require File::buildPath(array("view", "view.php"));
 			return 0;
@@ -103,5 +112,6 @@
 			require File::buildPath(array("view", "view.php"));
 			return 0;
 		}
+        */
 	}
 ?>

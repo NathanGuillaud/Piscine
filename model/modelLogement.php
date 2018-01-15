@@ -3,71 +3,54 @@ require_once File::buildPath(array('model', 'model.php'));
 
 class ModelLogement {
 	private $numLogement;
-	private $nomLogement;
-	private $rueLogement;
-	private $villeLogement;
-	private $CPLogement;
-	private $mailLogement;
-    private $telLogement; 
-    private $siteLogement;
-	private $payeParFestival;
+	private $veutLogement;
+	private $aEuLogement;
+	private $cbPersonnes;
+    private $numEditeur;
+	private $commentaire;
     
+   
     
 	public function getNumLogement(){
 		return $this->numLogement;
 	}
 
-	public function getNomLogement(){
-		return $this->nomLogement;
+	public function getVeutLogement(){
+		return $this->veutLogement;
 	}
 
-    public function getRueLogement(){
-		return $this->rueLogement;
+    public function getAEuLogement(){
+		return $this->aEuLogement;
 	}
+    
+    public function getCbPersonnes(){
+        return $this->cbPersonnes;
+    }
 
-	public function getVilleLogement(){
+     public function getNumEditeur(){
+		return $this->numEditeur;
+	}
+    
+	public function getCommentaire(){
 		return $this->villeLogement;
 	}
     
-    public function getCPLogement(){
-		return $this->$CPLogement;
-	}
     
-    public function getmailLogement(){
-        return $this->$mailLogement;
-    }
-	
-    public function getTelLogement(){
-        return $this->$telLogement;
-    }
-    
-	public function getSiteLogement(){
-		return $this->siteLogement;
-	}
-    
-    public function getPayeParFestival() {
-        return $this->payeParFestival;
-    }
-
-
 		// un constructeur
-	public function __construct($nomLogement = NULL, $rueLogement = NULL, $villeLogement = NULL, $CPLogement = NULL, $mailLogement = NULL, $siteLogement = NULL, $payeParFestival = NULL) {
-		if (!is_null($nomLogement) && !is_null($rueLogement) && !is_null($villeLogement) && !is_null($CPLogement) && !is_null($mailLogement) && !is_null($telFestival) && !is_null($siteLogement) && !is_null($payeParFestival)) {
-			$this->nomLogement = $nomLogement;
-			$this->rueLogement = $rueLogement;
-			$this->villeLogement = $villeLogement;
-			$this->CPLogement = $CPlogement;
-			$this->mailLogement = $mailLogement;
-            $this->telLogement = $telLogement;
-			$this->siteLogement = $siteLogement;
-			$this->payeParFestival = $payeParFestival;
+	public function __construct($veutLogement = NULL, $aEuLogement = NULL, $cbPersonnes = NULL, $numEditeur = NULL, $commentaire = NULL) {
+		if (!is_null($veutLogement) && !is_null($aEuLogement) && !is_null($cbPersonnes) && !is_null($numEditeur) && !is_null($commentaire)) {
+			$this->veutLogement = $veutLogement;
+			$this->aEuLogement = $aEuLogement;
+			$this->cpPersonnes = $cbPersonnes;
+			$this->numEditeur = $numEditeur;
+			$this->commentaire = $commentaire;
 		}
 	}
 
 		//methode d'affichage de tous les Logements
-	static public function getAllLogements() {
+	static public function getLogement($numEditeur) {
 		try {
-			$rep = Model::$pdo->query('SELECT * FROM logement');
+			$rep = Model::$pdo->query('SELECT * from logement WHERE numEditeur=:num_editeur');
 			$rep->setFetchMode(PDO::FETCH_CLASS, 'ModelLogement');
 			$tab_prod = $rep->fetchAll();
 			return $tab_prod;
@@ -75,47 +58,19 @@ class ModelLogement {
 			echo('Error tout casse ( /!\ method getAllLogements() /!\ )');
 		}
 	}
-
-	static public function getLogementByNum($numLogement) {
-		$sql = "SELECT * from logement WHERE numLogement=:num_logement";
-		try {
-	            // Préparation de la requête
-			$req_prep = Model::$pdo->prepare($sql);
-
-			$values = array(
-				"num_logement" => $numLogement,
-			);
-	            // On donne les valeurs et on exécute la requête
-			$req_prep->execute($values);
-
-			$req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelLogement');
-			$tab_prod = $req_prep->fetchAll();
-		} catch (PDOException $e) {
-			echo('Error tout casse ( /!\ method getLogementByNum() /!\ )');
-		}
-
-        // Attention, si il n'y a pas de résultats, on renvoie false
-		if (empty($tab_prod)) {
-			return false;
-		}
-
-		return $tab_prod[0];
-	}
-
+    
+    
 	public function save() {
-		$sql = "INSERT INTO logement (nomLogement, rueLogement, villeLogement, CPLogement, mailLogement, telLogement, siteLogement, payeParLogement) VALUES (:nom_tag, :rue_tag, :ville_tag, CP_tag, mail_tag :tel_tag, :site_tag, :paye_tag)";
+		$sql = "INSERT INTO logement (veutLogement, aEuLogement, cbPersonnes, numEditeur commentaire) VALUES (:veutLogement_tag, :aEuLogement_tag, :cbPersonnes_tag, :numEditeur_tag, :commentaire_tag)";
 
 		try {
 			$req_prep = Model::$pdo->prepare($sql);
 			$values = array(
-				"nom_tag" => $this->getNomLogement(),
-				"rue_tag" => $this->getRueLogement(),
-				"ville_tag" => $this->getVilleLogement(),
-				"CP_tag" => $this->getCPLogement(),
-				"mail_tag" => $this->getMailLogement(),
-				"tel_tag" => $this->getTelLogement(),
-				"site_tag" => $this->getSiteLogement(),
-				"paye_tag" => $this->getPayeParFestival(),
+				"veutLogement_tag" => $this->getVeutLogement(),
+				"aEuLogement_tag" => $this->getAEuLogement(),
+				"CbPersonnes_tag" => $this->getCbPersonnes(),
+				"numEditeur_tag" => $this->getNumEditeur(),
+				"commentaire_tag" => $this->getCommentaire(),
 			);
 			$req_prep->execute($values);
 
@@ -126,7 +81,7 @@ class ModelLogement {
 		}
 	}
 
-	public function deleteLogement() {
+	public function deleteLogement($numLogement) {
 		$sql = "DELETE FROM logement WHERE logement.numLogement = :num_tag";
 		try {
 			$req_prep = Model::$pdo->prepare($sql);
@@ -140,27 +95,20 @@ class ModelLogement {
 	}
 
 	public function update($numLogement){
-		$sql = "UPDATE logement SET logement.nomLogement = :nom_tag,
-								    logement.rueLogement = :rue_tag,
-								    logement.villeLogement = :ville_tag,
-								    logement.CPLogement = :CP_tag,
-								    logement.mailLogement = :mail_tag,
-								    logement.telLogement = :tel_tag,
-								    logement.siteLogement = :site_tag,
-								    logement.payeParFestival = :paye_tag,
-                                   
+		$sql = "UPDATE logement SET logement.veutLogement = veutLogement_tag,
+								    logement.aEuLogement = :aEuLogement_tag,
+								    logement.cbPersonnes = :cbPersonnes_tag,
+								    logement.numEditeur = :numEditeur_tag,
+								    logement.commentaire = :commentaire_tag,
 							 WHERE logement.numLogement = :num_Logement";
 		try {
 			$req_prep = Model::$pdo->prepare($sql);
 			$values = array(
-				"nom_tag" => $this->getNomLogement(),
-				"rue_tag" => $this->getRueLogement(),
-				"ville_tag" => $this->getVilleLogement(),
-				"CP_tag" => $this->getCPLogement(),
-				"mail_tag" => $this->getMailLogement(),
-				"tel_tag" => $this->getTelLogement(),
-				"site_tag" => $this->getSiteLogement(),
-				"paye_tag" => $this->getPayeParFestival(),
+				"veutLogement_tag" => $this->getVeutLogement(),
+				"aEuLogement_tag" => $this->getAEuLogement(),
+				"cbPersonnes_tag" => $this->getCbPersonnes(),
+				"numEditeur_tag" => $this->getNumEditeur(),
+				"commentaire_tag" => $this->getCommentaire(),
 			);
 			$req_prep->execute($values);
 		} catch (PDOException $e) {

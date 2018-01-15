@@ -27,7 +27,7 @@ if (isset($tab_type) && isset($tab_type[0])){
         echo"<tr>
                 <td data-label='nomEdit'> " . $libelleType . "</td>
                 <td><p><a class='edit-button-table' href=index.php?controller=type&action=update&numType=" . rawurlencode($numType) . "'> Modifier</a></p></td>
-                <td><p><a class='edit-button-suppr' href=index.php?controller=type&action=delete&numType=" . rawurlencode($numType) . "> Supprimer</a> </p></td>
+                <td><p><a class='edit-button-suppr-tab' href=index.php?controller=type&action=delete&numType=" . rawurlencode($numType) . "> Supprimer</a> </p></td>
             </tr>";
 	};
 

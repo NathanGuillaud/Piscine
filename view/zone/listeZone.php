@@ -35,7 +35,7 @@ if (isset($tab_zone) && !empty($tab_zone)){
                 <td data-label='libelleZone'> " . $libelleZone . " </td><td data-label='typeZone'> " . $type;
 		echo "</td><td data-label='modif'><a class='edit-button-table' href='index.php?controller=zone&action=readZone&idZone=". rawurldecode($idZone) . "'> Modifier</a> </td>
 
-        <td data-label='nbrJeux'><a class='edit-button-suppr' href='index.php?controller=zone&action=delete&idZone=" . rawurlencode($idZone) . "'> Supprimer</a></p>
+        <td data-label='nbrJeux'><a class='edit-button-suppr-tab' href='index.php?controller=zone&action=delete&idZone=" . rawurlencode($idZone) . "'> Supprimer</a></p>
 
         </tr>
         ";
