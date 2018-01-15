@@ -1,7 +1,7 @@
 <?php
 	require_once File::buildPath(array('model', 'modelReservation.php'));
 	require_once File::buildPath(array('model', 'modelLouer.php'));
-
+	require_once File::buildPath(array('model', 'modelPosseder.php'));
 	class ControllerReservation {
 
 		public static function readAllReservation() {
@@ -85,8 +85,8 @@
 
 		public static function registerReservation(){
 			$controller = "reservation";
-			$view = "listeReservation";
-			$title = "Liste des reservations";
+			$view = "addReservationJeu";
+			$title = "Réservation Jeu";
 
 			$idZone = $_POST['idZone'];
 			$numEditeur = $_POST['numEditeur'];
@@ -98,7 +98,7 @@
 			}
 
 			//Si il n'y a pas assez de place on arrete la reservation
-			if($place > ModelLouer::getNombrePlaceRestante(Conf::$idFestival) || ModelLouer::getNombrePlaceRestante(Conf::$idFestival) == NULL){
+			if($place > ModelLouer::getNombrePlaceRestante($_SESSION['idFestival']) || ModelLouer::getNombrePlaceRestante($_SESSION['idFestival']) == NULL){
 				$error = "Pas assez de place !";
 				$controller = "reservation";
 				$view = "listeReservation";
@@ -106,6 +106,12 @@
 				$tab_reserv = ModelReservation::getAllReservations();
 				require File::buildPath(array("view", "view.php"));
 				return 0;
+			}
+
+			$tabJeu = array();
+			foreach ($numJeu as $numjeu) {
+				$jeu = ModelJeux::getJeuxByNum($numjeu);
+				array_push($tabJeu, $jeu);
 			}
 
 			if(isset($_POST['paye'])){
@@ -120,7 +126,7 @@
 				$deplacement = 0;
 			}
 
-          	$reservation = new ModelReservation($paye, $_POST['dateFacture'], $_POST['dateRelance'], $_POST['prix'], $deplacement, $numEditeur);
+          	$reservation = new ModelReservation($paye, $_POST['dateFacture'], $_POST['dateRelance'], $_POST['prix'], $deplacement, $numEditeur, $_SESSION['idFestival']);
             $reservation->save();
 
 			$numReservation = intval(ModelReservation::getLastNumReservation()[0]);
@@ -129,6 +135,35 @@
             	$louer = new ModelLouer($nbPlace[$i], $idZone[$i], $numReservation);
             	$louer->save();
             }
+
+			$tab_reserv = ModelReservation::getAllReservations();
+			require File::buildPath(array("view", "view.php"));
+		}
+
+		public static function reservationJeu(){
+			$controller = "reservation";
+			$view = "listeReservation";
+			$title = "Liste des reservations";
+
+			$don = $_POST['don'];
+			$envoi = $_POST['envoi'];
+			$numJeu = $_POST['numJeu'];
+			$nbExemplaire = $_POST['nbExemplaire'];
+			$numReservation = $_POST['numReservation'];
+			for ($i=0; $i < count($numJeu); $i++) { 
+				if($envoi[$i] == "on"){
+					$en = 1;
+				}else{
+					$en = 0;
+				}
+				if($don[$i] == "on"){
+					$dn = 1;
+				}else{
+					$dn = 0;
+				}
+				$posseder = new ModelPosseder($en, $dn, $nbExemplaire[$i],$numJeu[$i], $numReservation);
+				$posseder->save();
+			}
 
 			$tab_reserv = ModelReservation::getAllReservations();
 			require File::buildPath(array("view", "view.php"));

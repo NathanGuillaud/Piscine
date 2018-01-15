@@ -66,8 +66,12 @@
 		
 		public static function delete() {
 			if (!empty(ModelEditeur::getEditeurByNum($_GET['numEditeur']))){
-				$editeur = ModelEditeur::getEditeurByNum($_GET['numEditeur']);
-				$editeur->deleteEditeur();
+				if(empty(ModelAvoir::getAllJeuxByEditeur($_GET['numEditeur']))){
+					$editeur = ModelEditeur::getEditeurByNum($_GET['numEditeur']);
+					$editeur->deleteEditeur();
+				}else{
+					$error = "Cet édieur possède des jeux !";
+				}
 			}else{$error = "Cet editeur n'existe pas !";}		
 			$controller = "editeur";
 			$view = "listeEditeur";
