@@ -31,12 +31,13 @@
 					<div class="menu-elem"><a href="index.php?controller=reservation&action=readAllReservation">Réservations</a></div>
 					<div class="menu-elem"><a href="index.php?controller=type&action=readAllType">Types de jeux</a></div>
         	<div class="menu-elem"><a href="index.php?controller=zone&action=readZones">Zones</a></div>
-                <img style="margin-left: 347px" src="logo.jpg" alt="" />
+                
         </div>
 
                 </div>
-
+ 
                 <div class="menu-icon">
+                    <img class="logo" src="logo.png" alt="" />
                     <div class="menu-icon"><a class="setting" href="index.php?controller=festival&action=viewFestival&idFestival=1"><i class="fa fa-cog" aria-hidden="true"></i></a></div>
 
 					<div class="menu-icon"><a class="logout" href="index.php?controller=user&action=actionDisconnect"><i class="fa fa-sign-out" aria-hidden="true"></i></a></div>
@@ -67,10 +68,10 @@
 					<div class="menu-elem"><a href="index.php?controller=user&action=viewConnect">Se connecter</a></div>
 					<div class="menu-elem"><a href="index.php?controller=user&action=viewRegister">Creer un compte</a></div>
 				<?php endif ?>
-			</nav>
-		</div>
-	</header>
-</div>
+        </div>
+        </header>
+    </div>
+
 	 <?php
         $filepath = File::buildPath(array("view", $controller, "$view.php"));
         require $filepath;
