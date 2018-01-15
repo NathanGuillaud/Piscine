@@ -3,6 +3,7 @@
 		<?php echo $error; ?>
 	</p>
 <?php endif;
+<<<<<<< Updated upstream
 	  echo '<br><div class="infos">
             <div class="submenu">
                 <form method="post" action="index.php?controller=festival&action=changeFestival">
@@ -18,6 +19,9 @@
                 </form>
             </div><br>";
 	  echo "<br><h2> Paramètres du festival : </h2>";
+=======
+	  echo "<br><div class='infos'> <h2> Paramètres du festival : </h2>";
+>>>>>>> Stashed changes
 	  if(!empty(ModelFestival::getFestivalById(1))){
 	  		$festival = ModelFestival::getFestivalById(1);
 	  		echo '<p>Salle: ' . htmlspecialchars($festival->getNomSalle()) . '</p><hr/><p> Places: ' . htmlspecialchars($festival->getnbTotalPlace()) . ' </p><hr/><p>Prix: ' . htmlspecialchars($festival->getPrixUniTable()) . '<hr/></p>' ;
