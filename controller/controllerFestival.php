@@ -3,7 +3,6 @@
 
 	class ControllerFestival {
 
-<<<<<<< Updated upstream
 		public static function changeFestival(){
 			$controller = "accueil";
 			$view = "home";
@@ -12,10 +11,7 @@
 			$error = "Festival changé !";
 			require File::buildPath(array("view", "view.php"));
 		}
-
-=======
 		
->>>>>>> Stashed changes
 		public static function addFestival(){
 			$controller = "festival";
 			$view = "addFestival";
