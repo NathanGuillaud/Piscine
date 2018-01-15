@@ -1,5 +1,6 @@
 <?php $numSuivi = $_GET['numSuivi'];
 $nomEditeur = ModelSuivi::getNomEditeurByNumSuivi($numSuivi);?>
+<div class="infos">
 <form method="post" action="index.php?controller=suivi&action=updateSuivi&numSuivi=<?php echo $numSuivi; ?> ">
 	<fieldset class="form-infos">
 	    <label>Date de premier contact :
@@ -50,3 +51,4 @@ $nomEditeur = ModelSuivi::getNomEditeurByNumSuivi($numSuivi);?>
 			<input class="form-bouton" type="submit" name="submit" value="Enregistrer" />
 	</fieldset>
 </form>
+</div>
