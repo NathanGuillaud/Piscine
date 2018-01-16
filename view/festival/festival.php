@@ -29,5 +29,6 @@
 	  	}
 	  		
 	  	echo "<div><a class='edit-button' href='index.php?controller=festival&action=addFestival&idFestival=1'>Ajouter un festival</a></div>";
+        echo '<div class="menu-elem"><a class="edit-button" href="index.php?controller=user&action=viewRegister">Creer un compte</a></div>';
 	  	  
 ?>

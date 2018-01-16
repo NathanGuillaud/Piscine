@@ -35,12 +35,11 @@
         $controller = "controllerUser";
     }
 
- 	if(ModelUser::isConnected() && ($action == "viewRegister" || $action == "actionConnect")){
+ 	if(ModelUser::isConnected() && ($action == "actionConnect")){
 		ControllerUser::viewConnect();
 	}elseif(ModelUser::isConnected() || $action == "viewRegister" || $action == "actionConnect" || $action == "actionRegister"){
 		$controller::$action();
 	}else{
 		ControllerUser::viewConnect();
 	}
-
 ?>
